@@ -1,8 +1,10 @@
 var http = require("http");
 
+require("./v1/server").start();
 require("./finalVersion/index").go();
 
 var handle = {};
+handle["/v1"] = "http://localhost:8881";
 handle["/finalVersion"] = "http://localhost:8887";
 
 function onRequest(request, response) {

@@ -61,8 +61,39 @@
                 </section>
 
                 <section>
+                    <h2>Live Beispiel - Ziele</h2>
+                    <ul>
+                        <li>WebServer</li>
+                        <li>Router</li>
+                        <li>Request Handler</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Live Beispiel - WebServer</h2>
+                    <pre style="margin:0;padding:0;">
+                        <code class="fragment" style="margin:0;padding:0;">
+var http = require("http");
+                        </code>
+                        <code class="fragment" style="margin:-50px 0 0 0;padding:0;">
+                            
+http.createServer(function(request, response) {
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello World");
+    response.end();
+}).listen(8881);
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Live Beispiel - WebServer</h2>
+                    <iframe src="http://localhost:8888/v1" width="750" height="450" style="background-color: #eee8d5;"></iframe>
+                </section>
+
+                <section>
                     <h2>Live Beispiel</h2>
-                    <iframe src="http://localhost:8888/finalVersion" width="600" height="400" style="background-color:beige;"></iframe>
+                    <iframe src="http://localhost:8888/finalVersion" width="750" height="450" style="background-color: #eee8d5;"></iframe>
                 </section>
 
                 <!--Sections, welche noch nicht in die Präsentation einsortiert wurden-->
