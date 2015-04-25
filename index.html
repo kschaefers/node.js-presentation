@@ -16,7 +16,8 @@
 
         <link rel="stylesheet" href="css/reveal.css">
         <link rel="stylesheet" href="css/theme/moon.css" id="theme">
-
+        <link rel="stylesheet" href="css/theme/individualAdditons.css">
+        
         <!-- Code syntax highlighting -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
 
@@ -60,8 +61,26 @@
 
                 </section>
 
-                <section>
-                    <h2>Live Beispiel - Ziele</h2>
+                <section class="example">
+                    <h2>Ziele</h2>
+                    <ul>
+                        <li>Bedienung durch Browser</li>
+                        <li>Texteingabe (Startseite)</li>
+                        <li>Weiterleitung</li>
+                        <li>Anzeige des eingegebenen Textes</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                        <li>durch Browser bedienbar</li>
+                        <li>Möglichkeit der Texteingabe auf der Startseite der Anwendung</li>
+                        <li>Weiterleitung auf eine zweite Seite wenn Texteingabe beendet</li>
+                        <li>Anzeige des eingegebenen Textes auf der zweiten Seite</li>
+                    </ul>
+                    </aside>
+                </section>
+
+                <section class="example">
+                    <h2>Komponenten</h2>
                     <ul>
                         <li>WebServer</li>
                         <li>Router</li>
@@ -69,8 +88,8 @@
                     </ul>
                 </section>
 
-                <section>
-                    <h2>Live Beispiel - WebServer</h2>
+                <section class="example">
+                    <h2>WebServer</h2>
                     <pre style="margin:0;padding:0;">
                         <code class="fragment" style="margin:0;padding:0;">
 var http = require("http");
@@ -86,13 +105,13 @@ http.createServer(function(request, response) {
                     </pre>
                 </section>
 
-                <section>
-                    <h2>Live Beispiel - WebServer</h2>
+                <section class="example">
+                    <h2>WebServer</h2>
                     <iframe src="http://localhost:8888/v1" width="750" height="450" style="background-color: #eee8d5;"></iframe>
                 </section>
 
-                <section>
-                    <h2>Live Beispiel</h2>
+                <section class="example">
+                    <h2>Finale Version</h2>
                     <iframe src="http://localhost:8888/finalVersion" width="750" height="450" style="background-color: #eee8d5;"></iframe>
                 </section>
 

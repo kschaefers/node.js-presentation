@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'special_eliteregular';
+    src: url('../font/SpecialElite-webfont.eot');
+    src: url('../font/SpecialElite-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/SpecialElite-webfont.woff') format('woff'),
+         url('../font/SpecialElite-webfont.ttf') format('truetype'),
+         url('../font/SpecialElite-webfont.svg#special_eliteregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+section.example::before {
+    content: "Praxisbeispiel";
+    position: absolute;
+    color: #F00;
+    right: -35px;
+	top: -10px;
+    font-family: 'Special Elite', cursive;
+    border: 3px solid red;
+    transform: rotateZ(35deg);
+    padding: 5px 10px 3px;
+}
