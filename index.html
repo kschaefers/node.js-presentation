@@ -16,8 +16,8 @@
 
         <link rel="stylesheet" href="css/reveal.css">
         <link rel="stylesheet" href="css/theme/moon.css" id="theme">
-        <link rel="stylesheet" href="css/theme/individualAdditons.css">
-        
+        <link rel="stylesheet" href="css/individualAdditons.css">
+
         <!-- Code syntax highlighting -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
 
@@ -71,11 +71,11 @@
                     </ul>
                     <aside class="notes">
                         <ul>
-                        <li>durch Browser bedienbar</li>
-                        <li>Möglichkeit der Texteingabe auf der Startseite der Anwendung</li>
-                        <li>Weiterleitung auf eine zweite Seite wenn Texteingabe beendet</li>
-                        <li>Anzeige des eingegebenen Textes auf der zweiten Seite</li>
-                    </ul>
+                            <li>durch Browser bedienbar</li>
+                            <li>Möglichkeit der Texteingabe auf der Startseite der Anwendung</li>
+                            <li>Weiterleitung auf eine zweite Seite wenn Texteingabe beendet</li>
+                            <li>Anzeige des eingegebenen Textes auf der zweiten Seite</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -86,16 +86,37 @@
                         <li>Router</li>
                         <li>Request Handler</li>
                     </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>WebServer - um dynamische Webseiten bereitstellen zu können</li>
+                            <li>Router - anderes Verhalten der Anwendung, jenachdem welche URL aufgerufen wird -> delegieren von Requests zu Request Hanldern</li>
+                            <li>Request Handler - Unterschidliches Verhalten je nach aufgerufener URL</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section class="example">
-                    <h2>WebServer</h2>
-                    <pre style="margin:0;padding:0;">
-                        <code class="fragment" style="margin:0;padding:0;">
+                    <h2>Herangehensweise</h2>
+                    Web-Applikation = WebServer
+                    <aside class="notes">
+                        <p>PHP: PHP läuft auf  Apache HTTP Server -> Bereitstellen von Seiten + Empfangen von HTTP-Requests -> Apache HTTP Server</p>
+                        <p>Node.js: In Node.js wird nicht nur die Applikation implementiert, sondern auch der komplette HTTP Server.</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Module in Node.js</h2>
+                    <!--TODO: Jakob, das war doch bei dir mit drin, dass du auf Module etwas eingehst, oder? spätestens an dieser Stelle sollte dazu etwas kommen-->
+                    <!--Module werden in Node verwendet, um concerns zu separaten etc.-->
+                    <!--clean main file-->
+                </section>
+
+                <section class="example">
+                    <h2>"Hello World" in Node.js</h2>
+                    <pre>
+                        <code>
 var http = require("http");
-                        </code>
-                        <code class="fragment" style="margin:-50px 0 0 0;padding:0;">
-                            
+
 http.createServer(function(request, response) {
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("Hello World");
@@ -106,13 +127,153 @@ http.createServer(function(request, response) {
                 </section>
 
                 <section class="example">
-                    <h2>WebServer</h2>
-                    <iframe src="http://localhost:8888/v1" width="750" height="450" style="background-color: #eee8d5;"></iframe>
+                    <h2>Ausgabe im Browser</h2>
+                    <div class="browser">
+                        <div class="url">http://localhost:8888/helloWorld</div>
+                        <iframe src="http://localhost:8888/helloWorld" width="750" height="450"></iframe>
+                    </div>
+                </section>
+
+                <section class="example">
+                    <h2>"Hello World" Erklärung</h2>
+                    <pre>
+<code>
+var http = require("http");
+
+
+
+
+
+
+</code>
+<code class="fragment current-visible" style="margin-top:-175px">
+http.createServer(function(request, response) {
+
+
+
+}).listen(8888);
+</code>
+<code class="fragment" style="margin-top:-176px">
+http.createServer(function(request, response) {
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello World");
+    response.end();
+}).listen(8888);
+</code>
+                    </pre>
+                    <aside class="notes">
+                        .createServer() bekommt eine anynyme Funktion übergeben -> callback
+                    </aside>
+                </section>
+
+                <section class="example">
+                    <h2>"Hello World" - Version 2</h2>
+                    <pre>
+<code>
+var http = require("http");
+
+function onRequest(request, response) {
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello World");
+    response.end();
+}
+
+http.createServer(onRequest).listen(8888);
+</code>
+                    </pre>
+                </section>
+
+                <!--TODO-->
+                <!--Beispiel für asynchrone Abarbeitung etc. -> Sollte somit in die Nähe der Erklärung-->
+                <section class="example">
+                    <h2>"Hello World" - Version 2</h2>
+                    <pre>
+<code>
+var http = require("http");
+
+function onRequest(request, response) {
+    console.log("Request received.");
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello World");
+    response.end();
+}
+
+http.createServer(onRequest).listen(8888);
+
+console.log("Server has started.");
+</code>
+                    </pre>
+                    <pre class="console fragment">
+<code>
+C:\Users\Katrin\nodeProject>node index.js
+Server has started.
+Request received.
+</code>
+                    </pre>
+                    <aside class="notes">
+                        Wie sieht die Konsole aus?<br>Was wird zuerst gedruckt?
+                    </aside>
+                </section>
+                
+                <section class="example">
+                    <h2>Parameter von onRequest()</h2>
+                    <ul>
+                        <li>request</li>
+                        <li>response</li>
+                    </ul>
+                    <aside class="notes">
+                        <p>können genauere Details des HTTP Requests liefern</p>
+                        <p>request: Details zum eingehenden HTTP Request</p>
+                        <p>response: Möglichkeit der Antwort auf den HTTP Request</p>
+                        <p>bei "Hello World": request wird nicht gebraucht, es wird nur mit response auf den Request geantwortet</p>
+                    </aside>
+                </section>
+                
+                <section class="example">
+                    <h2>Server als eigenes Modul</h2>
+                    <pre>
+<code>
+var http = require("http");
+
+function start() {
+    function onRequest(request, response) {
+        console.log("Request received.");
+        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.write("Hello World");
+        response.end();
+    }
+
+    http.createServer(onRequest).listen(8888);
+
+    console.log("Server has started.");
+}
+
+exports.start = start;
+</code>
+                    </pre>
+                </section>
+                
+                <section class="example">
+                    <h2>index.js</h2>
+                    <pre>
+<code>
+var server = require("./server");
+
+server.start();
+</code>
+                    </pre>
+                    <aside class="notes">
+                        <p>index.js bindet nun das Server-Modul ein und startet es</p>
+                        <p>keine Veränderung an der Funktionalität - > nur Modularisierung</p>
+                    </aside>
                 </section>
 
                 <section class="example">
                     <h2>Finale Version</h2>
-                    <iframe src="http://localhost:8888/finalVersion" width="750" height="450" style="background-color: #eee8d5;"></iframe>
+                    <div class="browser">
+                        <div class="url">http://localhost:8888/finalVersion</div>
+                        <iframe src="http://localhost:8888/finalVersion" width="750" height="450"></iframe>
+                    </div>
                 </section>
 
                 <!--Sections, welche noch nicht in die Präsentation einsortiert wurden-->
