@@ -230,7 +230,7 @@ Request received.
                 </section>
                 
                 <section class="example">
-                    <h2>Server als eigenes Modul</h2>
+                    <h2>Server-Modul V1</h2>
                     <pre>
 <code>
 var http = require("http");
@@ -251,6 +251,9 @@ function start() {
 exports.start = start;
 </code>
                     </pre>
+                    <aside class="notes">
+                        Server nun als eigenes Modul
+                    </aside>
                 </section>
                 
                 <section class="example">
@@ -267,6 +270,236 @@ server.start();
                         <p>keine Veränderung an der Funktionalität - > nur Modularisierung</p>
                     </aside>
                 </section>
+                
+                <section class="example">
+                    <h2>Routing von Requests</h2>
+                    <ul>
+                        <li>GET & POST Parameter auslesen</li>
+                        <li>abhängig von der URL den Request an den<br>dazugehörigen Request Handler weiterleiten</li>
+                    </ul>
+                </section>
+                
+                <section class="example">
+                    <h2>Server-Modul V2</h2>
+                    <pre>
+<code>
+var http = require("http");
+var url = require("url")
+
+function start(route) {
+    function onRequest(request, response) {
+        var pathname = url.parse(request.url).pathname;
+        console.log("Request for " + pathname + " received.");
+        
+        route(pathname);
+        
+        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.write("Hello World");
+        response.end();
+    }
+
+    http.createServer(onRequest).listen(8888);
+
+    console.log("Server has started.");
+}
+
+exports.start = start;                         
+</code>
+                    </pre>
+                </section>
+                
+                <section class="example">
+                    <h2>Router-Modul V2</h2>
+                    <pre>
+<code>
+function route(pathname) {
+    console.log("About to route a request for " + pathname);
+}
+
+exports.route = route;
+</code>
+                    </pre>
+                </section>
+                
+                <section class="example">
+                    <h2>index.js V2</h2>
+                    <pre>
+<code>
+var server = require("./server");
+var router = require("./router");
+
+server.start(router.route);
+</code>
+                    </pre>
+                </section>
+                
+                <section class="example">
+                    <h2>Request Handler-Modul V3</h2>
+                    <pre>
+<code>
+function start() {
+    console.log("Request handler 'start' was called.");
+}
+
+function upload() {
+    console.log("Request handler 'upload' was called.");
+}
+
+exports.start = start;
+exports.upload = upload;
+</code>
+                    </pre>
+                </section>
+                
+                <section class="example">
+                    <h2>index.js V3</h2>
+                    <pre>
+<code>
+var server = require("./server");
+var router = require("./router");
+var requestHandlers = require("./requestHandlers");
+
+var handle = {};
+handle["/"] = requestHandlers.start;
+handle["/start"] = requestHandlers.start;
+handle["/upload"] = requestHandlers.upload;
+
+server.start(router.route, handle);
+</code>
+                    </pre>
+                </section>
+                
+                <section class="example">
+                    <h2>Server-Modul V3</h2>
+                    <pre>
+<code>
+var http = require("http");
+var url = require("url")
+
+function start(route, handle) {
+    function onRequest(request, response) {
+        var pathname = url.parse(request.url).pathname;
+        console.log("Request for " + pathname + " received.");
+        
+        route(handle, pathname);
+        
+        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.write("Hello World");
+        response.end();
+    }
+
+    http.createServer(onRequest).listen(8888);
+    console.log("Server has started.");
+}
+
+exports.start = start;                         
+</code>
+                    </pre>
+                </section>
+                
+                <section class="example">
+                    <h2>Router-Modul V3</h2>
+                    <pre>
+<code>
+function route(handle, pathname) {
+    console.log("About to route a request for " + pathname);
+    if (handle[pathname] === 'function') {
+        handle[pathname]();
+    } else {
+        console.log("No request handler found for " + pathname);
+    }
+}
+
+exports.route = route;
+</code>
+                    </pre>
+                </section>
+                
+                <section class="example">
+                    <h2>Server-Modul V4</h2>
+                    <pre>
+<code>
+var http = require("http");
+var url = require("url")
+
+function start(route, handle) {
+    function onRequest(request, response) {
+        var pathname = url.parse(request.url).pathname;
+        console.log("Request for " + pathname + " received.");
+        
+        route(handle, pathname, response);
+    }
+
+    http.createServer(onRequest).listen(8888);
+    console.log("Server has started.");
+}
+
+exports.start = start;                         
+</code>
+                    </pre>
+                </section>
+                
+                <section class="example">
+                    <h2>Router-Modul V4</h2>
+                    <pre>
+<code>
+function route(handle, pathname, response, postData) {
+    console.log("About to route a request for " + pathname);
+
+    if (typeof handle[pathname] === 'function') {
+        handle[pathname](response, postData);
+    } else {
+        console.log("No request handler found for " + pathname);
+        response.writeHead(404, {"Content-Type": "text/plain"});
+        response.write("404 Not found");
+        response.end();
+    }
+}
+exports.route = route;
+</code>
+                    </pre>
+                </section>
+                
+                <section class="example">
+                    <h2>Request Handler-Modul V4</h2>
+                    <pre>
+<xmp>
+var querystring = require("querystring");
+
+function start(response, postData) {
+    console.log("Request handler 'start' was called.");
+
+    var body = '<html>' +
+            '<head>' +
+            '<meta http-equiv="Content-Type" content="text/html; ' +
+            'charset=UTF-8" />' +
+            '</head>' +
+            '<body>' +
+            '<form action="/upload" method="post">' +
+            '<textarea name="text" rows="20" cols="60"></textarea>' +
+            '<input type="submit" value="Submit text" />' +
+            '</form>' +
+            '</body>' +
+            '</html>';
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+}
+
+function upload(response, postData) {
+    console.log("Request handler 'upload' was called.");
+
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("You've sent the text:\n" + querystring.parse(postData).text);
+    response.end();
+}
+
+exports.start = start;
+exports.upload = upload;
+</xmp>
+                    </pre>
+                </section>
 
                 <section class="example">
                     <h2>Finale Version</h2>
@@ -274,6 +507,13 @@ server.start();
                         <div class="url">http://localhost:8888/finalVersion</div>
                         <iframe src="http://localhost:8888/finalVersion" width="750" height="450"></iframe>
                     </div>
+                </section>
+                
+                <section>
+                    <h3>Vielen Dank für die Aufmerksamkeit!</h3>
+                    <br>
+                    <br>
+                    <h2>Fragen? / Diskussion</h2>
                 </section>
 
                 <!--Sections, welche noch nicht in die Präsentation einsortiert wurden-->
