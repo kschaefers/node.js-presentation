@@ -56,8 +56,61 @@
                 </section>
 
                 <section>
-                    <h2>Einführung</h2>
+                    <h2>Lernziele</h2>
+                    <h4>Was wir am Ende gelernt haben</h4>
+                    <ul>
+                        <li>Wie Node.js aufgebaut ist</li>
+                        <li>Was Node.js von Alternativen unterscheidet</li>
+                        <li>Wie man mit Node.js einen einfachen Webserver entwickelt</li>
+                        <li>Wie Node.js Code strukturiert und organisiert wird</li>
+                        <li>Wann Node.js eine gute Wahl ist</li>
+                    </ul>
+                </section>
 
+                <section>
+                    <h2>Einführung</h2>
+                    <p>Was ist Node.js?</p>
+                    <img width="30%" height="30%" src="img/nodejs-light.png" style="border: none" />
+                </section>
+
+                <section>
+                    <h2>Node.js - Serverseitiges Javascript</h2>
+                    <p>JavaScript Framework für Serverseitige Entwicklung</p>
+                    <p>Erfunden 2009 von Ryan Dahl, finanziert von Joyent</p>
+                    <p>Implementiert in C/C++ und JavaScript</p>
+                    <p>Verfügbar für Windows, Linux, OS X</p>
+                    <p>Ausgelegt auf I/O lastige Anwendungen</p>
+                    <p>Ausgelegt auf eventgetriebene, asynchrone Programmierung</p>
+                </section>
+
+                <section>
+                    <h2>Node.js - Aufbau</h2>
+                    <!--canvas width="500px" height="200px" id="aufbaucanvas" />
+                    <script>
+                        var c = document.getElementById("aufbaucanvas");
+                        var ctx = c.getContext("2d");
+                        ctx.fillStyle = "blue";
+                        ctx.fillRect(50, 50, 75, 50);
+                    </script-->
+                    <img src="img/nodejsarch.png" />
+                    <p> Node.js Kernkomponenten
+                        <ul>
+                            <li>V8 JavaScript Engine</li>
+                            <li>libeio für asynchrones I/O</li>
+                            <li>libuv für dei Event Loop</li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Hello Node!</h2>
+                    <pre style="margin: 0;padding: 0">
+                        <code>
+echo "console.log('Hello Node!')" > hello.js
+node hello.js
+&gt; Hello Node!
+                        </code>
+                    </pre>
                 </section>
 
                 <section>
@@ -97,11 +150,168 @@ http.createServer(function(request, response) {
                 </section>
 
                 <!--Sections, welche noch nicht in die Präsentation einsortiert wurden-->
+                <!--Sections, welche noch nicht in die Präsentation einsortiert wurden-->
                 <!--<section>
                     <h2>Websuche nach Node.js</h2>
                     <script type="text/javascript" src="//www.google.com/trends/embed.js?hl=de&q=node.js+%2B+nodejs&geo=DE&date=1/2010+64m&cmpt=q&tz&tz&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=500&h=330"></script>
                     </section>-->
 
+                <section>
+                    <h2>Eventgetriebene Programmierung</h2>
+                    <h4>Intro Beispiel</h4>
+                    <pre style="margin: 0;padding: 0">
+                        <code>
+http.createServer(function(request, response) {
+    response.write("Async code here!");
+    response.end();
+}
+                        </code>
+                    </pre>
+                    <br>
+                    <ol>
+                        <li>Callback Funktion wird am HTTP Server gegistriert</li>
+                        <li>Server ruft den Callback bei jedem eingehenden Request(Event) auf</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Eventgetriebene Programmierung mit Node.js</h2>
+                    <h4>Prinzipien/Funktionsweise</h4>
+                    <ul>
+                        <li>Der Programmablauf wird in Form von Events programmiert und ausgeführt</li>
+                        <li>Ausgelöste Events werden in einer Queue abgelegt</li>
+                        <li>Ein Thread ("Event Loop") verarbeitet alle Events in der Queue </li>
+                    </ul>
+                    <aside class="notes">Wartezimmer-Beispiel..</aside>
+                </section>
+
+                <section>
+                    <h2>Eventgetriebene Programmierung mit Node.js</h2>
+                    <h4>Die wichtigen Unterschiede</h4>
+                    <table>
+                        <tr><th><h5>Sequenziell</h5></th><th><h5>Eventgetrieben mit Node.js</h5></th></tr>
+                        <tr><td>Programmsteuerung durch sequenziellen Code</td><td>Programmsteuerung durch Events</td></tr>
+                        <tr><td>Nebenläufigkeit wird explizit implementiert</td><td>Nebenläufigkeit durch Framework gesteuert</td></tr>
+                        <tr><td>Ein Thread pro Request</td><td>Ein Thread für alle Requests</td></tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Technische Sicht - Reactor Pattern</h4>
+                    <p>In Node.js in der Bibliothek libuv implementiert</p>
+                    <img src="img/ReactorPattern.png" />
+                    <p>Weitere Informationen: TODO</p>
+                </section>
+
+                <section>
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Funktionsweise</h4>
+                    <img height="50%" width="50%" src="img/event-loop.jpg"/>
+                    <ul>
+                        <li>Ein Single Thread Event Loop verarbeitet alle auftretenden Events</li>
+                        <li>Requests von Clients werden als Events angenommen</li>
+                        <li>I/O Aufgaben werden als asynchrone Aufrufe deligiert (mit callbacks)</li>
+                        <li>I/O Callbacks mit Ergebnissen werden als Events verarbeitet</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Beispiel</h4>
+                    <ol>
+                        <li>Ein Callback für Requests wird am Server registriert</li>
+                        <li>Client Request erreicht den Node Server</li>
+                        <li>Request wird als Event in die Queue eingetragen</li>
+                        <li>Event Loop führt das Event (Auf den Request registrierter Callback) aus</li>
+                        <li>I/O Aufgaben werden an das OS/Schnittstellen deligiert (Callback wird registriert) </li>
+                        <li>Nach Abarbeitung wird das Callback Event mit dem I/O Ergebnis in die Queue eingetragen</li>
+                        <li>Event Loop führt das Event (I/O Callback) aus</li>
+                        <li>Ggf. weitere Events oder Request fertig bearbeitet</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Konsequenzen</h4>
+                    <ul>
+                        <li>Vermeidung von Problemen nebenläufiger Programmierung</li>
+                        <li>Vereinfachte asynchrone Programmierung</li>
+                        <li>Anwendungen nutzen nur einen Thread (Event Loop)</li>
+                        <li>Weniger Overhead durch Multithread Verwaltung in der Anwendung</li>
+                        <li>kompliziertere Fehlerbehandlung/Debugging</li>
+                        <li>Single Point of Failure</li>
+                        <li>Skalierung unabhängig(er) von der Anzahl der Threads -> Performant</li>
+                        <li>Sehr gut geeignet für I/O lastige Anwendungen</li>
+                        <li>Weniger geeignet für CPU lastige Events</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Node.js in der Praxis</h2>
+                    <h4>IDE Unterstützung für Node.js</h4>
+                    <table>
+                        <tr><th>Eclipse</th><td>Nodeclipse Plugin</td></tr>
+                        <tr><th>IntelliJ</th><td>Node.js Plugin</td></tr>
+                        <tr><th>Netbeans</th><td>NodeJS Plugin</td></tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Node.js in der Praxis</h2>
+                    <h4>Tests und Code Qualität</h4>
+                    <ul>
+                        <li>Unittests: Mocha</li>
+                        <li>Mocking: Sinon JS, Nock</li>
+                        <li>Coverage: Istanbul</li>
+                        <li>Statische Analyse: JSHint, JSCS</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Node.js in der Praxis</h2>
+                    <h4>Weitere Anwendungsbereiche</h4>
+                    <ul>
+                        <li>Browsergames</li>
+                        <li>REST APIs</li>
+                        <li>Database APIs</li>
+                        <li>IoT/Embedded</li>
+                    </ul>
+
+                    <aside class="notes">Embedded: Cylon.js</aside>
+                </section>
+
+                <section>
+                    <h2>Node.js in der Praxis</h2>
+                    <h4>Fallbeispiel: PayPal</h4>
+                    <ul>
+                        <li>Aufgabe: Neuimplementierung der Paypal Accountübersicht</li>
+                        <li>Hintergrund: Auflösung des Bruchs zwischen Front- und Backend</li>
+                        <li>Bisherige Lösung: JavaEE</li>
+                        <li>Neue Lösung: Node.js</li>
+                        <li>Backup: Parallele Entwicklung in JavaEE</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Fallbeispiel: PayPal</h2>
+                    <h4>Unterschiede Node.js - JavaEE Implementierung:</h4>
+                    <ul>
+                        <li>Fast halbierte Entwicklungszeit trotz geringerer Entwicklerzahl</li>
+                        <li>33% weniger Lines of Code</li>
+                        <li>40% weniger Dateien</li>
+                        <li>Doppelte Requests pro Sekunde </li>
+                        <li>Durchschnittliche Antwortzeit 35% reduziert</li>
+                    </ul>
+                    <aside class="notes">
+                        Quelle: https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Diskussion</h2>
+                    <h4>???</h4>
+                </section>
             </div>
 
         </div>
