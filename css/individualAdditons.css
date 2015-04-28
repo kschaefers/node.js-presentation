@@ -21,6 +21,18 @@ section.example::before {
 	padding: 5px 10px 3px;
 }
 
+section.theory::before {
+    content: "Theorie";
+	position: absolute;
+	color: #80BD01;
+	left: -70px;
+	top: 15px;
+	font-family: "Special Elite",cursive;
+	border: 3px solid #80BD01;
+	transform: rotateZ(-35deg) scale(0.75);
+	padding: 5px 10px 3px;
+}
+
 div.browser {
 	background: url("./img/browser.png") no-repeat scroll center center / auto 100% transparent;
 	width: 100%;
@@ -49,5 +61,13 @@ div.browser iframe {
 }
 
 .console .hljs-command {
+	color: white !important;
+}
+
+.console .hljs-built_in {
+	color: white !important;
+}
+
+.console span.hljs-string {
 	color: white !important;
 }

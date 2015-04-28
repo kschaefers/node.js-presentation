@@ -60,31 +60,27 @@
                     <h2>Lernziele</h2>
                     <h4>Was wir am Ende gelernt haben</h4>
                     <ul>
-                        <li>Wie Node.js aufgebaut ist</li>
-                        <li>Was Node.js von Alternativen unterscheidet</li>
-                        <li>Wie man mit Node.js einen einfachen Webserver entwickelt</li>
-                        <li>Wie Node.js Code strukturiert und organisiert wird</li>
-                        <li>Wann Node.js eine gute Wahl ist</li>
+                        <li>Aufbau von Node.js</li>
+                        <li>Unterschiede von Node.js und seinen Alternativen</li>
+                        <li>Entwicklung eines einfachen Webservers mit Node.js</li>
+                        <li>Strukturierung und Organisation von Code</li>
+                        <li>Wann ist Node.js eine gute Wahl?</li>
                     </ul>
                 </section>
 
-                <section>
-                    <h2>Einführung</h2>
-                    <p>Was ist Node.js?</p>
-                    <img width="30%" height="30%" src="img/nodejs-light.png" style="border: none" />
+                <section class="theory">
+                    <h2><img src="img/nodejs-light.png" style="border:none;width:300px;"/> - Serverseitiges Javascript</h2>
+                    <ul>
+                        <li>JavaScript Framework für Serverseitige Entwicklung</li>
+                        <li>Erfunden 2009 von Ryan Dahl, finanziert von Joyent</li>
+                        <li>Implementiert in C/C++ und JavaScript</li>
+                        <li>Verfügbar für Windows, Linux, OS X</li>
+                        <li>Ausgelegt auf I/O lastige Anwendungen</li>
+                        <li>Ausgelegt auf eventgetriebene, asynchrone Programmierung</li>
+                    </ul>
                 </section>
 
-                <section>
-                    <h2>Node.js - Serverseitiges Javascript</h2>
-                    <p>JavaScript Framework für Serverseitige Entwicklung</p>
-                    <p>Erfunden 2009 von Ryan Dahl, finanziert von Joyent</p>
-                    <p>Implementiert in C/C++ und JavaScript</p>
-                    <p>Verfügbar für Windows, Linux, OS X</p>
-                    <p>Ausgelegt auf I/O lastige Anwendungen</p>
-                    <p>Ausgelegt auf eventgetriebene, asynchrone Programmierung</p>
-                </section>
-
-                <section>
+                <section class="theory">
                     <h2>Node.js - Aufbau</h2>
                     <!--canvas width="500px" height="200px" id="aufbaucanvas" />
                     <script>
@@ -94,18 +90,17 @@
                         ctx.fillRect(50, 50, 75, 50);
                     </script-->
                     <img src="img/nodejsarch.png" />
-                    <p> Node.js Kernkomponenten
-                        <ul>
-                            <li>V8 JavaScript Engine</li>
-                            <li>libeio für asynchrones I/O</li>
-                            <li>libuv für dei Event Loop</li>
-                        </ul>
-                    </p>
+                    Node.js Kernkomponenten
+                    <ul>
+                        <li>V8 JavaScript Engine</li>
+                        <li>libeio für asynchrones I/O</li>
+                        <li>libuv für dei Event Loop</li>
+                    </ul>
                 </section>
 
-                <section>
-                    <h2>Hello Node!</h2>
-                    <pre style="margin: 0;padding: 0">
+                <section class="theory">
+                    <h2>Hello Node.js auf der Konsole</h2>
+                    <pre class="console">
                         <code>
 echo "console.log('Hello Node!')" > hello.js
 node hello.js
@@ -114,8 +109,15 @@ node hello.js
                     </pre>
                 </section>
 
+                <section class="theory">
+                    <h2>Module in Node.js</h2>
+                    <!--TODO: Jakob, das war doch bei dir mit drin, dass du auf Module etwas eingehst, oder? spätestens an dieser Stelle sollte dazu etwas kommen-->
+                    <!--Module werden in Node verwendet, um concerns zu separaten etc.-->
+                    <!--clean main file-->
+                </section>
+
                 <section class="example">
-                    <h2>Ziele</h2>
+                    <h2>Praxisbeispiel - Ziele</h2>
                     <ul>
                         <li>Bedienung durch Browser</li>
                         <li>Texteingabe (Startseite)</li>
@@ -158,15 +160,9 @@ node hello.js
                 </section>
 
                 <section>
-                    <h2>Module in Node.js</h2>
-                    <!--TODO: Jakob, das war doch bei dir mit drin, dass du auf Module etwas eingehst, oder? spätestens an dieser Stelle sollte dazu etwas kommen-->
-                    <!--Module werden in Node verwendet, um concerns zu separaten etc.-->
-                    <!--clean main file-->
-                </section>
-
-                <section class="example">
-                    <h2>"Hello World" in Node.js</h2>
-                    <pre>
+                    <section class="example">
+                        <h2>"Hello World" in Node.js</h2>
+                        <pre>
                         <code>
 var http = require("http");
 
@@ -176,20 +172,20 @@ http.createServer(function(request, response) {
     response.end();
 }).listen(8881);
                         </code>
-                    </pre>
-                </section>
+                        </pre>
+                    </section>
 
-                <section class="example">
-                    <h2>Ausgabe im Browser</h2>
-                    <div class="browser">
-                        <div class="url">http://localhost:8888/helloWorld</div>
-                        <iframe src="http://localhost:8888/helloWorld" width="750" height="450"></iframe>
-                    </div>
-                </section>
+                    <section class="example">
+                        <h2>Ausgabe im Browser</h2>
+                        <div class="browser">
+                            <div class="url">http://localhost:8888/helloWorld</div>
+                            <iframe src="http://localhost:8888/helloWorld" width="750" height="450"></iframe>
+                        </div>
+                    </section>
 
-                <section class="example">
-                    <h2>"Hello World" Erklärung</h2>
-                    <pre>
+                    <section class="example">
+                        <h2>"Hello World" Erklärung</h2>
+                        <pre>
 <code>
 var http = require("http");
 
@@ -213,15 +209,109 @@ http.createServer(function(request, response) {
     response.end();
 }).listen(8888);
 </code>
-                    </pre>
-                    <aside class="notes">
-                        .createServer() bekommt eine anynyme Funktion übergeben -> callback
-                    </aside>
+                        </pre>
+                        <aside class="notes">
+                            .createServer() bekommt eine anynyme Funktion übergeben -> callback
+                        </aside>
+                    </section>
                 </section>
 
-                <section class="example">
-                    <h2>"Hello World" - Version 2</h2>
-                    <pre>
+                <!--                TODO: Beispiel von vorher verwenden-->
+                <section class="theory">
+                    <h2>Eventgetriebene Programmierung</h2>
+                    <h4>Intro Beispiel</h4>
+                    <pre style="margin: 0;padding: 0">
+                        <code>
+http.createServer(function(request, response) {
+    response.write("Async code here!");
+    response.end();
+}
+                        </code>
+                    </pre>
+                    <br>
+                    <ol>
+                        <li>Callback Funktion wird am HTTP Server gegistriert</li>
+                        <li>Server ruft den Callback bei jedem eingehenden Request(Event) auf</li>
+                    </ol>
+                </section>
+
+                <section class="theory">
+                    <h2>Eventgetriebene Programmierung mit Node.js</h2>
+                    <h4>Prinzipien/Funktionsweise</h4>
+                    <ul>
+                        <li>Der Programmablauf wird in Form von Events programmiert und ausgeführt</li>
+                        <li>Ausgelöste Events werden in einer Queue abgelegt</li>
+                        <li>Ein Thread ("Event Loop") verarbeitet alle Events in der Queue </li>
+                    </ul>
+                    <aside class="notes">Wartezimmer-Beispiel..</aside>
+                </section>
+
+                <section class="theory">
+                    <h2>Eventgetriebene Programmierung mit Node.js</h2>
+                    <h4>Die wichtigen Unterschiede</h4>
+                    <table>
+                        <tr><th><h5>Sequenziell</h5></th><th><h5>Eventgetrieben mit Node.js</h5></th></tr>
+                        <tr><td>Programmsteuerung durch sequenziellen Code</td><td>Programmsteuerung durch Events</td></tr>
+                        <tr><td>Nebenläufigkeit wird explizit implementiert</td><td>Nebenläufigkeit durch Framework gesteuert</td></tr>
+                        <tr><td>Ein Thread pro Request</td><td>Ein Thread für alle Requests</td></tr>
+                    </table>
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Technische Sicht - Reactor Pattern</h4>
+                    <p>In Node.js in der Bibliothek libuv implementiert</p>
+                    <img src="img/ReactorPattern.png" />
+                    <p>Weitere Informationen: TODO</p>
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Funktionsweise</h4>
+                    <img src="img/event-loop.jpg" style="max-height:300px"/>
+                    <ul>
+                        <li>Ein Single Thread Event Loop verarbeitet alle auftretenden Events</li>
+                        <li>Requests von Clients werden als Events angenommen</li>
+                        <li>I/O Aufgaben werden als asynchrone Aufrufe deligiert (mit callbacks)</li>
+                        <li>I/O Callbacks mit Ergebnissen werden als Events verarbeitet</li>
+                    </ul>
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Beispiel</h4>
+                    <ol>
+                        <li>Ein Callback für Requests wird am Server registriert</li>
+                        <li>Client Request erreicht den Node Server</li>
+                        <li>Request wird als Event in die Queue eingetragen</li>
+                        <li>Event Loop führt das Event (Auf den Request registrierter Callback) aus</li>
+                        <li>I/O Aufgaben werden an das OS/Schnittstellen deligiert (Callback wird registriert) </li>
+                        <li>Nach Abarbeitung wird das Callback Event mit dem I/O Ergebnis in die Queue eingetragen</li>
+                        <li>Event Loop führt das Event (I/O Callback) aus</li>
+                        <li>Ggf. weitere Events oder Request fertig bearbeitet</li>
+                    </ol>
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Konsequenzen</h4>
+                    <ul>
+                        <li>Vermeidung von Problemen nebenläufiger Programmierung</li>
+                        <li>Vereinfachte asynchrone Programmierung</li>
+                        <li>Anwendungen nutzen nur einen Thread (Event Loop)</li>
+                        <li>Weniger Overhead durch Multithread Verwaltung in der Anwendung</li>
+                        <li>kompliziertere Fehlerbehandlung/Debugging</li>
+                        <li>Single Point of Failure</li>
+                        <li>Skalierung unabhängig(er) von der Anzahl der Threads -> Performant</li>
+                        <li>Sehr gut geeignet für I/O lastige Anwendungen</li>
+                        <li>Weniger geeignet für CPU lastige Events</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <section class="example">
+                        <h2>"Hello World" - Version 2</h2>
+                        <pre>
 <code>
 var http = require("http");
 
@@ -233,14 +323,12 @@ function onRequest(request, response) {
 
 http.createServer(onRequest).listen(8888);
 </code>
-                    </pre>
-                </section>
+                        </pre>
+                    </section>
 
-                <!--TODO-->
-                <!--Beispiel für asynchrone Abarbeitung etc. -> Sollte somit in die Nähe der Erklärung-->
-                <section class="example">
-                    <h2>"Hello World" - Version 2</h2>
-                    <pre>
+                    <section class="example">
+                        <h2>"Hello World" - Version 2</h2>
+                        <pre>
 <code>
 var http = require("http");
 
@@ -255,36 +343,38 @@ http.createServer(onRequest).listen(8888);
 
 console.log("Server has started.");
 </code>
-                    </pre>
-                    <pre class="console fragment">
+                        </pre>
+                        <pre class="console fragment">
 <code>
 C:\Users\Katrin\nodeProject>node index.js
 Server has started.
 Request received.
 </code>
-                    </pre>
-                    <aside class="notes">
-                        Wie sieht die Konsole aus?<br>Was wird zuerst gedruckt?
-                    </aside>
+                        </pre>
+                        <aside class="notes">
+                            Wie sieht die Konsole aus?<br>Was wird zuerst gedruckt?
+                        </aside>
+                    </section>
+
+                    <section class="example">
+                        <h2>Parameter von onRequest()</h2>
+                        <ul>
+                            <li>request</li>
+                            <li>response</li>
+                        </ul>
+                        <aside class="notes">
+                            <p>können genauere Details des HTTP Requests liefern</p>
+                            <p>request: Details zum eingehenden HTTP Request</p>
+                            <p>response: Möglichkeit der Antwort auf den HTTP Request</p>
+                            <p>bei "Hello World": request wird nicht gebraucht, es wird nur mit response auf den Request geantwortet</p>
+                        </aside>
+                    </section>
                 </section>
-                
-                <section class="example">
-                    <h2>Parameter von onRequest()</h2>
-                    <ul>
-                        <li>request</li>
-                        <li>response</li>
-                    </ul>
-                    <aside class="notes">
-                        <p>können genauere Details des HTTP Requests liefern</p>
-                        <p>request: Details zum eingehenden HTTP Request</p>
-                        <p>response: Möglichkeit der Antwort auf den HTTP Request</p>
-                        <p>bei "Hello World": request wird nicht gebraucht, es wird nur mit response auf den Request geantwortet</p>
-                    </aside>
-                </section>
-                
-                <section class="example">
-                    <h2>Server-Modul V1</h2>
-                    <pre>
+
+                <section>
+                    <section class="example">
+                        <h2>Server-Modul V1</h2>
+                        <pre>
 <code>
 var http = require("http");
 
@@ -303,38 +393,40 @@ function start() {
 
 exports.start = start;
 </code>
-                    </pre>
-                    <aside class="notes">
-                        Server nun als eigenes Modul
-                    </aside>
-                </section>
-                
-                <section class="example">
-                    <h2>index.js</h2>
-                    <pre>
+                        </pre>
+                        <aside class="notes">
+                            Server nun als eigenes Modul
+                        </aside>
+                    </section>
+
+                    <section class="example">
+                        <h2>index.js</h2>
+                        <pre>
 <code>
 var server = require("./server");
 
 server.start();
 </code>
-                    </pre>
-                    <aside class="notes">
-                        <p>index.js bindet nun das Server-Modul ein und startet es</p>
-                        <p>keine Veränderung an der Funktionalität - > nur Modularisierung</p>
-                    </aside>
+                        </pre>
+                        <aside class="notes">
+                            <p>index.js bindet nun das Server-Modul ein und startet es</p>
+                            <p>keine Veränderung an der Funktionalität - > nur Modularisierung</p>
+                        </aside>
+                    </section>
                 </section>
-                
-                <section class="example">
-                    <h2>Routing von Requests</h2>
-                    <ul>
-                        <li>GET & POST Parameter auslesen</li>
-                        <li>abhängig von der URL den Request an den<br>dazugehörigen Request Handler weiterleiten</li>
-                    </ul>
-                </section>
-                
-                <section class="example">
-                    <h2>Server-Modul V2</h2>
-                    <pre>
+
+                <section>
+                    <section class="example">
+                        <h2>Routing von Requests</h2>
+                        <ul>
+                            <li>GET & POST Parameter auslesen</li>
+                            <li>abhängig von der URL den Request an den<br>dazugehörigen Request Handler weiterleiten</li>
+                        </ul>
+                    </section>
+
+                    <section class="example">
+                        <h2>Server-Modul V2</h2>
+                        <pre>
 <code>
 var http = require("http");
 var url = require("url")
@@ -358,12 +450,12 @@ function start(route) {
 
 exports.start = start;                         
 </code>
-                    </pre>
-                </section>
-                
-                <section class="example">
-                    <h2>Router-Modul V2</h2>
-                    <pre>
+                        </pre>
+                    </section>
+
+                    <section class="example">
+                        <h2>Router-Modul V2</h2>
+                        <pre>
 <code>
 function route(pathname) {
     console.log("About to route a request for " + pathname);
@@ -371,24 +463,26 @@ function route(pathname) {
 
 exports.route = route;
 </code>
-                    </pre>
-                </section>
-                
-                <section class="example">
-                    <h2>index.js V2</h2>
-                    <pre>
+                        </pre>
+                    </section>
+
+                    <section class="example">
+                        <h2>index.js V2</h2>
+                        <pre>
 <code>
 var server = require("./server");
 var router = require("./router");
 
 server.start(router.route);
 </code>
-                    </pre>
+                        </pre>
+                    </section>
                 </section>
-                
-                <section class="example">
-                    <h2>Request Handler-Modul V3</h2>
-                    <pre>
+
+                <section>
+                    <section class="example">
+                        <h2>Request Handler-Modul V3</h2>
+                        <pre>
 <code>
 function start() {
     console.log("Request handler 'start' was called.");
@@ -401,12 +495,12 @@ function upload() {
 exports.start = start;
 exports.upload = upload;
 </code>
-                    </pre>
-                </section>
-                
-                <section class="example">
-                    <h2>index.js V3</h2>
-                    <pre>
+                        </pre>
+                    </section>
+
+                    <section class="example">
+                        <h2>index.js V3</h2>
+                        <pre>
 <code>
 var server = require("./server");
 var router = require("./router");
@@ -419,12 +513,12 @@ handle["/upload"] = requestHandlers.upload;
 
 server.start(router.route, handle);
 </code>
-                    </pre>
-                </section>
-                
-                <section class="example">
-                    <h2>Server-Modul V3</h2>
-                    <pre>
+                        </pre>
+                    </section>
+
+                    <section class="example">
+                        <h2>Server-Modul V3</h2>
+                        <pre>
 <code>
 var http = require("http");
 var url = require("url")
@@ -447,12 +541,12 @@ function start(route, handle) {
 
 exports.start = start;                         
 </code>
-                    </pre>
-                </section>
-                
-                <section class="example">
-                    <h2>Router-Modul V3</h2>
-                    <pre>
+                        </pre>
+                    </section>
+
+                    <section class="example">
+                        <h2>Router-Modul V3</h2>
+                        <pre>
 <code>
 function route(handle, pathname) {
     console.log("About to route a request for " + pathname);
@@ -465,12 +559,14 @@ function route(handle, pathname) {
 
 exports.route = route;
 </code>
-                    </pre>
+                        </pre>
+                    </section>
                 </section>
-                
-                <section class="example">
-                    <h2>Server-Modul V4</h2>
-                    <pre>
+
+                <section>
+                    <section class="example">
+                        <h2>Server-Modul V4</h2>
+                        <pre>
 <code>
 var http = require("http");
 var url = require("url")
@@ -489,12 +585,12 @@ function start(route, handle) {
 
 exports.start = start;                         
 </code>
-                    </pre>
-                </section>
-                
-                <section class="example">
-                    <h2>Router-Modul V4</h2>
-                    <pre>
+                        </pre>
+                    </section>
+
+                    <section class="example">
+                        <h2>Router-Modul V4</h2>
+                        <pre>
 <code>
 function route(handle, pathname, response, postData) {
     console.log("About to route a request for " + pathname);
@@ -510,12 +606,12 @@ function route(handle, pathname, response, postData) {
 }
 exports.route = route;
 </code>
-                    </pre>
-                </section>
-                
-                <section class="example">
-                    <h2>Request Handler-Modul V4</h2>
-                    <pre>
+                        </pre>
+                    </section>
+
+                    <section class="example">
+                        <h2>Request Handler-Modul V4</h2>
+                        <pre>
 <xmp>
 var querystring = require("querystring");
 
@@ -551,123 +647,25 @@ function upload(response, postData) {
 exports.start = start;
 exports.upload = upload;
 </xmp>
-                    </pre>
+                        </pre>
+                    </section>
+
+                    <section class="example">
+                        <h2>Finale Version</h2>
+                        <div class="browser">
+                            <div class="url">http://localhost:8888/finalVersion</div>
+                            <iframe src="http://localhost:8888/finalVersion" width="750" height="450"></iframe>
+                        </div>
+                    </section>
                 </section>
 
-                <section class="example">
-                    <h2>Finale Version</h2>
-                    <div class="browser">
-                        <div class="url">http://localhost:8888/finalVersion</div>
-                        <iframe src="http://localhost:8888/finalVersion" width="750" height="450"></iframe>
-                    </div>
-                </section>
-                
-                <section>
-                    <h3>Vielen Dank für die Aufmerksamkeit!</h3>
-                    <br>
-                    <br>
-                    <h2>Fragen? / Diskussion</h2>
-                </section>
-
-                <!--Sections, welche noch nicht in die Präsentation einsortiert wurden-->
                 <!--Sections, welche noch nicht in die Präsentation einsortiert wurden-->
                 <!--<section>
                     <h2>Websuche nach Node.js</h2>
                     <script type="text/javascript" src="//www.google.com/trends/embed.js?hl=de&q=node.js+%2B+nodejs&geo=DE&date=1/2010+64m&cmpt=q&tz&tz&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=500&h=330"></script>
                     </section>-->
 
-                <section>
-                    <h2>Eventgetriebene Programmierung</h2>
-                    <h4>Intro Beispiel</h4>
-                    <pre style="margin: 0;padding: 0">
-                        <code>
-http.createServer(function(request, response) {
-    response.write("Async code here!");
-    response.end();
-}
-                        </code>
-                    </pre>
-                    <br>
-                    <ol>
-                        <li>Callback Funktion wird am HTTP Server gegistriert</li>
-                        <li>Server ruft den Callback bei jedem eingehenden Request(Event) auf</li>
-                    </ol>
-                </section>
-
-                <section>
-                    <h2>Eventgetriebene Programmierung mit Node.js</h2>
-                    <h4>Prinzipien/Funktionsweise</h4>
-                    <ul>
-                        <li>Der Programmablauf wird in Form von Events programmiert und ausgeführt</li>
-                        <li>Ausgelöste Events werden in einer Queue abgelegt</li>
-                        <li>Ein Thread ("Event Loop") verarbeitet alle Events in der Queue </li>
-                    </ul>
-                    <aside class="notes">Wartezimmer-Beispiel..</aside>
-                </section>
-
-                <section>
-                    <h2>Eventgetriebene Programmierung mit Node.js</h2>
-                    <h4>Die wichtigen Unterschiede</h4>
-                    <table>
-                        <tr><th><h5>Sequenziell</h5></th><th><h5>Eventgetrieben mit Node.js</h5></th></tr>
-                        <tr><td>Programmsteuerung durch sequenziellen Code</td><td>Programmsteuerung durch Events</td></tr>
-                        <tr><td>Nebenläufigkeit wird explizit implementiert</td><td>Nebenläufigkeit durch Framework gesteuert</td></tr>
-                        <tr><td>Ein Thread pro Request</td><td>Ein Thread für alle Requests</td></tr>
-                    </table>
-                </section>
-
-                <section>
-                    <h2>Event Loop in Node.js</h2>
-                    <h4>Technische Sicht - Reactor Pattern</h4>
-                    <p>In Node.js in der Bibliothek libuv implementiert</p>
-                    <img src="img/ReactorPattern.png" />
-                    <p>Weitere Informationen: TODO</p>
-                </section>
-
-                <section>
-                    <h2>Event Loop in Node.js</h2>
-                    <h4>Funktionsweise</h4>
-                    <img height="50%" width="50%" src="img/event-loop.jpg"/>
-                    <ul>
-                        <li>Ein Single Thread Event Loop verarbeitet alle auftretenden Events</li>
-                        <li>Requests von Clients werden als Events angenommen</li>
-                        <li>I/O Aufgaben werden als asynchrone Aufrufe deligiert (mit callbacks)</li>
-                        <li>I/O Callbacks mit Ergebnissen werden als Events verarbeitet</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>Event Loop in Node.js</h2>
-                    <h4>Beispiel</h4>
-                    <ol>
-                        <li>Ein Callback für Requests wird am Server registriert</li>
-                        <li>Client Request erreicht den Node Server</li>
-                        <li>Request wird als Event in die Queue eingetragen</li>
-                        <li>Event Loop führt das Event (Auf den Request registrierter Callback) aus</li>
-                        <li>I/O Aufgaben werden an das OS/Schnittstellen deligiert (Callback wird registriert) </li>
-                        <li>Nach Abarbeitung wird das Callback Event mit dem I/O Ergebnis in die Queue eingetragen</li>
-                        <li>Event Loop führt das Event (I/O Callback) aus</li>
-                        <li>Ggf. weitere Events oder Request fertig bearbeitet</li>
-                    </ol>
-                </section>
-
-                <section>
-                    <h2>Event Loop in Node.js</h2>
-                    <h4>Konsequenzen</h4>
-                    <ul>
-                        <li>Vermeidung von Problemen nebenläufiger Programmierung</li>
-                        <li>Vereinfachte asynchrone Programmierung</li>
-                        <li>Anwendungen nutzen nur einen Thread (Event Loop)</li>
-                        <li>Weniger Overhead durch Multithread Verwaltung in der Anwendung</li>
-                        <li>kompliziertere Fehlerbehandlung/Debugging</li>
-                        <li>Single Point of Failure</li>
-                        <li>Skalierung unabhängig(er) von der Anzahl der Threads -> Performant</li>
-                        <li>Sehr gut geeignet für I/O lastige Anwendungen</li>
-                        <li>Weniger geeignet für CPU lastige Events</li>
-                    </ul>
-                </section>
-
-                <section>
+                <section class="theory">
                     <h2>Node.js in der Praxis</h2>
                     <h4>IDE Unterstützung für Node.js</h4>
                     <table>
@@ -677,7 +675,7 @@ http.createServer(function(request, response) {
                     </table>
                 </section>
 
-                <section>
+                <section class="theory">
                     <h2>Node.js in der Praxis</h2>
                     <h4>Tests und Code Qualität</h4>
                     <ul>
@@ -688,7 +686,7 @@ http.createServer(function(request, response) {
                     </ul>
                 </section>
 
-                <section>
+                <section class="theory">
                     <h2>Node.js in der Praxis</h2>
                     <h4>Weitere Anwendungsbereiche</h4>
                     <ul>
@@ -701,7 +699,7 @@ http.createServer(function(request, response) {
                     <aside class="notes">Embedded: Cylon.js</aside>
                 </section>
 
-                <section>
+                <section class="theory">
                     <h2>Node.js in der Praxis</h2>
                     <h4>Fallbeispiel: PayPal</h4>
                     <ul>
@@ -713,7 +711,7 @@ http.createServer(function(request, response) {
                     </ul>
                 </section>
 
-                <section>
+                <section class="theory">
                     <h2>Fallbeispiel: PayPal</h2>
                     <h4>Unterschiede Node.js - JavaEE Implementierung:</h4>
                     <ul>
@@ -726,6 +724,13 @@ http.createServer(function(request, response) {
                     <aside class="notes">
                         Quelle: https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/
                     </aside>
+                </section>
+
+                <section>
+                    <h3>Vielen Dank für die Aufmerksamkeit!</h3>
+                    <br>
+                    <br>
+                    <h2>Fragen? / Diskussion</h2>
                 </section>
             </div>
 
