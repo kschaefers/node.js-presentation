@@ -69,39 +69,61 @@
                 </section>
 
                 <section class="theory">
-                    <h2><img src="img/nodejs-light.png" style="border:none;width:300px;"/> - Serverseitiges Javascript</h2>
+                    <img src="img/nodejs-light.png" width="60%" height="60%"/>
+                    <h4>Serverseitiges Javascript</h4>
                     <ul>
                         <li>JavaScript Framework für Serverseitige Entwicklung</li>
                         <li>Erfunden 2009 von Ryan Dahl, finanziert von Joyent</li>
                         <li>Implementiert in C/C++ und JavaScript</li>
-                        <li>Verfügbar für Windows, Linux, OS X</li>
-                        <li>Ausgelegt auf I/O lastige Anwendungen</li>
-                        <li>Ausgelegt auf eventgetriebene, asynchrone Programmierung</li>
+                        <li>Verfügbar für Windows, Linux und OS X</li>
                     </ul>
                 </section>
 
                 <section class="theory">
                     <h2>Node.js - Aufbau</h2>
                     <h4>Kernkomponenten</h4>
-                    <img style="border:none; box-shadow:none; background:none" src="img/nodejsarch.png" />
+                    <img src="img/nodejsarch.png" />
                 </section>
 
                 <section class="theory">
                     <h2>Hello Node.js auf der Konsole</h2>
-                    <pre class="console">
+                    <pre style="padding-bottom: 0; margin-bottom: 0; margin-top: 40px" class="fragment visible">
                         <code>
-echo "console.log('Hello Node!')" > hello.js
-node hello.js
-&gt; Hello Node!
+console.log("Hello Node!")
+                        </code>
+                    </pre>
+                    <pre class="console fragment">
+                        <code>
+C:\Users\Katrin\nodeProject>node hello.js
+Hello Node!
                         </code>
                     </pre>
                 </section>
 
                 <section class="theory">
                     <h2>Module in Node.js</h2>
-                    <!--TODO: Jakob, das war doch bei dir mit drin, dass du auf Module etwas eingehst, oder? spätestens an dieser Stelle sollte dazu etwas kommen-->
-                    <!--Module werden in Node verwendet, um concerns zu separaten etc.-->
-                    <!--clean main file-->
+                    <ul>
+                        <li>Code wird in Modulen organisiert</li>
+                        <li>Node.js Module bieten eine definierte Schnittstelle</li>
+                        <li>Module können einfach installiert und eingebunden werden</li>
+                        <li>Ziele:
+                            <ul>
+                                <li>Separation of concenrs</li>
+                                <li>information hiding</li>
+                                <li>encapsulation</li>
+                                <li>clean code</li>
+                            </ul>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Module in Node.js</h2>
+                    <h4>Modulquellen</h4>
+                    <ul>
+                        <li>In Node.js vorinstalliert (http, fs)</li>
+                        <li>Über Node Package Manager npm (express, socket.io)</li>
+                        <li>Lokal erstellt</li>
+                    </ul>
                 </section>
 
                 <section class="example">
@@ -204,38 +226,117 @@ http.createServer(function(request, response) {
                     </section>
                 </section>
 
-                <!--                TODO: Beispiel von vorher verwenden-->
                 <section class="theory">
-                    <h2>Eventgetriebene Programmierung</h2>
-                    <h4>Intro Beispiel</h4>
-                    <pre style="margin: 0;padding: 0">
-                        <code>
-http.createServer(function(request, response) {
-    response.write("Async code here!");
-    response.end();
-}
-                        </code>
-                    </pre>
-                    <br>
-                    <ol>
-                        <li>Callback Funktion wird am HTTP Server gegistriert</li>
-                        <li>Server ruft den Callback bei jedem eingehenden Request(Event) auf</li>
-                    </ol>
-                </section>
-
-                <section class="theory">
-                    <h2>Eventgetriebene Programmierung mit Node.js</h2>
-                    <h4>Prinzipien/Funktionsweise</h4>
+                    <h2>Eventgetriebene Programmierung in Node.js</h2>
+                    <h4>Funktionsweise</h4>
                     <ul>
-                        <li>Der Programmablauf wird in Form von Events programmiert und ausgeführt</li>
+                        <li>Der Programmablauf wird durch Events gesteuert</li>
+                        <li>Definierte Trigger lösen Events aus</li>
                         <li>Ausgelöste Events werden in einer Queue abgelegt</li>
-                        <li>Ein Thread ("Event Loop") verarbeitet alle Events in der Queue </li>
+                        <li>Ein Thread verarbeitet alle Events in der Queue </li>
                     </ul>
                     <aside class="notes">Wartezimmer-Beispiel..</aside>
                 </section>
 
                 <section class="theory">
-                    <h2>Eventgetriebene Programmierung mit Node.js</h2>
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Technische Sicht - Reactor Pattern</h4>
+                    <img src="img/ReactorPattern.png" />
+                    <p>In Node.js in der Bibliothek libuv implementiert</p>
+                    <aside class="notes">Weitere Infos: Siehe Quellen</aside>
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Ablauf</h4>
+                    <img src="img/eventloop.png" />
+                    <aside class="notes">
+                    <ul>
+                        <li>Ein Single Thread Event Loop verarbeitet alle auftretenden Events</li>
+                        <li>Requests von Clients werden als Events angenommen</li>
+                        <li>I/O Aufgaben werden als asynchrone Aufrufe deligiert (mit callbacks)</li>
+                        <li>I/O Callbacks mit Ergebnissen werden als Events verarbeitet</li>
+                    </ul>
+                    </aside>
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Beispiel</h4>
+                    Callback Funktion wird am HTTP Server gegistriert
+                    <pre style="margin: 0;padding: 0">
+                        <code>
+http.createServer(function(request, response) {
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello World");
+    response.end();
+})
+                        </code>
+                    </pre>
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Beispiel</h4>
+                    Client Request erreicht den Node Server
+                    <div class="browser" style="height: 50px; width: 750px; background:url('css/img/browser.png') no-repeat scroll rgba(0, 0, 0, 0); margin-left: auto; margin-top: auto;">
+                        <div class="url">http://localhost:8888/helloWorld</div>
+                    </div>
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Beispiel</h4>
+                    Request wird als Event in die Queue eingetragen
+                    <img src="img/eventloop2.png" />
+                </section>
+
+                <section>
+                    <section class="theory">
+                        <h2>Event Loop in Node.js</h2>
+                        <h4>Beispiel</h4>
+                        Event Loop führt das Event aus
+                        <img src="img/eventloop3.png" />
+                    </section>
+
+                    <section class="theory">
+                        <h2>Event Loop in Node.js</h2>
+                        <h4>Beispiel</h4>
+                        <ul>
+                            <li>Event Code: Auf den Request registrierter Callback</li>
+                            <li>Callback Parameter wurden durch den Event Auslöser gesetzt</li>
+                        </ul>
+                        <pre style="margin: 0;padding: 0">
+                            <code>
+function(request, response) {
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello World");
+    response.end();
+}
+                            </code>
+                        </pre>
+                    </section>
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Beispiel</h4>
+                    <p align="left">
+                        Event wird fertig bearbeitet<br>
+                        Optional: I/O Jobs werden deligiert, Callback wird gesetzt
+                    </p>
+                    <img src="img/eventloop4.png" />
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Beispiel</h4>
+                    I/O Ergebnis Event mit Callback wird in die Queue eingetragen
+                    <img src="img/eventloop5.png" />
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
                     <h4>Die wichtigen Unterschiede</h4>
                     <table>
                         <tr><th><h5>Sequenziell</h5></th><th><h5>Eventgetrieben mit Node.js</h5></th></tr>
@@ -247,53 +348,37 @@ http.createServer(function(request, response) {
 
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
-                    <h4>Technische Sicht - Reactor Pattern</h4>
-                    <p>In Node.js in der Bibliothek libuv implementiert</p>
-                    <img src="img/ReactorPattern.png" />
-                    <p>Weitere Informationen: TODO</p>
-                </section>
-
-                <section class="theory">
-                    <h2>Event Loop in Node.js</h2>
-                    <h4>Funktionsweise</h4>
-                    <img src="img/event-loop.jpg" style="max-height:300px"/>
-                    <ul>
-                        <li>Ein Single Thread Event Loop verarbeitet alle auftretenden Events</li>
-                        <li>Requests von Clients werden als Events angenommen</li>
-                        <li>I/O Aufgaben werden als asynchrone Aufrufe deligiert (mit callbacks)</li>
-                        <li>I/O Callbacks mit Ergebnissen werden als Events verarbeitet</li>
-                    </ul>
-                </section>
-
-                <section class="theory">
-                    <h2>Event Loop in Node.js</h2>
-                    <h4>Beispiel</h4>
-                    <ol>
-                        <li>Ein Callback für Requests wird am Server registriert</li>
-                        <li>Client Request erreicht den Node Server</li>
-                        <li>Request wird als Event in die Queue eingetragen</li>
-                        <li>Event Loop führt das Event (Auf den Request registrierter Callback) aus</li>
-                        <li>I/O Aufgaben werden an das OS/Schnittstellen deligiert (Callback wird registriert) </li>
-                        <li>Nach Abarbeitung wird das Callback Event mit dem I/O Ergebnis in die Queue eingetragen</li>
-                        <li>Event Loop führt das Event (I/O Callback) aus</li>
-                        <li>Ggf. weitere Events oder Request fertig bearbeitet</li>
-                    </ol>
-                </section>
-
-                <section class="theory">
-                    <h2>Event Loop in Node.js</h2>
-                    <h4>Konsequenzen</h4>
+                    <h4>Vorteile der Event Loop Implementierung</h4>
                     <ul>
                         <li>Vermeidung von Problemen nebenläufiger Programmierung</li>
                         <li>Vereinfachte asynchrone Programmierung</li>
-                        <li>Anwendungen nutzen nur einen Thread (Event Loop)</li>
-                        <li>Weniger Overhead durch Multithread Verwaltung in der Anwendung</li>
-                        <li>kompliziertere Fehlerbehandlung/Debugging</li>
-                        <li>Single Point of Failure</li>
-                        <li>Skalierung unabhängig(er) von der Anzahl der Threads -> Performant</li>
-                        <li>Sehr gut geeignet für I/O lastige Anwendungen</li>
-                        <li>Weniger geeignet für CPU lastige Events</li>
+                        <li>Hohe Performance bei I/O lastigen Anwendungen</li>
+                        <li>Hohe Anzahl gleichzeitiger Serververbindungen</li>
                     </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Weniger Overhead durch Multithread Verwaltung in der Anwendung</li>
+                            <li>Skalierung nicht abhängig von der Anzahl der Threads -> Performant</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Nachteile der Event Loop Implementierung</h4>
+                    <ul>
+                        <li>Single Point of Failure</li>
+                        <li>Server nutzt nur einen Thread/Kern</li>
+                        <li>Eventverarbeitung blockiert den Server</li>
+                        <li>kompliziertere Fehlerbehandlung/Debugging</li>
+                        <li>Lang laufender Code macht den Server imperformant</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Einzelne Exceptions können den Server crashen</li>
+                            <li>Skalierung auf mehrere Kerne mit mehreren Node Instanzen</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section>

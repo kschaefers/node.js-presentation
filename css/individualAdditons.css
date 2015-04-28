@@ -71,3 +71,13 @@ div.browser iframe {
 .console span.hljs-string {
 	color: white !important;
 }
+
+.reveal pre {
+	box-shadow: none !important;
+}
+
+.reveal section img {
+	border:none !important;
+	box-shadow:none !important;
+	background:none !important;
+}
