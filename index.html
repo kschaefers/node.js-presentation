@@ -68,7 +68,7 @@
                 </section>
 
                 <section class="theory">
-                    <img src="img/nodejs-light.png" width="60%" height="60%"/>
+                    <img src="img/nodejs-light.png" style="width:60%;height:60%"/>
                     <h4>Serverseitiges Javascript</h4>
                     <ul>
                         <li>JavaScript Framework für Serverseitige Entwicklung</li>
@@ -115,7 +115,7 @@ Hello Node!
                     </ul>
                 </section>
 
-                <section>
+                <section class="theory">
                     <h2>Module in Node.js</h2>
                     <h4>Modulquellen</h4>
                     <ul>
@@ -156,7 +156,14 @@ Hello Node!
                             <li>Router - anderes Verhalten der Anwendung, jenachdem welche URL aufgerufen wird -> delegieren von Requests zu Request Hanldern</li>
                             <li>Request Handler - Unterschidliches Verhalten je nach aufgerufener URL</li>
                         </ul>
+                        für dieses Beispiel natürlich mit Kanonen auf Spatzen geschossen, aber soll verdeutlichen, wie das funktioniert
+                        Komponenten werden nach und nach entwickelt und erklärt
                     </aside>
+                </section>
+
+                <section class="example">
+                    <h2>Komponenten</h2>
+                    <img src="./img/komponentenV4.png" alt="Komponenten">
                 </section>
 
                 <section class="example">
@@ -261,12 +268,12 @@ http.createServer(function(request, response) {
                     <h4>Ablauf</h4>
                     <img src="img/eventloop.png" />
                     <aside class="notes">
-                    <ul>
-                        <li>Ein Single Thread Event Loop verarbeitet alle auftretenden Events</li>
-                        <li>Requests von Clients werden als Events angenommen</li>
-                        <li>I/O Aufgaben werden als asynchrone Aufrufe deligiert (mit callbacks)</li>
-                        <li>I/O Callbacks mit Ergebnissen werden als Events verarbeitet</li>
-                    </ul>
+                        <ul>
+                            <li>Ein Single Thread Event Loop verarbeitet alle auftretenden Events</li>
+                            <li>Requests von Clients werden als Events angenommen</li>
+                            <li>I/O Aufgaben werden als asynchrone Aufrufe deligiert (mit callbacks)</li>
+                            <li>I/O Callbacks mit Ergebnissen werden als Events verarbeitet</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -444,6 +451,11 @@ Request received.
 
                 <section>
                     <section class="example">
+                        <h2>1: WebService als Modul</h2>
+                        <img src="./img/komponentenV1.png" alt="Komponenten">
+                    </section>
+
+                    <section class="example">
                         <h2>Server-Modul V1</h2>
                         <pre>
 <code>
@@ -484,9 +496,33 @@ server.start();
                             <p>keine Veränderung an der Funktionalität - > nur Modularisierung</p>
                         </aside>
                     </section>
+
+                    <section class="example">
+                        <h2>Ausgabe im Browser</h2>
+                        <div class="browser">
+                            <div class="url">http://localhost:8888/v1</div>
+                            <iframe src="http://localhost:8888/helloWorld" width="750" height="450"></iframe>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Ausgabe auf der Konsole</h2>
+                        <pre class="console">
+<code>
+C:\Users\Katrin\nodeProject>node index.js
+Server has started.
+Request received.
+</code>
+                        </pre>
+                    </section>
                 </section>
 
                 <section>
+                    <section class="example">
+                        <h2>2: Router hinzufügen</h2>
+                        <img src="./img/komponentenV2.png" alt="Komponenten">
+                    </section>
+
                     <section class="example">
                         <h2>Routing von Requests</h2>
                         <ul>
@@ -548,9 +584,34 @@ server.start(router.route);
 </code>
                         </pre>
                     </section>
+
+                    <section class="example">
+                        <h2>Ausgabe im Browser</h2>
+                        <div class="browser">
+                            <div class="url">http://localhost:8888/v2</div>
+                            <iframe src="http://localhost:8888/helloWorld" width="750" height="450"></iframe>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Ausgabe auf der Konsole</h2>
+                        <pre class="console">
+<code>
+C:\Users\Katrin\nodeProject>node index.js
+Server has started.
+Request for / received.
+About to route a request for /
+</code>
+                        </pre>
+                    </section>
                 </section>
 
                 <section>
+                    <section class="example">
+                        <h2>3: Request Handler einfügen</h2>
+                        <img src="./img/komponentenV3.png" alt="Komponenten">
+                    </section>
+
                     <section class="example">
                         <h2>Request Handler-Modul V3</h2>
                         <pre>
@@ -632,9 +693,35 @@ exports.route = route;
 </code>
                         </pre>
                     </section>
+
+                    <section class="example">
+                        <h2>Ausgabe im Browser</h2>
+                        <div class="browser">
+                            <div class="url">http://localhost:8888/v3</div>
+                            <iframe src="http://localhost:8888/helloWorld" width="750" height="450"></iframe>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Ausgabe auf der Konsole</h2>
+                        <pre class="console">
+<code>
+C:\Users\Katrin\nodeProject>node index.js
+Server has started.
+Request for / received.
+About to route a request for /
+Request handler 'start' was called.
+</code>
+                        </pre>
+                    </section>
                 </section>
 
                 <section>
+                    <section class="example">
+                        <h2>4: Request Handler Funkionalität geben</h2>
+                        <img src="./img/komponentenV4.png" alt="Komponenten">
+                    </section>
+
                     <section class="example">
                         <h2>Server-Modul V4</h2>
                         <pre>
@@ -722,19 +809,13 @@ exports.upload = upload;
                     </section>
 
                     <section class="example">
-                        <h2>Finale Version</h2>
+                        <h2>Ausgabe im Browser</h2>
                         <div class="browser">
-                            <div class="url">http://localhost:8888/finalVersion</div>
-                            <iframe src="http://localhost:8888/finalVersion" width="750" height="450"></iframe>
+                            <div class="url">http://localhost:8888/v4</div>
+                            <iframe src="http://localhost:8888/v4" width="750" height="450"></iframe>
                         </div>
                     </section>
                 </section>
-
-                <!--Sections, welche noch nicht in die Präsentation einsortiert wurden-->
-                <!--<section>
-                    <h2>Websuche nach Node.js</h2>
-                    <script type="text/javascript" src="//www.google.com/trends/embed.js?hl=de&q=node.js+%2B+nodejs&geo=DE&date=1/2010+64m&cmpt=q&tz&tz&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=500&h=330"></script>
-                    </section>-->
 
                 <section>
                     <h2>Node.js in der Praxis</h2>

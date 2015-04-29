@@ -60,15 +60,7 @@ div.browser iframe {
 	color: white !important;
 }
 
-.console .hljs-command {
-	color: white !important;
-}
-
-.console .hljs-built_in {
-	color: white !important;
-}
-
-.console span.hljs-string {
+.console span {
 	color: white !important;
 }
 
