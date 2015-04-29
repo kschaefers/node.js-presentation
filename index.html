@@ -61,10 +61,9 @@
                     <h4>Was wir am Ende gelernt haben</h4>
                     <ul>
                         <li>Aufbau von Node.js</li>
-                        <li>Unterschiede von Node.js und seinen Alternativen</li>
-                        <li>Entwicklung eines einfachen Webservers mit Node.js</li>
-                        <li>Strukturierung und Organisation von Code</li>
-                        <li>Wann ist Node.js eine gute Wahl?</li>
+                        <li>Eventgetriebene Programmierung</li>
+                        <li>Entwicklung eines einfachen Webservers</li>
+                        <li>Strukturierung und Organisation von Node.js Code</li>
                     </ul>
                 </section>
 
@@ -80,14 +79,8 @@
                 </section>
 
                 <section class="theory">
-                    <h2>Node.js - Aufbau</h2>
-                    <h4>Kernkomponenten</h4>
-                    <img src="img/nodejsarch.png" />
-                </section>
-
-                <section class="theory">
                     <h2>Hello Node.js auf der Konsole</h2>
-                    <pre style="padding-bottom: 0; margin-bottom: 0; margin-top: 40px" class="fragment visible">
+                    <pre style="padding-bottom: 0; margin-bottom: 0; margin-top: 40px">
                         <code>
 console.log("Hello Node!")
                         </code>
@@ -98,6 +91,12 @@ C:\Users\Katrin\nodeProject>node hello.js
 Hello Node!
                         </code>
                     </pre>
+                </section>
+
+                <section class="theory">
+                    <h2>Node.js - Aufbau</h2>
+                    <h4>Kernkomponenten</h4>
+                    <img src="img/nodejsarch.png" />
                 </section>
 
                 <section class="theory">
@@ -233,9 +232,20 @@ http.createServer(function(request, response) {
                         <li>Der Programmablauf wird durch Events gesteuert</li>
                         <li>Definierte Trigger lösen Events aus</li>
                         <li>Ausgelöste Events werden in einer Queue abgelegt</li>
-                        <li>Ein Thread verarbeitet alle Events in der Queue </li>
+                        <li>Ein Thread, die Event Loop, verarbeitet alle Events in der Queue </li>
                     </ul>
                     <aside class="notes">Wartezimmer-Beispiel..</aside>
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Die wichtigen Unterschiede</h4>
+                    <table>
+                        <tr><th><h5>Sequenziell</h5></th><th><h5>Eventgetrieben mit Node.js</h5></th></tr>
+                        <tr><td>Programmsteuerung durch sequenziellen Code</td><td>Programmsteuerung durch Events</td></tr>
+                        <tr><td>Ein Thread pro Request</td><td>Ein Thread für alle Requests</td></tr>
+                        <tr><td>Nebenläufigkeit wird explizit implementiert</td><td>Nebenläufigkeit durch Framework gesteuert</td></tr>
+                    </table>
                 </section>
 
                 <section class="theory">
@@ -263,8 +273,7 @@ http.createServer(function(request, response) {
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 1</h4>
-                    Callback Funktion wird am HTTP Server registriert
-                    <pre style="margin: 0;padding: 0">
+                    <pre style="margin-bottom: 0; padding-bottom: 0">
                         <code>
 http.createServer(function(request, response) {
     response.writeHead(200, {"Content-Type": "text/plain"});
@@ -273,39 +282,36 @@ http.createServer(function(request, response) {
 })
                         </code>
                     </pre>
+                    Callback Funktion wird am HTTP Server registriert
                 </section>
 
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 2</h4>
-                    Client Request erreicht den Node Server
-                    <div class="browser" style="height: 50px; width: 750px; background:url('css/img/browser.png') no-repeat scroll rgba(0, 0, 0, 0); margin-left: auto; margin-top: auto;">
+                    <div class="browser" style="height: 50px; width: 750px; background:url('css/img/browser.png') no-repeat scroll rgba(0, 0, 0, 0); margin-left: auto; margin-top: auto; margin-bottom: 30px;">
                         <div class="url">http://localhost:8888/helloWorld</div>
                     </div>
+                    Client Request erreicht den Node Server
                 </section>
 
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 3</h4>
-                    Request wird als Event in die Queue eingetragen
                     <img src="img/eventloop2.png" />
+                    Request wird als Event in die Queue eingetragen
                 </section>
 
                 <section>
                     <section class="theory">
                         <h2>Event Loop in Node.js</h2>
                         <h4>Beispiel - Schritt 4</h4>
-                        Event Loop führt das Event aus
                         <img src="img/eventloop3.png" />
+                        Event Loop führt das Event aus
                     </section>
 
                     <section class="theory">
                         <h2>Event Loop in Node.js</h2>
                         <h4>Beispiel - Schritt 4</h4>
-                        <ul>
-                            <li>Event Code: Auf den Request registrierter Callback</li>
-                            <li>Callback Parameter wurden durch den Event Auslöser gesetzt</li>
-                        </ul>
                         <pre style="margin: 0;padding: 0">
                             <code>
 function(request, response) {
@@ -315,35 +321,28 @@ function(request, response) {
 }
                             </code>
                         </pre>
+                        <ul>
+                            <li>Event Code: Auf den Request registrierter Callback</li>
+                            <li>Callback Parameter wurden durch den Event Auslöser gesetzt</li>
+                        </ul>
                     </section>
                 </section>
 
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 5</h4>
+                    <img src="img/eventloop4.png" />
                     <p align="left">
                         Event wird fertig bearbeitet<br>
                         Optional: I/O Jobs werden deligiert, Callback wird gesetzt
                     </p>
-                    <img src="img/eventloop4.png" />
                 </section>
 
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 6</h4>
-                    I/O Ergebnis Event mit Callback wird in die Queue eingetragen
                     <img src="img/eventloop5.png" />
-                </section>
-
-                <section class="theory">
-                    <h2>Event Loop in Node.js</h2>
-                    <h4>Die wichtigen Unterschiede</h4>
-                    <table>
-                        <tr><th><h5>Sequenziell</h5></th><th><h5>Eventgetrieben mit Node.js</h5></th></tr>
-                        <tr><td>Programmsteuerung durch sequenziellen Code</td><td>Programmsteuerung durch Events</td></tr>
-                        <tr><td>Nebenläufigkeit wird explizit implementiert</td><td>Nebenläufigkeit durch Framework gesteuert</td></tr>
-                        <tr><td>Ein Thread pro Request</td><td>Ein Thread für alle Requests</td></tr>
-                    </table>
+                    Ergebnis Event mit Callback wird in die Queue eingetragen
                 </section>
 
                 <section class="theory">
