@@ -108,7 +108,7 @@ Hello Node!
                         <li>Module können einfach installiert und eingebunden werden</li>
                         <li>Ziele:
                             <ul>
-                                <li>Separation of concenrs</li>
+                                <li>Separation of concerns</li>
                                 <li>information hiding</li>
                                 <li>encapsulation</li>
                                 <li>clean code</li>
@@ -262,8 +262,8 @@ http.createServer(function(request, response) {
 
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
-                    <h4>Beispiel</h4>
-                    Callback Funktion wird am HTTP Server gegistriert
+                    <h4>Beispiel - Schritt 1</h4>
+                    Callback Funktion wird am HTTP Server registriert
                     <pre style="margin: 0;padding: 0">
                         <code>
 http.createServer(function(request, response) {
@@ -277,7 +277,7 @@ http.createServer(function(request, response) {
 
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
-                    <h4>Beispiel</h4>
+                    <h4>Beispiel - Schritt 2</h4>
                     Client Request erreicht den Node Server
                     <div class="browser" style="height: 50px; width: 750px; background:url('css/img/browser.png') no-repeat scroll rgba(0, 0, 0, 0); margin-left: auto; margin-top: auto;">
                         <div class="url">http://localhost:8888/helloWorld</div>
@@ -286,7 +286,7 @@ http.createServer(function(request, response) {
 
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
-                    <h4>Beispiel</h4>
+                    <h4>Beispiel - Schritt 3</h4>
                     Request wird als Event in die Queue eingetragen
                     <img src="img/eventloop2.png" />
                 </section>
@@ -294,14 +294,14 @@ http.createServer(function(request, response) {
                 <section>
                     <section class="theory">
                         <h2>Event Loop in Node.js</h2>
-                        <h4>Beispiel</h4>
+                        <h4>Beispiel - Schritt 4</h4>
                         Event Loop führt das Event aus
                         <img src="img/eventloop3.png" />
                     </section>
 
                     <section class="theory">
                         <h2>Event Loop in Node.js</h2>
-                        <h4>Beispiel</h4>
+                        <h4>Beispiel - Schritt 4</h4>
                         <ul>
                             <li>Event Code: Auf den Request registrierter Callback</li>
                             <li>Callback Parameter wurden durch den Event Auslöser gesetzt</li>
@@ -320,7 +320,7 @@ function(request, response) {
 
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
-                    <h4>Beispiel</h4>
+                    <h4>Beispiel - Schritt 5</h4>
                     <p align="left">
                         Event wird fertig bearbeitet<br>
                         Optional: I/O Jobs werden deligiert, Callback wird gesetzt
@@ -330,7 +330,7 @@ function(request, response) {
 
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
-                    <h4>Beispiel</h4>
+                    <h4>Beispiel - Schritt 6</h4>
                     I/O Ergebnis Event mit Callback wird in die Queue eingetragen
                     <img src="img/eventloop5.png" />
                 </section>
@@ -369,9 +369,8 @@ function(request, response) {
                     <ul>
                         <li>Single Point of Failure</li>
                         <li>Server nutzt nur einen Thread/Kern</li>
-                        <li>Eventverarbeitung blockiert den Server</li>
+                        <li>Lange Eventverarbeitung blockiert den Server</li>
                         <li>kompliziertere Fehlerbehandlung/Debugging</li>
-                        <li>Lang laufender Code macht den Server imperformant</li>
                     </ul>
                     <aside class="notes">
                         <ul>
@@ -738,7 +737,18 @@ exports.upload = upload;
                     <script type="text/javascript" src="//www.google.com/trends/embed.js?hl=de&q=node.js+%2B+nodejs&geo=DE&date=1/2010+64m&cmpt=q&tz&tz&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=500&h=330"></script>
                     </section>-->
 
-                <section class="theory">
+                <section>
+                    <h2>Node.js in der Praxis</h2>
+                    <h4>Aktueller Stand</h4>
+                    <ul>
+                        <li>junges, dynamisches Projekt</li>
+                        <li>große Community</li>
+                        <li>teilweise noch unausgereifte Module</li>
+                    </ul>
+                    <aside class="notes">Anbindung an SQL-Datenbanken noch nicht problemlos machbar</aside>
+                </section>
+
+                <section>
                     <h2>Node.js in der Praxis</h2>
                     <h4>IDE Unterstützung für Node.js</h4>
                     <table>
@@ -748,7 +758,7 @@ exports.upload = upload;
                     </table>
                 </section>
 
-                <section class="theory">
+                <section>
                     <h2>Node.js in der Praxis</h2>
                     <h4>Tests und Code Qualität</h4>
                     <ul>
@@ -759,7 +769,7 @@ exports.upload = upload;
                     </ul>
                 </section>
 
-                <section class="theory">
+                <section>
                     <h2>Node.js in der Praxis</h2>
                     <h4>Weitere Anwendungsbereiche</h4>
                     <ul>
@@ -772,19 +782,18 @@ exports.upload = upload;
                     <aside class="notes">Embedded: Cylon.js</aside>
                 </section>
 
-                <section class="theory">
+                <section>
                     <h2>Node.js in der Praxis</h2>
                     <h4>Fallbeispiel: PayPal</h4>
                     <ul>
                         <li>Aufgabe: Neuimplementierung der Paypal Accountübersicht</li>
-                        <li>Hintergrund: Auflösung des Bruchs zwischen Front- und Backend</li>
-                        <li>Bisherige Lösung: JavaEE</li>
-                        <li>Neue Lösung: Node.js</li>
+                        <li>Ziel: Auflösung des Bruchs zwischen Front- und Backend</li>
+                        <li>Umsetzung mit Node.js</li>
                         <li>Backup: Parallele Entwicklung in JavaEE</li>
                     </ul>
                 </section>
 
-                <section class="theory">
+                <section>
                     <h2>Fallbeispiel: PayPal</h2>
                     <h4>Unterschiede Node.js - JavaEE Implementierung:</h4>
                     <ul>
@@ -792,7 +801,7 @@ exports.upload = upload;
                         <li>33% weniger Lines of Code</li>
                         <li>40% weniger Dateien</li>
                         <li>Doppelte Requests pro Sekunde </li>
-                        <li>Durchschnittliche Antwortzeit 35% reduziert</li>
+                        <li>Durchschnittliche Antwortzeit 35% (200ms) reduziert</li>
                     </ul>
                     <aside class="notes">
                         Quelle: https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/
@@ -804,6 +813,16 @@ exports.upload = upload;
                     <br>
                     <br>
                     <h2>Fragen? / Diskussion</h2>
+                </section>
+
+                <section>
+                    <h4>Quellen</h4>
+                    <ul>
+                        <li>Manuel Kiessling, <i>The Node Beginner Book</i></li>
+                        <li>Jeff Harell, <i>Node.js at Paypal</i>, www.paypal-engineering.com/2013/11/22/node-js-at-paypal/</li>
+                        <li><i>www.nodejs.org</i></li>
+                        <li><i>www.nodecode.de</i></li>
+                    </ul>
                 </section>
             </div>
 
