@@ -1,11 +1,17 @@
 var http = require("http");
 
 require("./helloWorld/server").start();
-require("./finalVersion/index").go();
+require("./v1/index").start();
+require("./v2/index").start();
+require("./v3/index").start();
+require("./v4/index").go();
 
 var handle = {};
 handle["/helloWorld"] = "http://localhost:8881";
-handle["/finalVersion"] = "http://localhost:8887";
+handle["/v1"] = "http://localhost:8882";
+handle["/v2"] = "http://localhost:8883";
+handle["/v3"] = "http://localhost:8884";
+handle["/v4"] = "http://localhost:8887";
 
 function onRequest(request, response) {
     //control the favicon
@@ -14,7 +20,7 @@ function onRequest(request, response) {
         response.end();
         return;
     }
-	
+
     if (typeof handle[request.url] === 'string') {
 		response.writeHead(302, {Location: handle[request.url]});
 		response.end();
