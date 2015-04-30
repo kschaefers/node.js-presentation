@@ -24,11 +24,11 @@ section.example::before {
 section.theory::before {
     content: "Theorie";
 	position: absolute;
-	color: #80BD01;
+	color: #6FBC42;
 	left: -70px;
 	top: 15px;
 	font-family: "Special Elite",cursive;
-	border: 3px solid #80BD01;
+	border: 3px solid #6FBC42;
 	transform: rotateZ(-35deg) scale(0.75);
 	padding: 5px 10px 3px;
 }
@@ -48,15 +48,25 @@ div.browser .url {
 }
 
 div.browser iframe {
-	margin: 45px 0px 0px;
-	height: calc(100% - 50px);
-	width: 670px;
+	margin: 158px 0px 0px;
+	height: calc((100% - 50px) / 2);
+	width: calc(670px / 2);
 	border: 1px ridge lightgrey;
 	background-color: white;
+	transform: scale(2);
 }
 
 .console code {
 	background-color: black !important;
+	color: white !important;
+}
+
+pre.console {
+	background-color: black !important;
+	padding: 0 10px;
+}
+
+.console samp {
 	color: white !important;
 }
 
@@ -66,6 +76,19 @@ div.browser iframe {
 
 .reveal pre {
 	box-shadow: none !important;
+}
+
+.reveal section.example pre.noCodeHighlight {
+	padding: 5px;
+	overflow: auto;
+	max-height: 400px;
+	word-wrap: normal;
+	background: none repeat scroll 0% 0% #3F3F3F;
+	color: #DCDCDC;
+}
+
+.reveal section.example pre kbd {
+	color: #6FBC42;
 }
 
 .reveal section img {

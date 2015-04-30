@@ -457,13 +457,12 @@ Request received.
 
                     <section class="example">
                         <h2>Server-Modul V1</h2>
-                        <pre>
-<code>
+                        <pre class="noCodeHighlight">
 var http = require("http");
 
 function start() {
     function onRequest(request, response) {
-        console.log("Request received.");
+<kbd>        console.log("Request received.");</kbd>
         response.writeHead(200, {"Content-Type": "text/plain"});
         response.write("Hello World");
         response.end();
@@ -471,25 +470,25 @@ function start() {
 
     http.createServer(onRequest).listen(8888);
 
-    console.log("Server has started.");
+<kbd>    console.log("Server has started.");</kbd>
 }
 
-exports.start = start;
-</code>
+<kbd>exports.start = start;</kbd>
                         </pre>
                         <aside class="notes">
                             Server nun als eigenes Modul
+                            keine funktionalen Änderungen
                         </aside>
                     </section>
 
                     <section class="example">
                         <h2>index.js</h2>
-                        <pre>
-<code>
+                        <pre class="noCodeHighlight">
+<kbd>
 var server = require("./server");
 
 server.start();
-</code>
+</kbd>
                         </pre>
                         <aside class="notes">
                             <p>index.js bindet nun das Server-Modul ein und startet es</p>
@@ -501,18 +500,18 @@ server.start();
                         <h2>Ausgabe im Browser</h2>
                         <div class="browser">
                             <div class="url">http://localhost:8888/v1</div>
-                            <iframe src="http://localhost:8888/helloWorld" width="750" height="450"></iframe>
+                            <iframe src="http://localhost:8888/v1" width="750" height="450"></iframe>
                         </div>
                     </section>
 
                     <section>
                         <h2>Ausgabe auf der Konsole</h2>
                         <pre class="console">
-<code>
+<samp>
 C:\Users\Katrin\nodeProject>node index.js
 Server has started.
 Request received.
-</code>
+</samp>
                         </pre>
                     </section>
                 </section>
@@ -533,17 +532,16 @@ Request received.
 
                     <section class="example">
                         <h2>Server-Modul V2</h2>
-                        <pre>
-<code>
+                        <pre class="noCodeHighlight">
 var http = require("http");
-var url = require("url")
+<kbd>var url = require("url")</kbd>
 
 function start(route) {
     function onRequest(request, response) {
-        var pathname = url.parse(request.url).pathname;
+        <kbd>var pathname = url.parse(request.url).pathname;
         console.log("Request for " + pathname + " received.");
         
-        route(pathname);
+        route(pathname);</kbd>
         
         response.writeHead(200, {"Content-Type": "text/plain"});
         response.write("Hello World");
@@ -556,32 +554,27 @@ function start(route) {
 }
 
 exports.start = start;                         
-</code>
                         </pre>
                     </section>
 
                     <section class="example">
                         <h2>Router-Modul V2</h2>
-                        <pre>
-<code>
-function route(pathname) {
+                        <pre class="noCodeHighlight">
+<kbd>function route(pathname) {
     console.log("About to route a request for " + pathname);
 }
 
-exports.route = route;
-</code>
+exports.route = route;</kbd>
                         </pre>
                     </section>
 
                     <section class="example">
                         <h2>index.js V2</h2>
-                        <pre>
-<code>
+                        <pre class="noCodeHighlight">
 var server = require("./server");
-var router = require("./router");
+<kbd>var router = require("./router");</kbd>
 
-server.start(router.route);
-</code>
+server.start(<kbd>router.route</kbd>);
                         </pre>
                     </section>
 
@@ -589,19 +582,19 @@ server.start(router.route);
                         <h2>Ausgabe im Browser</h2>
                         <div class="browser">
                             <div class="url">http://localhost:8888/v2</div>
-                            <iframe src="http://localhost:8888/helloWorld" width="750" height="450"></iframe>
+                            <iframe src="http://localhost:8888/v2" width="750" height="450"></iframe>
                         </div>
                     </section>
 
                     <section>
                         <h2>Ausgabe auf der Konsole</h2>
                         <pre class="console">
-<code>
+<samp>
 C:\Users\Katrin\nodeProject>node index.js
 Server has started.
 Request for / received.
 About to route a request for /
-</code>
+</samp>
                         </pre>
                     </section>
                 </section>
@@ -614,9 +607,8 @@ About to route a request for /
 
                     <section class="example">
                         <h2>Request Handler-Modul V3</h2>
-                        <pre>
-<code>
-function start() {
+                        <pre class="noCodeHighlight">
+<kbd>function start() {
     console.log("Request handler 'start' was called.");
 }
 
@@ -625,42 +617,38 @@ function upload() {
 }
 
 exports.start = start;
-exports.upload = upload;
-</code>
+exports.upload = upload;</kbd>
                         </pre>
                     </section>
 
                     <section class="example">
                         <h2>index.js V3</h2>
-                        <pre>
-<code>
+                        <pre class="noCodeHighlight">
 var server = require("./server");
 var router = require("./router");
-var requestHandlers = require("./requestHandlers");
+<kbd>var requestHandlers = require("./requestHandlers");</kbd>
 
-var handle = {};
+<kbd>var handle = {};
 handle["/"] = requestHandlers.start;
 handle["/start"] = requestHandlers.start;
-handle["/upload"] = requestHandlers.upload;
+handle["/upload"] = requestHandlers.upload;</kbd>
 
 server.start(router.route, handle);
-</code>
                         </pre>
                     </section>
 
                     <section class="example">
                         <h2>Server-Modul V3</h2>
-                        <pre>
-<code>
+                        <pre class="noCodeHighlight">
 var http = require("http");
 var url = require("url")
 
-function start(route, handle) {
+function start(route, <kbd>handle</kbd>) {
     function onRequest(request, response) {
         var pathname = url.parse(request.url).pathname;
         console.log("Request for " + pathname + " received.");
         
-        route(handle, pathname);
+        route(<kbd>handle</kbd>, pathname);
         
         response.writeHead(200, {"Content-Type": "text/plain"});
         response.write("Hello World");
@@ -672,25 +660,22 @@ function start(route, handle) {
 }
 
 exports.start = start;                         
-</code>
                         </pre>
                     </section>
 
                     <section class="example">
                         <h2>Router-Modul V3</h2>
-                        <pre>
-<code>
+                        <pre class="noCodeHighlight">
 function route(handle, pathname) {
     console.log("About to route a request for " + pathname);
-    if (handle[pathname] === 'function') {
+    <kbd>if (handle[pathname] === 'function') {
         handle[pathname]();
     } else {
         console.log("No request handler found for " + pathname);
-    }
+    }</kbd>
 }
 
 exports.route = route;
-</code>
                         </pre>
                     </section>
 
@@ -698,20 +683,20 @@ exports.route = route;
                         <h2>Ausgabe im Browser</h2>
                         <div class="browser">
                             <div class="url">http://localhost:8888/v3</div>
-                            <iframe src="http://localhost:8888/helloWorld" width="750" height="450"></iframe>
+                            <iframe src="http://localhost:8888/v3" width="750" height="450"></iframe>
                         </div>
                     </section>
 
                     <section>
                         <h2>Ausgabe auf der Konsole</h2>
                         <pre class="console">
-<code>
+<samp>
 C:\Users\Katrin\nodeProject>node index.js
 Server has started.
 Request for / received.
 About to route a request for /
 Request handler 'start' was called.
-</code>
+</samp>
                         </pre>
                     </section>
                 </section>
@@ -724,8 +709,7 @@ Request handler 'start' was called.
 
                     <section class="example">
                         <h2>Server-Modul V4</h2>
-                        <pre>
-<code>
+                        <pre class="noCodeHighlight">
 var http = require("http");
 var url = require("url")
 
@@ -734,7 +718,7 @@ function start(route, handle) {
         var pathname = url.parse(request.url).pathname;
         console.log("Request for " + pathname + " received.");
         
-        route(handle, pathname, response);
+        route(handle, pathname, <kbd>response</kbd>);
     }
 
     http.createServer(onRequest).listen(8888);
@@ -742,69 +726,68 @@ function start(route, handle) {
 }
 
 exports.start = start;                         
-</code>
                         </pre>
+                        <aside class="notes">
+                            response ist nun nicht mehr im Server
+                        </aside>
                     </section>
 
                     <section class="example">
                         <h2>Router-Modul V4</h2>
-                        <pre>
-<code>
+                        <pre class="noCodeHighlight">
 function route(handle, pathname, response, postData) {
     console.log("About to route a request for " + pathname);
 
     if (typeof handle[pathname] === 'function') {
-        handle[pathname](response, postData);
+        <kbd>handle[pathname](response, postData);</kbd>
     } else {
         console.log("No request handler found for " + pathname);
-        response.writeHead(404, {"Content-Type": "text/plain"});
+        <kbd>response.writeHead(404, {"Content-Type": "text/plain"});
         response.write("404 Not found");
-        response.end();
+        response.end();</kbd>
     }
 }
 exports.route = route;
-</code>
                         </pre>
                     </section>
 
                     <section class="example">
                         <h2>Request Handler-Modul V4</h2>
-                        <pre>
-<xmp>
+                        <pre class="noCodeHighlight">
 var querystring = require("querystring");
 
 function start(response, postData) {
     console.log("Request handler 'start' was called.");
 
-    var body = '<html>' +
-            '<head>' +
-            '<meta http-equiv="Content-Type" content="text/html; ' +
-            'charset=UTF-8" />' +
-            '</head>' +
-            '<body>' +
-            '<form action="/upload" method="post">' +
-            '<textarea name="text" rows="20" cols="60"></textarea>' +
-            '<input type="submit" value="Submit text" />' +
-            '</form>' +
-            '</body>' +
-            '</html>';
+    <kbd>var body = '&lt;html&gt;' +
+            '&lt;head&gt;' +
+            '&lt;meta http-equiv="Content-Type" content="text/html; ' +
+            'charset=UTF-8" /&gt;' +
+            '&lt;/head&gt;' +
+            '&lt;body&gt;' +
+            '&lt;form action="/upload" method="post"&gt;' +
+            '&lt;textarea name="text" rows="10" cols="30"&gt;&lt;/textarea&gt;' +
+            '&lt;input type="submit" value="Submit text" /&gt;' +
+            '&lt;/form&gt;' +
+            '&lt;/body&gt;' +
+            '&lt;/html&gt;';
 
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write(body);
-    response.end();
+    response.end();</kbd>
 }
 
 function upload(response, postData) {
     console.log("Request handler 'upload' was called.");
 
-    response.writeHead(200, {"Content-Type": "text/plain"});
-    response.write("You've sent the text:\n" + querystring.parse(postData).text);
-    response.end();
+    <kbd>response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("You've sent the text:\n" +
+                          querystring.parse(postData).text);
+    response.end();</kbd>
 }
 
 exports.start = start;
 exports.upload = upload;
-</xmp>
                         </pre>
                     </section>
 
