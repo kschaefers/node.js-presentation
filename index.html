@@ -172,6 +172,32 @@ http.createServer(function(request, response) {
                 </section>
 
                 <section class="theory">
+                    <h2>Eventgetriebene Programmierung<br>in Node.js</h2>
+                    <h4>Performanceprobleme</h4>
+                    <ul>
+                        <li>I/O dauert meistens am längsten</li>
+                        <li>Wartezeiten für I/O müssen minimiert werden</li>
+                    </ul>
+                    <h4 style="margin-top: 20px">Node.js Lösung</h4>
+                    <ul>
+                        <li>I/O läuft immer asynchron... </li>
+                        <li>... durch eventgetriebene Programmierung</li>
+                    </ul>
+                </section>
+
+                <section class="theory">
+                    <h2>Eventgetriebene Programmierung<br>in Node.js</h2>
+                    <h4>Funktionsweise</h4>
+                    <ul>
+                        <li>Der Programmablauf wird durch Events gesteuert</li>
+                        <li>Definierte Trigger lösen Events aus</li>
+                        <li>Ausgelöste Events werden in einer Queue abgelegt</li>
+                        <li>Ein Thread, die Event Loop, verarbeitet alle Events in der Queue </li>
+                    </ul>
+                    <aside class="notes">Wartezimmer-Beispiel..</aside>
+                </section>
+
+                <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Ablauf</h4>
                     <img src="img/eventloop.png" />
@@ -264,18 +290,6 @@ function(request, response) {
                     <img src="img/ReactorPattern.png" />
                     <p>In Node.js in der Bibliothek libuv implementiert</p>
                     <aside class="notes">Weitere Infos: Siehe Quellen</aside>
-                </section>
-
-                <section class="theory">
-                    <h2>Eventgetriebene Programmierung<br>in Node.js</h2>
-                    <h4>Funktionsweise</h4>
-                    <ul>
-                        <li>Der Programmablauf wird durch Events gesteuert</li>
-                        <li>Definierte Trigger lösen Events aus</li>
-                        <li>Ausgelöste Events werden in einer Queue abgelegt</li>
-                        <li>Ein Thread, die Event Loop, verarbeitet alle Events in der Queue </li>
-                    </ul>
-                    <aside class="notes">Wartezimmer-Beispiel..</aside>
                 </section>
 
                 <section class="theory">
