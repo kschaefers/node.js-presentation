@@ -78,7 +78,7 @@ pre.console {
 	box-shadow: none !important;
 }
 
-.reveal section.example pre.noCodeHighlight {
+.reveal section pre.noCodeHighlight {
 	padding: 5px;
 	overflow: auto;
 	max-height: 400px;

@@ -56,6 +56,7 @@
                         <li>Event Loop</li>
                         <li>Praxisbeispiel</li>
                         <li>Node.js in der Praxis</li>
+                        <li>Diskussion</li>
                     </ol>
                 </section>
 
@@ -70,13 +71,12 @@
                     </ul>
                 </section>
 
-                <!--                TODO: Node ist keine Erfindung - "Erfunden" ersetzen durch "Entwickelt"-->
                 <section class="theory">
                     <img src="img/nodejs-light.png" style="width:60%;height:60%"/>
                     <h4>Serverseitiges Javascript</h4>
                     <ul>
                         <li>JavaScript Framework für Serverseitige Entwicklung</li>
-                        <li>Erfunden 2009 von Ryan Dahl, finanziert von Joyent</li>
+                        <li>Entwickelt 2009 von Ryan Dahl, finanziert von Joyent</li>
                         <li>Implementiert in C/C++ und JavaScript</li>
                         <li>Verfügbar für Windows, Linux und OS X</li>
                     </ul>
@@ -84,16 +84,14 @@
 
                 <section class="theory">
                     <h2>Hello Node.js auf der Konsole</h2>
-                    <pre style="padding-bottom: 0; margin-bottom: 0; margin-top: 40px">
-                        <code>
+                    <pre class="noCodeHighlight">
 console.log("Hello Node!")
-                        </code>
                     </pre>
                     <pre class="console fragment">
-                        <code>
+                        <samp>
 C:\Users\Katrin\nodeProject>node hello.js
 Hello Node!
-                        </code>
+                        </samp>
                     </pre>
                 </section>
 
@@ -112,7 +110,7 @@ Hello Node!
                         <li>Module können einfach installiert und eingebunden werden</li>
                         <li>Ziele:
                             <ul>
-                                <li>Separation of concerns</li>
+                                <li>separation of concerns</li>
                                 <li>information hiding</li>
                                 <li>encapsulation</li>
                                 <li>clean code</li>
@@ -124,16 +122,15 @@ Hello Node!
                     <h2>Module in Node.js</h2>
                     <h4>Modulquellen</h4>
                     <ul>
-                        <li>In Node.js vorinstalliert (http, fs)</li>
+                        <li>Vorinstallierte Basismodule (http, fs)</li>
                         <li>Über Node Package Manager npm (express, socket.io)</li>
                         <li>Lokal erstellt</li>
                     </ul>
                 </section>
 
-                <section>
-                    <section class="example">
-                        <h2>"Hello World" in Node.js</h2>
-                        <pre>
+                <section class="example">
+                    <h2>"Hello World" in Node.js</h2>
+                    <pre class="noCodeHighlight">
 <code>
 var http = require("http");
 
@@ -148,7 +145,7 @@ http.createServer(
 
 
 
-}).listen(8888);
+ ).listen(8888);
 </code>
 <code class="fragment" style="margin-top:-176px">
 http.createServer(function(request, response) {
@@ -157,54 +154,22 @@ http.createServer(function(request, response) {
     response.end();
 }).listen(8888);
 </code>
-                        </pre>
-                        <aside class="notes">
-                            <ol>
-                                <li>Einbinden des Moduls "http" (stellt einfache WebService Funktionalität zur Verfügung)</li>
-                                <li>Erstellen eines WebServers mit Hilfe des Moduls - hört auf Port 8888</li>
-                                <li>createServer bekommt eine anonyme Funktion übergeben (fungiert als callback-Methode, sobald ein Request eintrifft)</li>
-                            </ol>
-                        </aside>
-                    </section>
-
-                    <section class="example">
-                        <h2>Ausgabe im Browser</h2>
-                        <div class="browser">
-                            <div class="url">http://localhost:8888/</div>
-                            <iframe src="http://localhost:8888/helloWorld" width="750" height="450"></iframe>
-                        </div>
-                    </section>
+                    </pre>
+                    <aside class="notes">
+                        <ol>
+                            <li>Einbinden des Moduls "http" (stellt einfache WebService Funktionalität zur Verfügung)</li>
+                            <li>Erstellen eines WebServers mit Hilfe des Moduls - hört auf Port 8888</li>
+                            <li>createServer bekommt eine anonyme Funktion übergeben (fungiert als callback-Methode, sobald ein Request eintrifft)</li>
+                        </ol>
+                    </aside>
                 </section>
 
-                <section class="theory">
-                    <h2>Eventgetriebene Programmierung in Node.js</h2>
-                    <h4>Funktionsweise</h4>
-                    <ul>
-                        <li>Der Programmablauf wird durch Events gesteuert</li>
-                        <li>Definierte Trigger lösen Events aus</li>
-                        <li>Ausgelöste Events werden in einer Queue abgelegt</li>
-                        <li>Ein Thread, die Event Loop, verarbeitet alle Events in der Queue </li>
-                    </ul>
-                    <aside class="notes">Wartezimmer-Beispiel..</aside>
-                </section>
-
-                <section class="theory">
-                    <h2>Event Loop in Node.js</h2>
-                    <h4>Die wichtigen Unterschiede</h4>
-                    <table>
-                        <tr><th><h5>Sequenziell</h5></th><th><h5>Eventgetrieben mit Node.js</h5></th></tr>
-                        <tr><td>Programmsteuerung durch sequenziellen Code</td><td>Programmsteuerung durch Events</td></tr>
-                        <tr><td>Ein Thread pro Request</td><td>Ein Thread für alle Requests</td></tr>
-                        <tr><td>Nebenläufigkeit wird explizit implementiert</td><td>Nebenläufigkeit durch Framework gesteuert</td></tr>
-                    </table>
-                </section>
-
-                <section class="theory">
-                    <h2>Event Loop in Node.js</h2>
-                    <h4>Technische Sicht - Reactor Pattern</h4>
-                    <img src="img/ReactorPattern.png" />
-                    <p>In Node.js in der Bibliothek libuv implementiert</p>
-                    <aside class="notes">Weitere Infos: Siehe Quellen</aside>
+                <section class="example">
+                    <h2>Ausgabe im Browser</h2>
+                    <div class="browser">
+                        <div class="url">http://localhost:8888/</div>
+                        <iframe src="http://localhost:8888/helloWorld" width="750" height="450"></iframe>
+                    </div>
                 </section>
 
                 <section class="theory">
@@ -230,7 +195,7 @@ http.createServer(function(request, response) {
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("Hello World");
     response.end();
-});
+}).listen(8888);
                         </code>
                     </pre>
                     Callback Funktion wird am HTTP Server registriert
@@ -239,8 +204,8 @@ http.createServer(function(request, response) {
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 2</h4>
-                    <div class="browser" style="height: 50px; width: 750px; background:url('css/img/browser.png') no-repeat scroll rgba(0, 0, 0, 0); margin-left: auto; margin-top: auto; margin-bottom: 30px;">
-                        <div class="url">http://localhost:8888/helloWorld</div>
+                    <div class="browser" style="height: 50px; width: 750px; background:url('css/img/browser.png') no-repeat scroll rgba(0, 0, 0, 0);margin-left: 50%;transform: translateX(-50%);width: 750px;">
+                        <div class="url">http://localhost:8888/</div>
                     </div>
                     Client Request erreicht den Node Server
                 </section>
@@ -252,7 +217,6 @@ http.createServer(function(request, response) {
                     <div>Request wird als Event in die Queue eingetragen</div>
                 </section>
 
-                <section>
                     <section class="theory">
                         <h2>Event Loop in Node.js</h2>
                         <h4>Beispiel - Schritt 4</h4>
@@ -277,7 +241,6 @@ function(request, response) {
                             <li>Callback Parameter wurden durch den Event Auslöser gesetzt</li>
                         </ul>
                     </section>
-                </section>
 
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
@@ -297,6 +260,37 @@ function(request, response) {
                 </section>
 
                 <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Technische Sicht - Reactor Pattern</h4>
+                    <img src="img/ReactorPattern.png" />
+                    <p>In Node.js in der Bibliothek libuv implementiert</p>
+                    <aside class="notes">Weitere Infos: Siehe Quellen</aside>
+                </section>
+
+                <section class="theory">
+                    <h2>Eventgetriebene Programmierung<br>in Node.js</h2>
+                    <h4>Funktionsweise</h4>
+                    <ul>
+                        <li>Der Programmablauf wird durch Events gesteuert</li>
+                        <li>Definierte Trigger lösen Events aus</li>
+                        <li>Ausgelöste Events werden in einer Queue abgelegt</li>
+                        <li>Ein Thread, die Event Loop, verarbeitet alle Events in der Queue </li>
+                    </ul>
+                    <aside class="notes">Wartezimmer-Beispiel..</aside>
+                </section>
+
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Die wichtigen Unterschiede</h4>
+                    <table>
+                        <tr><th><h5>Sequenziell</h5></th><th><h5>Eventgetrieben mit Node.js</h5></th></tr>
+                        <tr><td>Programmsteuerung durch sequenziellen Code</td><td>Programmsteuerung durch Events</td></tr>
+                        <tr><td>Ein Thread pro Request</td><td>Ein Thread für alle Requests</td></tr>
+                        <tr><td>Nebenläufigkeit wird explizit implementiert</td><td>Nebenläufigkeit durch Framework gesteuert</td></tr>
+                    </table>
+                </section>
+
+<!--                <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Vorteile der Event Loop Implementierung</h4>
                     <ul>
@@ -328,7 +322,7 @@ function(request, response) {
                             <li>Skalierung auf mehrere Kerne mit mehreren Node Instanzen</li>
                         </ul>
                     </aside>
-                </section>
+                </section>-->
 
                 <section class="example">
                     <h2>Praxisbeispiel - Ziele</h2>
@@ -350,11 +344,7 @@ function(request, response) {
 
                 <section class="example">
                     <h2>Komponenten</h2>
-                    <ul>
-                        <li>WebServer</li>
-                        <li>Router</li>
-                        <li>Request Handler</li>
-                    </ul>
+                    <img src="./img/komponentenV4.png" alt="Komponenten">
                     <aside class="notes">
                         <ul>
                             <li>WebServer - um dynamische Webseiten bereitstellen zu können</li>
@@ -364,11 +354,6 @@ function(request, response) {
                         für dieses Beispiel natürlich mit Kanonen auf Spatzen geschossen, aber soll verdeutlichen, wie das funktioniert
                         Komponenten werden nach und nach entwickelt und erklärt
                     </aside>
-                </section>
-
-                <section class="example">
-                    <h2>Komponenten</h2>
-                    <img src="./img/komponentenV4.png" alt="Komponenten">
                 </section>
 
                 <section class="example">
@@ -386,16 +371,13 @@ function(request, response) {
 var http = require("http");
 
 <kbd>function start() {
-    function onRequest(request, response) {
-        console.log("Request received.");</kbd>
+    function onRequest(request, response) {</kbd>
         response.writeHead(200, {"Content-Type": "text/plain"});
         response.write("Hello World");
         response.end();
     <kbd>}</kbd>
 
     http.createServer(<kbd>onRequest</kbd>).listen(8888);
-
-    <kbd>console.log("Server has started.");</kbd>
 <kbd>}</kbd>
 
 <kbd>exports.start = start;</kbd>
@@ -428,20 +410,7 @@ server.start();
                         <iframe src="http://localhost:8888/v1" width="750" height="450"></iframe>
                     </div>
                     <aside class="notes">
-                        keine Veränderung zu Hello World V2
-                    </aside>
-                </section>
-
-                <section class="example">
-                    <h2>Ausgabe auf der Konsole (V1)</h2>
-                    <pre class="console">
-<samp>
-C:\Users\Katrin\nodeProject>node index.js
-Server has started.
-Request received.
-</samp>
-                    </pre>
-                    <aside class="notes">
+                        keine Veränderung zu Hello World
                     </aside>
                 </section>
 
@@ -449,6 +418,7 @@ Request received.
                     <h2>Router hinzufügen (V2)</h2>
                     <img src="./img/komponentenV2.png" alt="Komponenten">
                     <aside class="notes">
+                        Router wird ohne funktionalität eingefügt, deswegen noch etwas ausgegraut
                         <ul>
                             <li>Routing von Requests soll möglich sein, abhängig von aufgerufener URL -> Router</li>
                             <li>GET / POST Parameter auslesen</li>
@@ -458,32 +428,10 @@ Request received.
                 </section>
 
                 <section class="example">
-                    <h2>Server-Modul (V2)</h2>
-                    <pre class="noCodeHighlight">
-var http = require("http");
-<kbd>var url = require("url");</kbd>
-
-function start(<kbd>route</kbd>) {
-    function onRequest(request, response) {
-        <kbd>var pathname = url.parse(request.url).pathname;
-        console.log("server: Request for " + pathname + " received.");
-        route(pathname);</kbd>
-        response.writeHead(200, {"Content-Type": "text/plain"});
-        response.write("Hello World");
-        response.end();
-    }
-    http.createServer(onRequest).listen(8888);
-    console.log("Server has started.");
-}
-exports.start = start;                         
-                    </pre>
-                </section>
-
-                <section class="example">
                     <h2>Router-Modul (V2)</h2>
                     <pre class="noCodeHighlight">
 <kbd>function route(pathname) {
-    console.log("router: About to route a request for " + pathname);
+    console.log("About to route a request for " + pathname);
 }
 
 exports.route = route;</kbd>
@@ -501,6 +449,26 @@ server.start(<kbd>router.route</kbd>);
                 </section>
 
                 <section class="example">
+                    <h2>Server-Modul (V2)</h2>
+                    <pre class="noCodeHighlight">
+var http = require("http");
+<kbd>var url = require("url");</kbd>
+
+function start(<kbd>route</kbd>) {
+    function onRequest(request, response) {
+        <kbd>var pathname = url.parse(request.url).pathname;
+        route(pathname);</kbd>
+        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.write("Hello World");
+        response.end();
+    }
+    http.createServer(onRequest).listen(8888);
+}
+exports.start = start;                         
+                    </pre>
+                </section>
+
+                <section class="example">
                     <h2>Ausgabe im Browser (V2)</h2>
                     <div class="browser">
                         <div class="url">http://localhost:8888/v2</div>
@@ -513,9 +481,7 @@ server.start(<kbd>router.route</kbd>);
                     <pre class="console">
 <samp>
 C:\Users\Katrin\nodeProject>node index.js
-Server has started.
-server: Request for / received.
-router: About to route a request for /
+About to route a request for /
 </samp>
                     </pre>
                 </section>
@@ -529,11 +495,11 @@ router: About to route a request for /
                     <h2>Request Handler-Modul (V3)</h2>
                     <pre class="noCodeHighlight">
 <kbd>function start() {
-    console.log("requestHandler: Request handler 'start' was called.");
+    console.log("Request handler 'start' was called.");
 }
 
 function upload() {
-    console.log("requestHandler: Request handler 'upload' was called.");
+    console.log("Request handler 'upload' was called.");
 }
 
 exports.start = start;
@@ -566,14 +532,14 @@ var url = require("url");
 function start(route, <kbd>handle</kbd>) {
     function onRequest(request, response) {
         var pathname = url.parse(request.url).pathname;
-        console.log("server: Request for " + pathname + " received.");
+
         route(<kbd>handle</kbd>, pathname);
+
         response.writeHead(200, {"Content-Type": "text/plain"});
         response.write("Hello World");
         response.end();
     }
     http.createServer(onRequest).listen(8888);
-    console.log("Server has started.");
 }
 exports.start = start;                         
                     </pre>
@@ -583,12 +549,13 @@ exports.start = start;
                     <h2>Router-Modul (V3)</h2>
                     <pre class="noCodeHighlight">
 function route(<kbd>handle</kbd>, pathname) {
-    console.log("router: About to route a request for " + pathname);
+
     <kbd>if (handle[pathname] === 'function') {
         handle[pathname]();
     } else {
-        console.log("router: No request handler found for " + pathname);
+        console.log("No request handler found for " + pathname);
     }</kbd>
+
 }
 
 exports.route = route;
@@ -608,21 +575,13 @@ exports.route = route;
                     <pre class="console">
 <samp>
 C:\Users\Katrin\nodeProject>node index.js
-Server has started.
-server: Request for / received.
-router: About to route a request for /
-requestHandler: Request handler 'start' was called.
+Request handler 'start' was called.
 </samp>
                     </pre>
                 </section>
 
                 <section class="example">
-                    <h2>Request Handler Funkionalität geben (V4)</h2>
-                    <img src="./img/komponentenV4.png" alt="Komponenten">
-                </section>
-
-                <section class="example">
-                    <h2>Wer antwortet auf den Request?</h2>
+                    <h2>Wer antwortet auf den<br>Request?</h2>
                     <img src="./img/komponentenSoNicht.png" alt="Komponenten" class="fragment fade-out" data-fragment-index="1">
                     <img src="./img/komponentenSoNichtMitKreuz.png" alt="Komponenten" class="fragment" style="margin-top: -526px;margin-left: -134px;" data-fragment-index="1">
                     <aside class="notes">
@@ -635,30 +594,28 @@ requestHandler: Request handler 'start' was called.
                 </section>
 
                 <section class="example">
+                    <h2>Request Handler<br>Funkionalität geben (V4)</h2>
+                    <img src="./img/komponentenV4.png" alt="Komponenten">
+                </section>
+
+                <section class="example">
                     <h2>Server-Modul (V4)</h2>
-                    <pre class="noCodeHighlight">
-var http = require("http");
-var url = require("url");
+                    <pre class="noCodeHighlight" style="overflow:hidden;">
+var http = require("http");      var url = require("url");
 
 function start(route, handle) {
     function onRequest(request, response) {
         <kbd>var postData = "";</kbd>
         var pathname = url.parse(request.url).pathname;
-        console.log("server: Request for " + pathname + " received.");
-        
         <kbd>request.setEncoding("utf8");
-
         request.addListener("data", function (postDataChunk) {
             postData += postDataChunk;
-            console.log("Received POST data chunk '" + postDataChunk);
         });
-
-        request.addListener("end", function () {
-            route(handle, pathname, response, postData);
-        });</kbd>
+        request.addListener("end", function () {</kbd>
+            route(handle, pathname, <kbd>response, postData</kbd>);
+        <kbd>});</kbd>
     }
     http.createServer(onRequest).listen(8888);
-    console.log("Server has started.");
 }
 exports.start = start;                         
                     </pre>
@@ -671,12 +628,10 @@ exports.start = start;
                     <h2>Router-Modul (V4)</h2>
                     <pre class="noCodeHighlight">
 function route(handle, pathname, response, postData) {
-    console.log("router: About to route a request for " + pathname);
 
     if (typeof handle[pathname] === 'function') {
-        <kbd>handle[pathname](response, postData);</kbd>
+        handle[pathname](<kbd>response, postData</kbd>);
     } else {
-        console.log("router: No request handler found for " + pathname);
         <kbd>response.writeHead(404, {"Content-Type": "text/plain"});
         response.write("404 Not found");
         response.end();</kbd>
@@ -690,10 +645,7 @@ exports.route = route;
                     <h2>Request Handler-Modul (V4)</h2>
                     <h3>Teil 1</h3>
                     <pre class="noCodeHighlight">
-<kbd>var querystring = require("querystring");</kbd>
-
 function start(response, <kbd>postData</kbd>) {
-    console.log("requestHandler: Request handler 'start' was called.");
     <kbd>var body = '&lt;html&gt; &lt;head&gt;' +
             '&lt;meta http-equiv="Content-Type" content="text/html; ' +
             'charset=UTF-8" /&gt; &lt;/head&gt; &lt;body&gt;' +
@@ -713,6 +665,8 @@ function start(response, <kbd>postData</kbd>) {
                     <h2>Request Handler-Modul (V4)</h2>
                     <h3>Teil 2</h3>
                     <pre class="noCodeHighlight">
+<kbd>var querystring = require("querystring");</kbd>
+
 function upload(response, <kbd>postData</kbd>) {
     console.log("requestHandler: Request handler 'upload' was called.");
 
@@ -748,18 +702,9 @@ exports.upload = upload;
 
                 <section>
                     <h2>Node.js in der Praxis</h2>
-                    <h4>IDE Unterstützung für Node.js</h4>
-                    <table>
-                        <tr><th>Eclipse</th><td>Nodeclipse Plugin</td></tr>
-                        <tr><th>IntelliJ</th><td>Node.js Plugin</td></tr>
-                        <tr><th style="border-bottom: medium none;">Netbeans</th><td>NodeJS Plugin</td></tr>
-                    </table>
-                </section>
-
-                <section>
-                    <h2>Node.js in der Praxis</h2>
                     <h4>Tests und Code Qualität</h4>
                     <ul>
+                        <li>Entwicklung: Plugins für gängige Entwicklungstools</li>
                         <li>Unittests: Mocha</li>
                         <li>Mocking: Sinon JS, Nock</li>
                         <li>Coverage: Istanbul</li>
@@ -769,7 +714,7 @@ exports.upload = upload;
 
                 <section>
                     <h2>Node.js in der Praxis</h2>
-                    <h4>Weitere Anwendungsbereiche</h4>
+                    <h4>Anwendungsbereiche</h4>
                     <ul>
                         <li>Browsergames</li>
                         <li>REST APIs</li>
@@ -856,11 +801,11 @@ exports.upload = upload;
                     {src: 'plugin/markdown/markdown.js', condition: function () {
                             return !!document.querySelector('[data-markdown]');
                         }},
-                    {src: 'plugin/highlight/highlight.js', async: true, condition: function () {
-                            return !!document.querySelector('pre code');
-                        }, callback: function () {
-                            hljs.initHighlightingOnLoad();
-                        }},
+//                    {src: 'plugin/highlight/highlight.js', async: true, condition: function () {
+//                            return !!document.querySelector('pre code');
+//                        }, callback: function () {
+//                            hljs.initHighlightingOnLoad();
+//                        }},
                     {src: 'plugin/zoom-js/zoom.js', async: true},
 //                    {src: 'plugin/remotes/remotes.js', async: true},
                     {src: 'plugin/notes/notes.js', async: true}
