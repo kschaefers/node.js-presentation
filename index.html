@@ -83,7 +83,7 @@
                 </section>
 
                 <section class="theory">
-                    <h2>Hello Node.js auf der Konsole</h2>
+                    <h2>Hello Node.js<br>auf der Konsole</h2>
                     <pre class="noCodeHighlight">
 console.log("Hello Node!")
                     </pre>
@@ -91,8 +91,8 @@ console.log("Hello Node!")
                         <samp>
 C:\Users\Katrin\nodeProject>node hello.js
 Hello Node!
-                        </samp>
-                    </pre>
+</samp>
+</pre>
                 </section>
 
                 <section class="theory">
@@ -128,10 +128,9 @@ Hello Node!
                 </section>
 
                 <section class="example">
-                    <h2>"Hello World" in Node.js</h2>
-                    <pre class="noCodeHighlight">
-<code>
-var http = require("http");
+                    <h2>"Hello World"<br>in Node.js</h2>
+                    <pre class="noCodeHighlight" style="width:95%">
+<code>var http = require("http");
 
 
 
@@ -139,20 +138,16 @@ var http = require("http");
 
 
 </code>
-<code class="fragment current-visible" style="margin-top:-175px">
-http.createServer(
+<code class="fragment current-visible" style="margin-top:-185px">http.createServer(
 
 
 
- ).listen(8888);
-</code>
-<code class="fragment" style="margin-top:-176px">
-http.createServer(function(request, response) {
+ ).listen(8888);</code>
+<code class="fragment" style="margin-top:-191px">http.createServer(function(request, response) {
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("Hello World");
     response.end();
-}).listen(8888);
-</code>
+}).listen(8888);</code>
                     </pre>
                     <aside class="notes">
                         <ol>
@@ -172,7 +167,7 @@ http.createServer(function(request, response) {
                 </section>
 
                 <section class="theory">
-                    <h2>Eventgetriebene Programmierung<br>in Node.js</h2>
+                    <h2>Eventgetriebene<br>Programmierung in Node.js</h2>
                     <h4>Performanceprobleme</h4>
                     <ul>
                         <li>I/O dauert meistens am längsten</li>
@@ -186,7 +181,7 @@ http.createServer(function(request, response) {
                 </section>
 
                 <section class="theory">
-                    <h2>Eventgetriebene Programmierung<br>in Node.js</h2>
+                    <h2>Eventgetriebene<br>Programmierung in Node.js</h2>
                     <h4>Funktionsweise</h4>
                     <ul>
                         <li>Der Programmablauf wird durch Events gesteuert</li>
@@ -214,14 +209,14 @@ http.createServer(function(request, response) {
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 1</h4>
-                    <pre style="margin-bottom: 0; padding-bottom: 0">
-                        <code>
+                    <pre class="noCodeHighlight" style="width: 95%">
+<code>
 http.createServer(function(request, response) {
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("Hello World");
     response.end();
 }).listen(8888);
-                        </code>
+</code>
                     </pre>
                     Callback Funktion wird am HTTP Server registriert
                 </section>
@@ -242,30 +237,30 @@ http.createServer(function(request, response) {
                     <div>Request wird als Event in die Queue eingetragen</div>
                 </section>
 
-                    <section class="theory">
-                        <h2>Event Loop in Node.js</h2>
-                        <h4>Beispiel - Schritt 4</h4>
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Beispiel - Schritt 4</h4>
                         <img src="img/eventloop3.png" />
-                        <div>Event Loop führt das Event aus</div>
-                    </section>
+                    <div>Event Loop führt das Event aus</div>
+                </section>
 
-                    <section class="theory">
-                        <h2>Event Loop in Node.js</h2>
-                        <h4>Beispiel - Schritt 4</h4>
-                        <pre style="margin: 0;padding: 0">
-                            <code>
+                <section class="theory">
+                    <h2>Event Loop in Node.js</h2>
+                    <h4>Beispiel - Schritt 4</h4>
+                    <pre class="noCodeHighlight" style="margin:0;width:95%;">
+<code>
 function(request, response) {
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("Hello World");
     response.end();
 }
-                            </code>
-                        </pre>
-                        <ul>
-                            <li>Event Code: auf den Request registrierter Callback</li>
-                            <li>Callback Parameter wurden durch den Event Auslöser gesetzt</li>
-                        </ul>
-                    </section>
+</code>
+                    </pre>
+                    <ul>
+                        <li>Event Code: auf den Request registrierter Callback</li>
+                        <li>Callback Parameter wurden durch den Event Auslöser gesetzt</li>
+                    </ul>
+                </section>
 
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
@@ -303,39 +298,39 @@ function(request, response) {
                     </table>
                 </section>
 
-<!--                <section class="theory">
-                    <h2>Event Loop in Node.js</h2>
-                    <h4>Vorteile der Event Loop Implementierung</h4>
-                    <ul>
-                        <li>Vermeidung von Problemen nebenläufiger Programmierung</li>
-                        <li>Vereinfachte asynchrone Programmierung</li>
-                        <li>Hohe Performance bei I/O lastigen Anwendungen</li>
-                        <li>Hohe Anzahl gleichzeitiger Serververbindungen</li>
-                    </ul>
-                    <aside class="notes">
-                        <ul>
-                            <li>Weniger Overhead durch Multithread Verwaltung in der Anwendung</li>
-                            <li>Skalierung nicht abhängig von der Anzahl der Threads -> Performant</li>
-                        </ul>
-                    </aside>
-                </section>
-
-                <section class="theory">
-                    <h2>Event Loop in Node.js</h2>
-                    <h4>Nachteile der Event Loop Implementierung</h4>
-                    <ul>
-                        <li>Single Point of Failure</li>
-                        <li>Server nutzt nur einen Thread/Kern</li>
-                        <li>Lange Eventverarbeitung blockiert den Server</li>
-                        <li>kompliziertere Fehlerbehandlung/Debugging</li>
-                    </ul>
-                    <aside class="notes">
-                        <ul>
-                            <li>Einzelne Exceptions können den Server crashen</li>
-                            <li>Skalierung auf mehrere Kerne mit mehreren Node Instanzen</li>
-                        </ul>
-                    </aside>
-                </section>-->
+                <!--                <section class="theory">
+                                    <h2>Event Loop in Node.js</h2>
+                                    <h4>Vorteile der Event Loop Implementierung</h4>
+                                    <ul>
+                                        <li>Vermeidung von Problemen nebenläufiger Programmierung</li>
+                                        <li>Vereinfachte asynchrone Programmierung</li>
+                                        <li>Hohe Performance bei I/O lastigen Anwendungen</li>
+                                        <li>Hohe Anzahl gleichzeitiger Serververbindungen</li>
+                                    </ul>
+                                    <aside class="notes">
+                                        <ul>
+                                            <li>Weniger Overhead durch Multithread Verwaltung in der Anwendung</li>
+                                            <li>Skalierung nicht abhängig von der Anzahl der Threads -> Performant</li>
+                                        </ul>
+                                    </aside>
+                                </section>
+                
+                                <section class="theory">
+                                    <h2>Event Loop in Node.js</h2>
+                                    <h4>Nachteile der Event Loop Implementierung</h4>
+                                    <ul>
+                                        <li>Single Point of Failure</li>
+                                        <li>Server nutzt nur einen Thread/Kern</li>
+                                        <li>Lange Eventverarbeitung blockiert den Server</li>
+                                        <li>kompliziertere Fehlerbehandlung/Debugging</li>
+                                    </ul>
+                                    <aside class="notes">
+                                        <ul>
+                                            <li>Einzelne Exceptions können den Server crashen</li>
+                                            <li>Skalierung auf mehrere Kerne mit mehreren Node Instanzen</li>
+                                        </ul>
+                                    </aside>
+                                </section>-->
 
                 <section class="example">
                     <h2>Praxisbeispiel - Ziele</h2>
@@ -380,7 +375,7 @@ function(request, response) {
 
                 <section class="example">
                     <h2>Server-Modul (V1)</h2>
-                    <pre class="noCodeHighlight">
+                    <pre class="noCodeHighlight" style="width: 100%;overflow: hidden;">
 var http = require("http");
 
 <kbd>function start() {
@@ -409,7 +404,7 @@ var server = require("./server");
 
 server.start();
 </kbd>
-                    </pre>
+</pre>
                     <aside class="notes">
                         <p>index.js bindet nun das Server-Modul ein und startet es</p>
                         <p>keine Veränderung an der Funktionalität - > nur Modularisierung</p>
@@ -442,13 +437,15 @@ server.start();
 
                 <section class="example">
                     <h2>Router-Modul (V2)</h2>
-                    <pre class="noCodeHighlight">
-<kbd>function route(pathname) {
+                    <pre class="noCodeHighlight" style="width:95%">
+<kbd>
+function route(pathname) {
     console.log("About to route a request for " + pathname);
 }
 
-exports.route = route;</kbd>
-                    </pre>
+exports.route = route;
+</kbd>
+</pre>
                 </section>
 
                 <section class="example">
@@ -458,12 +455,12 @@ var server = require("./server");
 <kbd>var router = require("./router");</kbd>
 
 server.start(<kbd>router.route</kbd>);
-                    </pre>
+</pre>
                 </section>
 
                 <section class="example">
                     <h2>Server-Modul (V2)</h2>
-                    <pre class="noCodeHighlight">
+                    <pre class="noCodeHighlight" style="overflow:hidden;width:100%">
 var http = require("http");
 <kbd>var url = require("url");</kbd>
 
@@ -490,22 +487,22 @@ exports.start = start;
                 </section>
 
                 <section class="example">
-                    <h2>Ausgabe auf der Konsole (V2)</h2>
-                    <pre class="console">
+                    <h2>Ausgabe auf der <br>Konsole (V2)</h2>
+<pre class="console">
 <samp>
 C:\Users\Katrin\nodeProject>node index.js
 About to route a request for /
 </samp>
-                    </pre>
+</pre>
                 </section>
 
                 <section class="example">
-                    <h2>Request Handler einfügen (V3)</h2>
+                    <h2>Request Handler<br>einfügen (V3)</h2>
                     <img src="./img/komponentenV3.png" alt="Komponenten">
                 </section>
 
                 <section class="example">
-                    <h2>Request Handler-Modul (V3)</h2>
+                    <h2>Request Handler-Modul<br>(V3)</h2>
                     <pre class="noCodeHighlight">
 <kbd>function start() {
     console.log("Request handler 'start' was called.");
@@ -538,7 +535,7 @@ server.start(router.route, <kbd>handle</kbd>);
 
                 <section class="example">
                     <h2>Server-Modul (V3)</h2>
-                    <pre class="noCodeHighlight">
+                    <pre class="noCodeHighlight" style="overflow:hidden;">
 var http = require("http");
 var url = require("url");
 
@@ -560,7 +557,7 @@ exports.start = start;
 
                 <section class="example">
                     <h2>Router-Modul (V3)</h2>
-                    <pre class="noCodeHighlight">
+                    <pre class="noCodeHighlight" style="width:100%">
 function route(<kbd>handle</kbd>, pathname) {
 
     <kbd>if (handle[pathname] === 'function') {
@@ -584,7 +581,7 @@ exports.route = route;
                 </section>
 
                 <section class="example">
-                    <h2>Ausgabe auf der Konsole (V3)</h2>
+                    <h2>Ausgabe auf der<br>Konsole (V3)</h2>
                     <pre class="console">
 <samp>
 C:\Users\Katrin\nodeProject>node index.js
@@ -613,7 +610,7 @@ Request handler 'start' was called.
 
                 <section class="example">
                     <h2>Server-Modul (V4)</h2>
-                    <pre class="noCodeHighlight" style="overflow:hidden;">
+                    <pre class="noCodeHighlight" style="overflow:hidden;width: 98%;max-height: 520px;">
 var http = require("http");      var url = require("url");
 
 function start(route, handle) {
@@ -639,7 +636,7 @@ exports.start = start;
 
                 <section class="example">
                     <h2>Router-Modul (V4)</h2>
-                    <pre class="noCodeHighlight">
+                    <pre class="noCodeHighlight" style="width:100%">
 function route(handle, pathname, response, postData) {
 
     if (typeof handle[pathname] === 'function') {
@@ -657,7 +654,7 @@ exports.route = route;
                 <section class="example">
                     <h2>Request Handler-Modul (V4)</h2>
                     <h3>Teil 1</h3>
-                    <pre class="noCodeHighlight">
+                    <pre class="noCodeHighlight" style="overflow:hidden;width:109%;margin-left:-6%;">
 function start(response, <kbd>postData</kbd>) {
     <kbd>var body = '&lt;html&gt; &lt;head&gt;' +
             '&lt;meta http-equiv="Content-Type" content="text/html; ' +
@@ -677,7 +674,7 @@ function start(response, <kbd>postData</kbd>) {
                 <section class="example">
                     <h2>Request Handler-Modul (V4)</h2>
                     <h3>Teil 2</h3>
-                    <pre class="noCodeHighlight">
+                    <pre class="noCodeHighlight" style="overflow:hidden;width:111%;margin-left:-7%;">
 <kbd>var querystring = require("querystring");</kbd>
 
 function upload(response, <kbd>postData</kbd>) {
