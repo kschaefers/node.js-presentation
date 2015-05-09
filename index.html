@@ -58,6 +58,17 @@
                         <li>Node.js in der Praxis</li>
                         <li>Diskussion</li>
                     </ol>
+                    <aside class="notes">
+                        Folienzuordnung der Themen:
+                    <ul>
+                        <li>Einfühung, Aufbau und Module: Folien 3-7</li>
+                        <li>Hello World Beispiel: Folien 8-9</li>
+                        <li>Event Loop / Eventgetriebene Programmierung: Folien 10-21</li>
+                        <li>Praxisbeispiel / Node.js Webserver Beispiel: Folien 22-47</li>
+                        <li>Node.js in der Praxis: Folien 48-52</li>
+                        <li>Diskussion / Fragen: Folie 53</li>
+                    </ul>
+                    </aside>
                 </section>
 
                 <section>
@@ -69,17 +80,34 @@
                         <li>Entwicklung eines einfachen Webservers</li>
                         <li>Strukturierung und Organisation von Node.js Code</li>
                     </ul>
+                    <aside class="notes">
+                        Kapitelzuordnung der Lernziele:
+                        <ul>
+                            <li>Der Aufbau von Node.js wird behandelt im Kapitel "Einführung, Aufbau und Module".</li>
+                            <li>Eventgetriebene Programmierung wird behandelt im Kapitel "Event Loop".</li>
+                            <li>Entwicklung eines einfachen Webservers wird behandelt im Kapitel "Praxisbeispiel".</li>
+                            <li>Strukturierung und Organisation von Node.js Code wird behandelt in den Kapiteln "Einführung, Aufbau und Module" sowie "Praxisbeispiel".</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section class="theory">
                     <img src="img/nodejs-light.png" style="width:60%;height:60%"/>
                     <h4>Serverseitiges Javascript</h4>
                     <ul>
-                        <li>JavaScript Framework für Serverseitige Entwicklung</li>
+                        <li>JavaScript Framework für serverseitige Entwicklung</li>
                         <li>Entwickelt 2009 von Ryan Dahl, finanziert von Joyent</li>
                         <li>Implementiert in C/C++ und JavaScript</li>
                         <li>Verfügbar für Windows, Linux und OS X</li>
                     </ul>
+                    <aside class="notes">
+                        Einige Zusatzinformationen:
+                        <ul>
+                            <li>Joyent, Dahls damaliger Arbeitgeber, finanzierte die ursprüngliche Entwicklung von Node.js, wird aber inzwischen für ihren Einfluss auf die Node.js Entwicklung kritisiert.</li>
+                            <li>Als Folge der anhaltenden Kritik an der Organisation der Node.js Entwicklung entstand im Dezember 2014 ein schnell wachsender Branch, io.js.</li>
+                            <li>Node.js war anfangs nur für Unix Systeme verfügbar, Windows wird erst seit 2011 unterstützt.</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -93,12 +121,49 @@ C:\Users\Katrin\nodeProject>node hello.js
 Hello Node!
 </samp>
 </pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>Block 1 zeigt den Inhalt einer minmalen Hello Wold Datei in Node.js. Es handelt sich dabei um Standard JavaScript, dass genauso im Browser lauffähig wäre.</li>
+                            <li>Block 2 zeigt den Aufruf von Node.js über den Befehl node, der sich nach korrekter Installation von Node.js über ein Terminal ausführen lässt.
+                                Es wird die Datei hello.js mit dem in Block 1 gezeigten Text übergeben.
+                                Die Ausgabe zeigt, dass der JavaScript Code korrekt ausgeführt, und der gewünschte Text ausgegeben wurde.
+                            </li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section class="theory">
                     <h2>Node.js - Aufbau</h2>
                     <h4>Kernkomponenten</h4>
                     <img src="img/NodejsArchitektur.png" />
+                    <aside class="notes">
+                        Das Diagramm zeigt die Komponenten, aus denen Node.js aufgebaut ist:
+                        <ul>
+                            <li>
+                                Das Betriebssystem ist kein Teil von Node.js, bietet aber die notwendigen Schnittstellen zur Kommunikation
+                                mit der Hardware, insbesondere mit der Festplatte und dem Netzwerk
+                            </li>
+                            <li>
+                                Die V8 JavaScript Engine ist ein hochperformanter JavaScript Interpreter, der den JavaScript Code des Node.js Servers ausführt.
+                                V8 wurde von Google für den Chrome Webbrowser entwickelt und ist dort auch im Einsatz
+                            </li>
+                            <li>
+                                Die libeio Bibliothek bietet Funktionen für asynchrones I/O zu Festplatte, Netzwerk, anderen Prozessen.
+                                Intern nutzt die Bibliothek selbst einen Thread Pool, um eine Vielzahl von gleichzeitigen Anfragen verarbeiten zu können
+                            </li>
+                            <li>
+                                Die libuv Bibliothek implementiert die Node.js Event Loop, die den Programmablauf des Servers steuert
+                            </li>
+                            <li>
+                                Als Node.js Bindings wird die Anwendungsschicht bezeichnet, die die darunterliegenden Komponenten miteinander verknüpft.
+                                Sie bietet die Schnittstellen zum Zugriff auf die Node.js Funktionalität für die darüberliegenden Schichten.
+                            </li>
+                            <li>
+                                In der Node.js Standard Library finden sich Implementierungen verschiedener Module mit grundlegenden Funktionen, die in Node.js Programme eingebunden werden können.
+                                Beispiele hierfür sind das http Modul zur Implementierung eines Webservers und das fs Modul für Zugriff auf das Dateisystem
+                            </li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -115,6 +180,15 @@ Hello Node!
                                 <li>clean code</li>
                             </ul>
                     </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Die Schnittstelle von Node.js Modulen wird im Praxisbeispiel näher erläutert, siehe Folie 25</li>
+                            <li>Die Installation von externen Node.js Modulen erfolgt über den Node Package Manager npm, siehe dazu auch die folgende Folie</li>
+                            <li>Das Einbinden von Node.js Modulen mit der require-Methode wird im Hello World gezeigt, siehe Folie 8</li>
+                            <li>Die genannten Ziele der Modularisierung sind aus den Konzepten der objekt-orientierten Programmierung bekannt
+                                und dienen analog auch hier der sauberen und wartbaren Sturkturierung von Code</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -125,6 +199,14 @@ Hello Node!
                         <li>Über Node Package Manager npm (express, socket.io)</li>
                         <li>Lokal erstellt</li>
                     </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Vorinstallierte Module sind die Module der Node.js Standard Library, siehe Folie 5</li>
+                            <li>Der Node Package Manager (npm) bietet einfache Möglichkeiten, sowohl Module anderer Entwickler herunterzuladen, als auch eigene Module zu veröffentlichen</li>
+                            <li>Ein zentrales Repository ermöglicht das Finden und Herunterladen von Modulen mit npm</li>
+                            <li>Die Nutzung lokal erstellter Module wird im Praxisbeispiel gezeigt, siehe Folie 26 </li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -178,6 +260,16 @@ Hello Node!
                         <li>I/O läuft immer asynchron... </li>
                         <li>... durch eventgetriebene Programmierung</li>
                     </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>I/O Operationen (Lesen und Schreiben von Daten) ist meistens sehr viel zeitaufwändiger als reine CPU Berechnungen</li>
+                            <li>Durch die langsame Verarbeitung von Daten bei der Kommunikation mit z.B. der Festplatte oder dem Netzwerk entstehen lange Wartezeiten</li>
+                            <li>Ziel von Node.js ist es, diese Wartezeiten zu minimieren bzw. den Prozessor während des Wartens effizienter zu nutzen.</li>
+                            <li>Node.js verarbeitet I/O Aufgaben immer asynchron, um den ausführenden Thread nicht mit den Wartezeiten eines synchronen Aufrufs zu belegen</li>
+                            <li>Das eventgetriebene Modell von Node.js ermöglicht die effiziente Verwaltung der asynchronen internen Abläufe</li>
+                            <li>Die genaue Funktionsweise und Implementierung ist im folgenden Kapitel beschrieben</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -189,7 +281,14 @@ Hello Node!
                         <li>Ausgelöste Events werden in einer Queue abgelegt</li>
                         <li>Ein Thread, die Event Loop, verarbeitet alle Events in der Queue </li>
                     </ul>
-                    <aside class="notes">Wartezimmer-Beispiel..</aside>
+                    <aside class="notes">
+                        <ul>
+                            <li>Anwendungslogik wird in Node.js durch Events gesteuert</li>
+                            <li>Events werden als JavaScript Funktionen implementiert und als Callback Funktionen an Triggern (Auslösern) registriert</li>
+                            <li>Ein Trigger ist z.B. der Port Listener des Node.js Webservers</li>
+                            <li>Beim Auslösen eines Events können der Callback Funktion eventspezifische Parameter übergeben werden, siehe dazu auch Folie 17</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -197,12 +296,8 @@ Hello Node!
                     <h4>Ablauf</h4>
                     <img src="img/eventloop.png" />
                     <aside class="notes">
-                        <ul>
-                            <li>Ein Single Thread Event Loop verarbeitet alle auftretenden Events</li>
-                            <li>Requests von Clients werden als Events angenommen</li>
-                            <li>I/O Aufgaben werden als asynchrone Aufrufe deligiert (mit callbacks)</li>
-                            <li>I/O Callbacks mit Ergebnissen werden als Events verarbeitet</li>
-                        </ul>
+                        Die abgebildete Grafik zeigt einen Überblick über den eventgetriebenen Programmablauf in Node.js,
+                        der auf den kommenden Folien im Detail erklärt wird.
                     </aside>
                 </section>
 
@@ -219,6 +314,15 @@ http.createServer(function(request, response) {
 </code>
                     </pre>
                     Callback Funktion wird am HTTP Server registriert
+                    <aside class="notes">
+                        Der gezeigte Code entspricht dem Hello World Beispiel, dass bereits auf Folie 8 gezeigt wurde.
+                        <ul>
+                            <li>Eine anonyme Funktion wird deklariert und als Callback an die createServer-Methode übergeben</li>
+                            <li>Die Funktion erhält zwei Übergabeparameter, die beim Auftreten des Events vom Auslöser bereitgestellt werden</li>
+                            <li>Der Auslöser, das http Modul, löst bei eingehenden HTTP Requests auf dem angegebenen Port 8888 ein Event aus</li>
+                            <li>Das ausgelöste Event enthält den definierten Callback und die bereitgestellten Übergabeparameter und wird in der Queue abgelegt</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -228,6 +332,9 @@ http.createServer(function(request, response) {
                         <div class="url">http://localhost:8888/</div>
                     </div>
                     Client Request erreicht den Node Server
+                    <aside class="notes">
+                        Nachdem die Callback Methode registriert wurde, wird jetzt ein Request durch den Aufruf der gezeigten URL im Browser ausgelöst.
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -235,6 +342,9 @@ http.createServer(function(request, response) {
                     <h4>Beispiel - Schritt 3</h4>
                     <img src="img/eventloop2.png" />
                     <div>Request wird als Event in die Queue eingetragen</div>
+                    <aside class="notes">
+                        Der weiße Pfeil zeigt den Datenfluss von der Netzwerkschnittstelle im http Modul zur Event Queue, wo das erzeugte Event abgelegt wird.
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -242,6 +352,17 @@ http.createServer(function(request, response) {
                     <h4>Beispiel - Schritt 4</h4>
                         <img src="img/eventloop3.png" />
                     <div>Event Loop führt das Event aus</div>
+                    <aside class="notes">
+                        <ul>
+                            <li>Nachdem alle in der Queue vorgelagerten Events verarbeitet wurden, wird nun das http Event von der Event Loop aufgerufen.</li>
+                            <li>Das Event wird ausgeführt, indem die Callback Methode mit den bereitgestellten Übergabeparametern aufgerufen wird.</li>
+                            <li>
+                                Die Event Loop besteht pro Node.js Instanz aus nur einem Thread, das heißt, nachfolgende Events können erst verarbeitet werden,
+                                wenn die gesammte Callback Methode des aktuellen Events durchlaufen wurde.
+                            </li>
+                            <li>Es ist darum sehr wichtig, die Ausführungszeit der Callback Methode möglichst kurz zu halten.</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -260,6 +381,11 @@ function(request, response) {
                         <li>Event Code: auf den Request registrierter Callback</li>
                         <li>Callback Parameter wurden durch den Event Auslöser gesetzt</li>
                     </ul>
+                    <aside class="notes">
+                        Der Codeblock zeigt die zuvor registrierte Callback Funktion, die nun ausgeführt wird.
+                        Die Funktion sollte keine rechenintensiven Aufgaben ausführen, in diesem Fall wird nur
+                        der Rückgabewert des HTTP Requests geschrieben.
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -270,6 +396,17 @@ function(request, response) {
                         Event wird fertig bearbeitet<br>
                         Optional: I/O Jobs werden deligiert, Callback wird gesetzt
                     </p>
+                    <aside class="notes">
+                        Im gezeigten Beispielcode ist der Request an dieser Stelle fertig bearbeitet.<br>
+                        In vielen Fällen müssen aber die Daten für die Response erst mit Hilfe von I/O Operationen ermittelt werden.
+                        Beispiele hierfür sind
+                        <ul>
+                            <li>Lesen oder Schreiben von Dateien im Dateisystem</li>
+                            <li>Lesen oder Schreiben in/aus einer Datenbank</li>
+                            <li>Kommunikation mit einem anderen Server</li>
+                        </ul>
+                        In diesen Fällen muss in der nun aktiven Callback Methode eine weiterer Callback für den neuen asynchronen Aufruf registriert werden.
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -277,6 +414,10 @@ function(request, response) {
                     <h4>Beispiel - Schritt 6</h4>
                     <img src="img/eventloop5.png" />
                     <div>Ergebnis Event mit Callback wird in die Queue eingetragen</div>
+                    <aside class="notes">
+                        Nachdem der asynchrone Aufruf abgeschlossen wurde, wird auch dessen Ergebnis wieder in Form eines Events in der Queue gespeichert.
+                        Je nach implementierter Logik können auch in diesem Event wieder neue asynchrone Aufrufe gestartet werden.
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -284,7 +425,15 @@ function(request, response) {
                     <h4>Technische Sicht - Reactor Pattern</h4>
                     <img src="img/ReactorPattern.png" />
                     <p>In Node.js in der Bibliothek libuv implementiert</p>
-                    <aside class="notes">Weitere Infos: Siehe Quellen</aside>
+                    <aside class="notes">
+                        Das abgebildete UML Diagramm zeigt eine vereinfachte Modellierung des Reactor Patterns,
+                        welches das Grundprinzip der zuvor gezeigten Datenverarbeitung beschreibt: <br>
+                        <ul>
+                            <li>Ein Dispatcher sammelt alle anfallenden Aufgaben in einer Queue</li>
+                            <li>Der Reactor ruft sequenziell Events vom Dispatcher ab</li>
+                            <li>Der Reactor delegiert die Verarbeitung von Events an Handler, die die entsprechenden Events ausführen</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -296,6 +445,25 @@ function(request, response) {
                         <tr><td>Ein Thread pro Request</td><td>Ein Thread für alle Requests</td></tr>
                         <tr><td>Nebenläufigkeit wird explizit implementiert</td><td>Nebenläufigkeit durch Framework gesteuert</td></tr>
                     </table>
+                    <aside class="notes">
+                        Die wichtigsten Unterschiede zwischen dem in vielen Webserver Lösungen wie PHP oder JavaEE implementierten seqenziellen Programmablauf
+                        und dem eventgetriebenen Ansatz von Node.js werden hier zusammengefasst:
+                        <ul>
+                            <li>Der Programmierstil unterscheidet sich durch einen anderen Programmaufbau, da nicht sequenzieller Code sondern einzelne Events den Programmablauf steuern.
+                                Dies führt unter anderem zu einer anderen Design von Schnittstellen und einer anderen Strukturierung des Quellcodes
+                            </li>
+                            <li>Webserver mit sequenziellem Programmablauf reservieren für jeden eingehenden Request einen Thread,
+                                der wieder freigegeben wird, sobald der Request fertig bearbeitet wurde. Diese Lösung skaliert nur sehr begrenzt mit der der Anzahl der gleichzeitig eingehenden Requests.
+                                Die in Node.js implementierte Event Loop bearbeitet als einzelner Thread alle eingehenden Requests. Dieser Ansatz setzt eine sehr schnelle Verarbeitung einzelner Requests
+                                voraus, was durch die asynchrone Verarbeitung von langlaufenden Aufgaben sichergestellt werden soll.
+                            </li>
+                            <li>
+                                Nebenläufigkeit (asynchrone Programmabläufe) werden in Node.js nicht explizit implementiert,
+                                da da Node.js (in der Regel) die Verwaltung aller asynchronen Aufgaben kapselt und dem Entwickler nur die Implementierung der Events überlässt.
+                                Allerdings muss auch in Node.js, etwa beim synchronisieren der Ergebnisse mehrerer paralleler asynchroner Aufrufe ein gewisser Aufwand getrieben werden.
+                            </li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <!--                <section class="theory">
@@ -707,7 +875,15 @@ exports.upload = upload;
                         <li>große Community</li>
                         <li>teilweise noch unausgereifte Module</li>
                     </ul>
-                    <aside class="notes">Anbindung an SQL-Datenbanken noch nicht problemlos machbar</aside>
+                    <aside class="notes">
+                        <ul>
+                            <li>Node.js wurde erst 2009 entwickelt, und kann daher noch nicht als so ausgereift wie ältere Softwareprojekte angesehen werden</li>
+                            <li>Auch die zukünftige Entwicklung des Projekts ist nicht zuletzt durch den entstandenen Branch io.js (siehe auch Annotationen zu Folie 3) nicht zuverlässig vorhersagbar</li>
+                            <li>Node.js verfügt über eine große Community; eine Vielzahl an Projekten und Modulen ermöglichen die Umsetzung verschiedenster Projekte </li>
+                            <li>Problematisch ist die teilweise noch unvollständige und unausgereifte Implementierung von wichtigen Modulen wie z.B. Schnittstellen zu vielen SQL-Datenbanken.
+                            Dieser Missstand ist derzeit noch ein entscheidender Nachteil von Node.js</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section>
@@ -720,6 +896,15 @@ exports.upload = upload;
                         <li>Coverage: Istanbul</li>
                         <li>Statische Analyse: JSHint, JSCS</li>
                     </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Die bekannten IDEs Eclipse, IntelliJ und Netbeans bieten jeweils über Plugins Unterstützung für die Entwicklung von Node.js Anwendungen</li>
+                            <li>Mocha ist ein Node.js basiertes Testframework, das Unittests für JavaScript Anwendungen inklusive Node.js Anwendungen bietet</li>
+                            <li>Sinon JS und Nock sind Mocking Bibliotheken, die für die Erstellung von JavaScript Unittests genutzt werden können</li>
+                            <li>Istanbul ist ein Werkzeug um die Testabdeckung von JavaScript Programmen messen zu können</li>
+                            <li>JSHint und JSCS ermöglichen die Codeanalyse von JavaScript Programmen, um potenzielle Fehler und schlechte Code Qualität aufzudecken</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section>
@@ -732,7 +917,18 @@ exports.upload = upload;
                         <li>IoT/Embedded</li>
                     </ul>
 
-                    <aside class="notes">Embedded: Cylon.js</aside>
+                    <aside class="notes">
+                        Der klassische Einsatzbereich von Node.js ist natürlich die Bereitstellung von Webpages.
+                        Daneben finden sich aber auch einige andere interessante Einsatzbereiche, in denen Node.js Verwendung finden kann.
+                        <ul>
+                            <li>Browsergames benötigen selten komplexe Berechnungen, oft aber Datenbankinteraktionen, schnelle Reaktionszeiten und eine hohe Anzahl gleichzeitiger Verbindungen</li>
+                            <li>REST und Database APIs sind mit Node.js schnell und mit wenig Aufwand implementierbar</li>
+                            <li>
+                                Auch ungewöhnliche Anwendungsbereiche wie Embedded Geräte und Robotiksteuerung sind dank verschiedener Communityprojekte möglich.
+                                Die Steuerung von Robotern und einfachen Rechnern wie dem Rapsberry Pi über Node.js bietet beispielsweise das Projekt Cylon.js
+                            </li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section>
@@ -744,20 +940,31 @@ exports.upload = upload;
                         <li>Umsetzung mit Node.js</li>
                         <li>Backup: Parallele Entwicklung in JavaEE</li>
                     </ul>
+                    <aside class="notes">
+                        Das hier beschriebene Fallbeispiel ist dem folgenden Blogeintrag entnommen: https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/<br>
+                        Um den Bruch zwischen Java Backend und JavaScript Frontend aufzulösen, wurde die Paypal Accountübersicht mit Node.js entwickelt.
+                        Da noch keine Erfahrung mit Node.js Projekten vorhanden war, wurden die selben Funktionen parallel mit der bereits etablierten JavaEE Technologie implementiert, um
+                        das Erreichen einer funktionsfähigen Lösung in jedem Fall sicherzustellen.
+                    </aside>
                 </section>
 
                 <section>
                     <h2>Fallbeispiel: PayPal</h2>
                     <h4>Unterschiede Node.js - JavaEE Implementierung:</h4>
                     <ul>
-                        <li>Fast halbierte Entwicklungszeit trotz geringerer Entwicklerzahl</li>
-                        <li>33% weniger Lines of Code</li>
-                        <li>40% weniger Dateien</li>
-                        <li>Doppelte Requests pro Sekunde </li>
-                        <li>Durchschnittliche Antwortzeit 35% (200ms) reduziert</li>
+                        <li class="fragment">Fast halbierte Entwicklungszeit trotz geringerer Entwicklerzahl</li>
+                        <li class="fragment">33% weniger Lines of Code</li>
+                        <li class="fragment">40% weniger Dateien</li>
+                        <li class="fragment">Doppelte Requests pro Sekunde </li>
+                        <li class="fragment">Durchschnittliche Antwortzeit 35% (200ms) reduziert</li>
                     </ul>
                     <aside class="notes">
-                        Quelle: https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/
+                        Die Ergebnisse dieses Fallbeispiels zeigen eindrucksvoll die Vorteile von Node.js:
+                        <ul>
+                            <li>Schnelle Entwicklungszeiten dank der dynamischen Sprache JavaScript und wenig Konfigurationsaufwand</li>
+                            <li>Effiziente und einfache Ausdrucksweise der Programmiersprache und des Frameworks führen zu weniger geschriebenem Code und dadurch zu weniger Fehlern und weniger Wartungsaufwand</li>
+                            <li>Das eventgetriebene Design und die Nutzung der Event Loop bieten vor allem bei hohen Nutzerzahlen deutliche Performancevorteile</li>
+                        </ul>
                     </aside>
                 </section>
 
