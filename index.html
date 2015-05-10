@@ -1011,6 +1011,28 @@ exports.upload = upload;
                     <br>
                     <br>
                     <h2>Fragen? / Diskussion</h2>
+                    <aside class="notes">
+                        In der Diskussion soll Node.js bewertet und die Vor- und Nachteile des Event Loop basierten Konzepts abgewägt werden.<br>
+                        Die folgenden Listen bieten einen Überblick und Ausgangspunkt für die Diskussion.<br>
+                        Vorteile von Node.js:
+                        <ul>
+                            <li>Vereinfachte asynchrone Programmierung</li>
+                            <li>Hohe Performance bei I/O lastigen bzw. nicht-CPU lastigen Anwendungen</li>
+                            <li>Hohe Anzahl gleichzeitiger Serververbindungen möglich</li>
+                            <li>Weniger Server Overhead durch Multithread Verwaltung</li>
+                            <li>Skalierung nicht abhängig von der Anzahl der Threads, Performanter bzw. bessere Skalierung</li>
+                        </ul>
+                        Nachteile von Node.js:
+                        <ul>
+                            <li>Die Event Loop ist ein Single Point of Failure</li>
+                            <li>Lange Verarbeitungsdauer eines Events blockiert den Server für alle anderen Events</li>
+                            <li>
+                                kompliziertere Fehlerbehandlung und Debugging: Die Herkunft eines Events ist möglicherweise nur schwer zu bestimmen.
+                                Gewöhnliche Stacktraces enthalten keine Information über den Auslöser eines Events
+                            </li>
+                            <li>Eine Exception, die innerhalb einer Callback Methode nicht behandelt wird, führt zu einer Beendigung des gesammten Node.js Servers</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section>
