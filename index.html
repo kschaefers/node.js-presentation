@@ -60,14 +60,14 @@
                     </ol>
                     <aside class="notes">
                         Folienzuordnung der Themen:
-                    <ul>
-                        <li>Einfühung, Aufbau und Module: Folien 3-7</li>
-                        <li>Hello World Beispiel: Folien 8-9</li>
-                        <li>Event Loop / Eventgetriebene Programmierung: Folien 10-21</li>
-                        <li>Praxisbeispiel / Node.js Webserver Beispiel: Folien 22-47</li>
-                        <li>Node.js in der Praxis: Folien 48-52</li>
-                        <li>Diskussion / Fragen: Folie 53</li>
-                    </ul>
+                        <ul>
+                            <li>Einfühung, Aufbau und Module: Folien 3-7</li>
+                            <li>Hello World Beispiel: Folien 8-9</li>
+                            <li>Event Loop / Eventgetriebene Programmierung: Folien 10-21</li>
+                            <li>Praxisbeispiel / Node.js Webserver Beispiel: Folien 22-47</li>
+                            <li>Node.js in der Praxis: Folien 48-52</li>
+                            <li>Diskussion / Fragen: Folie 53</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -120,11 +120,11 @@ console.log("Hello Node!")
 C:\Users\Katrin\nodeProject>node hello.js
 Hello Node!
 </samp>
-</pre>
+                    </pre>
                     <aside class="notes">
                         <ul>
-                            <li>Block 1 zeigt den Inhalt einer minmalen Hello Wold Datei in Node.js. Es handelt sich dabei um Standard JavaScript, dass genauso im Browser lauffähig wäre.</li>
-                            <li>Block 2 zeigt den Aufruf von Node.js über den Befehl node, der sich nach korrekter Installation von Node.js über ein Terminal ausführen lässt.
+                            <li>Block 1 zeigt den Inhalt einer minimalen Hello Wold Datei in Node.js. Es handelt sich dabei um Standard JavaScript, dass genauso im Browser lauffähig wäre.</li>
+                            <li>Block 2 zeigt den Aufruf von Node.js über den Befehl 'node', der sich nach korrekter Installation von Node.js über ein Terminal ausführen lässt.
                                 Es wird die Datei hello.js mit dem in Block 1 gezeigten Text übergeben.
                                 Die Ausgabe zeigt, dass der JavaScript Code korrekt ausgeführt, und der gewünschte Text ausgegeben wurde.
                             </li>
@@ -233,9 +233,9 @@ Hello Node!
                     </pre>
                     <aside class="notes">
                         <ol>
-                            <li>Einbinden des Moduls "http" (stellt einfache WebService Funktionalität zur Verfügung)</li>
-                            <li>Erstellen eines WebServers mit Hilfe des Moduls - hört auf Port 8888</li>
-                            <li>createServer bekommt eine anonyme Funktion übergeben (fungiert als callback-Methode, sobald ein Request eintrifft)</li>
+                            <li>Einbinden des Moduls "http", welches eine einfache WebService Funktionalität zur Verfügung stellt.</li>
+                            <li>Erstellen eines WebServers mit Hilfe des Moduls (createServer), welcher auf Port 8888 auf Anfragen wartet.</li>
+                            <li>createServer bekommt eine anonyme Funktion übergeben. Diese fungiert als callback-Methode, die aufgerufen wird sobald ein Request eintrifft.</li>
                         </ol>
                     </aside>
                 </section>
@@ -246,6 +246,9 @@ Hello Node!
                         <div class="url">http://localhost:8888/</div>
                         <iframe src="http://localhost:8888/helloWorld" width="750" height="450"></iframe>
                     </div>
+                    <aside class="notes">
+                        Ausgabe im Browser beim Aufruf des Hello World Beispiels von der vorherigen Folie
+                    </aside>
                 </section>
 
                 <section class="theory">
@@ -350,7 +353,7 @@ http.createServer(function(request, response) {
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 4</h4>
-                        <img src="img/eventloop3.png" />
+                    <img src="img/eventloop3.png" />
                     <div>Event Loop führt das Event aus</div>
                     <aside class="notes">
                         <ul>
@@ -465,55 +468,20 @@ function(request, response) {
                         </ul>
                     </aside>
                 </section>
-
-                <!--                <section class="theory">
-                                    <h2>Event Loop in Node.js</h2>
-                                    <h4>Vorteile der Event Loop Implementierung</h4>
-                                    <ul>
-                                        <li>Vermeidung von Problemen nebenläufiger Programmierung</li>
-                                        <li>Vereinfachte asynchrone Programmierung</li>
-                                        <li>Hohe Performance bei I/O lastigen Anwendungen</li>
-                                        <li>Hohe Anzahl gleichzeitiger Serververbindungen</li>
-                                    </ul>
-                                    <aside class="notes">
-                                        <ul>
-                                            <li>Weniger Overhead durch Multithread Verwaltung in der Anwendung</li>
-                                            <li>Skalierung nicht abhängig von der Anzahl der Threads -> Performant</li>
-                                        </ul>
-                                    </aside>
-                                </section>
-                
-                                <section class="theory">
-                                    <h2>Event Loop in Node.js</h2>
-                                    <h4>Nachteile der Event Loop Implementierung</h4>
-                                    <ul>
-                                        <li>Single Point of Failure</li>
-                                        <li>Server nutzt nur einen Thread/Kern</li>
-                                        <li>Lange Eventverarbeitung blockiert den Server</li>
-                                        <li>kompliziertere Fehlerbehandlung/Debugging</li>
-                                    </ul>
-                                    <aside class="notes">
-                                        <ul>
-                                            <li>Einzelne Exceptions können den Server crashen</li>
-                                            <li>Skalierung auf mehrere Kerne mit mehreren Node Instanzen</li>
-                                        </ul>
-                                    </aside>
-                                </section>-->
-
                 <section class="example">
                     <h2>Praxisbeispiel - Ziele</h2>
                     <ul>
                         <li>Bedienung durch Browser</li>
-                        <li>Texteingabe (Startseite)</li>
+                        <li>Texteingabefeld</li>
                         <li>Weiterleitung</li>
                         <li>Anzeige des eingegebenen Textes</li>
                     </ul>
                     <aside class="notes">
+                        Im Praxisbeispiel wird eine kleine Node-Applikation entwickelt:
                         <ul>
-                            <li>durch Browser bedienbar</li>
-                            <li>Möglichkeit der Texteingabe auf der Startseite der Anwendung</li>
-                            <li>Weiterleitung auf eine zweite Seite wenn Texteingabe beendet</li>
-                            <li>Anzeige des eingegebenen Textes auf der zweiten Seite</li>
+                            <li>Diese soll durch den Browser bedienbar sein.</li>
+                            <li>Auf der Startseite soll die Möglichkeit einer Texteingabe zur Verfügung stehen.</li>
+                            <li>Nach einer erfolgten Texteingabe soll der Anwender auf die zweite Seite weitergeleitet werden und der zuvor eingegebene Text soll angezeigt werden.</li>
                         </ul>
                     </aside>
                 </section>
@@ -522,13 +490,13 @@ function(request, response) {
                     <h2>Komponenten</h2>
                     <img src="./img/komponentenV4.png" alt="Komponenten">
                     <aside class="notes">
+                        Für die kleine Beispiel-Node-Applikation werden verschiedene Komponenten entwickelt, welche unterschiedliche Aufgaben haben:
                         <ul>
-                            <li>WebServer - um dynamische Webseiten bereitstellen zu können</li>
-                            <li>Router - anderes Verhalten der Anwendung, jenachdem welche URL aufgerufen wird -> delegieren von Requests zu Request Hanldern</li>
-                            <li>Request Handler - Unterschidliches Verhalten je nach aufgerufener URL</li>
+                            <li>WebServer: Bereitstellen von dynamische Webseiten, Entgegennehmen der Requests vom Client</li>
+                            <li>Router: Delegieren der Requests an den richtigen Request Handler je nach aufgerufener URL</li>
+                            <li>Request Handler: Bearbeiten des Requests und senden der Response an den Client</li>
                         </ul>
-                        für dieses Beispiel natürlich mit Kanonen auf Spatzen geschossen, aber soll verdeutlichen, wie das funktioniert
-                        Komponenten werden nach und nach entwickelt und erklärt
+                        Für das hier entwickelte Beispiel wären diese vielen Komponenten nicht unbedingt notwendig, doch sie sollen verdeutlichen, wie die Entwicklung und Modularisierung aussehen könnte, wenn man mit Node.js ein größeres Projekt entwickeln möchte.
                     </aside>
                 </section>
 
@@ -536,8 +504,8 @@ function(request, response) {
                     <h2>WebService als Modul (V1)</h2>
                     <img src="./img/komponentenV1.png" alt="Komponenten">
                     <aside class="notes">
-                        Hello World als Grundlage
-                        Nun wird WebService als eigenes Modul ausgegliedert
+                        <p>In der ersten Version des Praxisbeispiels wird erst einmal der WebService entwickelt und in ein Modul ausgegliedert.</p>
+                        <p>Das Hello World Beispiel von Folie 8 dient hier als Grundlage.</p>
                     </aside>
                 </section>
 
@@ -559,8 +527,12 @@ var http = require("http");
 <kbd>exports.start = start;</kbd>
                     </pre>
                     <aside class="notes">
-                        Server nun als eigenes Modul (exports.XXX ist alles, was für das Modul benötigt wird)
-                        keine funktionalen Änderungen
+                        <p>Die farbigen Markierungen verdeutlichen die Änderungen gegenüber dem auf Folie 8 gezeigten Hello World Beispiel. Auch in den folgenden Folien verdeutlichen die farbigen Markierungen immer die Änderungen im Vergleich zur vorherigen Version.</p>
+                        <ul>
+                            <li>Die anonyme Callback-Methode wird ausgegliedert in die Methode <i>onRequest()</i>. Beim Start des Servers wird nur noch die Referenz auf die Callback-Methode übergeben.</li>
+                            <li>Bis auf die Einbindung des Moduls <i>http</i> wird der Code in die Methode <i>start()</i> gepackt.</li>
+                            <li>Die Methode <i>start()</i> wird nach nach außen (außerhalb des Server-Moduls) sichtbar gemacht: <i>exports.start = start</i><br>(Beim Aufruf der Methode <i>start()</i> auf dem Modul wird innerhalb des Moduls die Methode <i>start()</i> aufgerufen.)</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -572,10 +544,10 @@ var server = require("./server");
 
 server.start();
 </kbd>
-</pre>
+                    </pre>
                     <aside class="notes">
-                        <p>index.js bindet nun das Server-Modul ein und startet es</p>
-                        <p>keine Veränderung an der Funktionalität - > nur Modularisierung</p>
+                        <p>index.js bindet nun das Server-Modul ein, welches auf der selben Ebene liegt. Anschließend wird auf dem WebServer die Methode <i>start()</i> aufgerufen.</p>
+                        <p>Gegenüber dem Hello World Beispiel hat in Version 1 des Praxisbeispiels keine funktionale Änderung stattgefunden. Die der WebServer wurde lediglich als Modul ausgegliedert.</p>
                     </aside>
                 </section>
 
@@ -586,7 +558,7 @@ server.start();
                         <iframe src="http://localhost:8888/v1" width="750" height="450"></iframe>
                     </div>
                     <aside class="notes">
-                        keine Veränderung zu Hello World
+                        Da keine funktionale Änderung zum Hello World Beispiel stattgefunden hat, ist im Browser keine Veränderung zu sehen.
                     </aside>
                 </section>
 
@@ -594,11 +566,11 @@ server.start();
                     <h2>Router hinzufügen (V2)</h2>
                     <img src="./img/komponentenV2.png" alt="Komponenten">
                     <aside class="notes">
-                        Router wird ohne funktionalität eingefügt, deswegen noch etwas ausgegraut
+                        <p>In der Weiterentwicklung wird nun das Router-Modul hinzugefügt. Da der Router in diesem Schritt jedoch noch keine Funktionalität hat, wird er in der Grafik noch leicht ausgegraut dargestellt.</p>
+                        Zukünftige Funktionalität des Routers wird sein:
                         <ul>
-                            <li>Routing von Requests soll möglich sein, abhängig von aufgerufener URL -> Router</li>
                             <li>GET / POST Parameter auslesen</li>
-                            <li>abhängig von der URL den Request an den<br>dazugehörigen Request Handler weiterleiten</li>
+                            <li>Requests an die dazugehörigen Request Handler weiterleiten, abhängig von der aufgerufenen URL</li>
                         </ul>
                     </aside>
                 </section>
@@ -613,7 +585,10 @@ function route(pathname) {
 
 exports.route = route;
 </kbd>
-</pre>
+                    </pre>
+                    <aside class="notes">
+                        <p>Router-Modul wird mit der Funktion <i>route()</i> hinzugefügt. Diese Funktion ist jedoch erst einmal ohne Funktionalität und macht nur eine Ausgabe auf der Konsole.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -623,7 +598,11 @@ var server = require("./server");
 <kbd>var router = require("./router");</kbd>
 
 server.start(<kbd>router.route</kbd>);
-</pre>
+                    </pre>
+                    <aside class="notes">
+                        <p>index.js bindet nun zusätzlich zum WebServer auch den Router ein und übergibt die <i>route()</i> Methode an den Server, damit dieser sie aufrufen kann.</p>
+                        <p>Da die Kopplung so gering wie möglich gehalten werden soll, wird der Router an dieser Stelle geladen und nicht im WebServer. Auf diese Weise kann der Router ausgetauscht werden, ohne dass der WebServer etwas davon merkt. Solange er eine Methode übergeben bekommt, welche er zum Routen aufrufen kann, ist die genaue Implementierung des Routers egal.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -644,6 +623,10 @@ function start(<kbd>route</kbd>) {
 }
 exports.start = start;                         
                     </pre>
+                    <aside class="notes">
+                        <p>Im WebServer wird nun zusätzlich das Modul <i>url</i> eingebunden, damit die URL leichter geparst werden kann. Dadurch muss die URL an dieser Stelle nicht händisch geparst werden, sondern das Modul übernimmt diesen Teil.</p>
+                        <p>Anschließend wird die <i>route()</i> Methode aufgerufen und der zuvor geparste Pfadname mit übergeben.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -652,21 +635,30 @@ exports.start = start;
                         <div class="url">http://localhost:8888/v2</div>
                         <iframe src="http://localhost:8888/v2" width="750" height="450"></iframe>
                     </div>
+                    <aside class="notes">
+                        Da auch in dieser Version nur das Router-Modul ohne nennenswerte Funktionalität hinzugefügt wurde, hat sich weiterhin an der Ausgabe auf dem Browser nichts verändert.
+                    </aside>
                 </section>
 
                 <section class="example">
                     <h2>Ausgabe auf der <br>Konsole (V2)</h2>
-<pre class="console">
+                    <pre class="console">
 <samp>
 C:\Users\Katrin\nodeProject>node index.js
 About to route a request for /
 </samp>
-</pre>
+                    </pre>
+                    <aside class="notes">
+                        Die Konsole bestätigt jedoch, dass im Hintergrund der Pfadname zum Router durchgereicht wurde.
+                    </aside>
                 </section>
 
                 <section class="example">
                     <h2>Request Handler<br>einfügen (V3)</h2>
                     <img src="./img/komponentenV3.png" alt="Komponenten">
+                    <aside class="notes">
+                        <p>In der dritten Version bekommt der Router nun Funktionalität und die Request Handler-Modul wird initialisiert.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -683,6 +675,14 @@ function upload() {
 exports.start = start;
 exports.upload = upload;</kbd>
                     </pre>
+                    <aside class="notes">
+                        Im Request Handler-Modul werden zwei Methoden initialisiert:
+                        <ul>
+                            <li><i>start()</i> für die Funktionalität auf der Startseite</li>
+                            <li><i>upload()</i> für die Funktionalität nach der Eingabe (Upload) eines Textes</li>
+                        </ul>
+                        <p>Anschließend werden diese beiden Methoden nach außen hin sichtbar gemacht, sodass der Request Handler als Modul eingebunden werden kann.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -699,6 +699,10 @@ handle["/upload"] = requestHandlers.upload;</kbd>
 
 server.start(router.route, <kbd>handle</kbd>);
                     </pre>
+                    <aside class="notes">
+                        <p>In der index.js wird das neue Request Handler-Modul nun eingebunden.</p>
+                        <p>Zusätzlich wird ein Array erstellt, in welchem definiert wird, bei welchem Pfadnamen welcher Request Handler zuständig ist. Diese Zuordnung könnte auch an anderen Stellen erfolgen. Aufgrund der möglichst gering zu haltenden Kopplung hat man sich hier jedoch für diese Variante entschieden. Nun muss nämlich nur noch das Array über den Server an den Router weitergegeben werden. Dem Router ist dann völlig egal, welcher Request Handler hinter welchem Pfadnamen steckt, solange die Zuordnung im <i>handle</i>-Array definiert wurde.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -721,6 +725,9 @@ function start(route, <kbd>handle</kbd>) {
 }
 exports.start = start;                         
                     </pre>
+                    <aside class="notes">
+                        Der WebServer erhält beim Starten das <i>handle</i>-Array und reicht dies einfach nur an den Router weiter.
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -738,6 +745,10 @@ function route(<kbd>handle</kbd>, pathname) {
 
 exports.route = route;
                     </pre>
+                    <aside class="notes">
+                        Der Router erhält nun Funktionalität:
+                        <p>Verweist das <i>handle</i>-Array mit dem Pfadnamen als Key auf eine Funktion, so wird diese aufgerufen. Ist der Eintrag im Array mit dem Pfadnamen als Key nicht vorhanden oder der Eintrag verweist nicht auf eine Funktion, so ist kein passender Request Handler definiert. Dies wird dann über eine entsprechende Ausgabe auf der Konsole festgehalten.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -746,6 +757,9 @@ exports.route = route;
                         <div class="url">http://localhost:8888/v3</div>
                         <iframe src="http://localhost:8888/v3" width="750" height="450"></iframe>
                     </div>
+                    <aside class="notes">
+                        <p>Da auch in dieser Version die Response immer noch nicht verändert wurde, ist im Browser noch keine Änderung im Vergleich zu den vorherigen Versionen zu sehen.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -756,6 +770,9 @@ C:\Users\Katrin\nodeProject>node index.js
 Request handler 'start' was called.
 </samp>
                     </pre>
+                    <aside class="notes">
+                        <p>Die Konsole bestätigt jedoch, dass im Hintergrund der Request an den richtigen Request Handler durchgereicht wurde.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -763,17 +780,18 @@ Request handler 'start' was called.
                     <img src="./img/komponentenSoNicht.png" alt="Komponenten" class="fragment fade-out" data-fragment-index="1">
                     <img src="./img/komponentenSoNichtMitKreuz.png" alt="Komponenten" class="fragment" style="margin-top: -526px;margin-left: -134px;" data-fragment-index="1">
                     <aside class="notes">
-                        Problem bei blockierenden Funktionen allgemein: blockiert weitere ankommende Requests
-
-                        Probleme bei nicht blockierenden Funktionen,
-                        welche im Hintergrund laufen und durch ein Callback die Antwort übermitteln
-                        -> Return-Wert wird schon übermittelt, wenn Callback noch nicht wieder da ist -> Return ist empty
+                        <p>Problem bei blockierenden Funktionen allgemein:<br>Die Abarbeitung einer blockierenden Funktion blockiert den gesamten Server und weitere ankommende Requests können nicht gleichzeiig abgearbeitet werden.</p>
+                        <p>Probleme bei nicht blockierenden Funktionen:<br>Oft werden Daten im Hintergrund abgerufen und durch eine Callback-Funktion das Ergebnis übermittelt. Würde hier jedoch der WebServer die Response senden, würde im Request Handler der Return-Wert in den meisten Fällen vor dem Aufruf der Callback-Funktion einer asynchronen Abarbeitung gesendet werden. Der WebServer erhält dann einen leeren Return-Wert und kann dem User nicht die richtige Response senden.</p>
+                        <p>Aufgrund dieser Probleme ist es an dieser Stelle das Beste, jeden Request Handler für sich selbst die Response senden zu lassen, sobald die Funktion soweit ist.</p>
                     </aside>
                 </section>
 
                 <section class="example">
                     <h2>Request Handler<br>Funkionalität geben (V4)</h2>
                     <img src="./img/komponentenV4.png" alt="Komponenten">
+                    <aside class="notes">
+                        <p>In der letzten Version dieses Beispiels wird den Request Handlern noch Funktionalität verliehen.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -798,7 +816,12 @@ function start(route, handle) {
 exports.start = start;                         
                     </pre>
                     <aside class="notes">
-                        response ist nun nicht mehr im Server
+                        <p>Der WebServer antwortet nun nicht mehr selbst auf den Request.</p>
+                        Zusätzlich wurden Event Listener für den Request hinzugefügt:
+                        <ul>
+                            <li><i>data</i>: Durch einen Request empfangene POST-Daten werden auf dem Server in der Variable <i>postData</i> gespeichert.</li>
+                            <li><i>end</i>: Sobald der Request beendet wurde, wird die Routing-Methode des Routers aufgerufen. Dieser wird nun zusätzlich noch das Response-Objekt und die in der Variable <i>postData</i> gespeicherten Daten übergeben.</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -817,6 +840,10 @@ function route(handle, pathname, response, postData) {
 }
 exports.route = route;
                     </pre>
+                    <aside class="notes">
+                        <p>Das Response-Objekt und <i>postData</i> wird an dieser Stelle dem Request Handler weiter gegeben.</p>
+                        <p>Sollte kein Request Handler für den aktuellen Pfadnamen gefunden worden sein, antwortet der Router selbst und sendet <i>404</i> als Indikator für eine nicht gefundene Seite zurück.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -837,6 +864,10 @@ function start(response, <kbd>postData</kbd>) {
     response.end();</kbd>
 }
                     </pre>
+                    <aside class="notes">
+                        <p>Im ersten Teil des Request Handlers wird die Funktionalität für die Methode <i>start()</i> hinzugefügt. Hier wird nun eine HTML-Seite mit einem Eingabefeld für eine Texteingabe und einem Submit-Button danach erstellt und über den Request an den Browser zurück geliefert.</p>
+                        <p><i>postData</i> wird an dieser Stelle nicht benötigt.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -857,6 +888,9 @@ function upload(response, <kbd>postData</kbd>) {
 exports.start = start;
 exports.upload = upload;
                     </pre>
+                    <aside class="notes">
+                        <p>Im zeiten Teil des Request Handlers wird der Methode <i>upload</i> Funktionaliät hinzugefügt. Dem Browser wird der Text <i>You've sent the text:</i> mit einem Zeilenumbruch am Ende zurück gegeben. Zusätzlich wird der auf der vorherigen Seite eingegebene Text angehängt.</p>
+                    </aside>
                 </section>
 
                 <section class="example">
@@ -865,6 +899,10 @@ exports.upload = upload;
                         <div class="url">http://localhost:8888/v4</div>
                         <iframe src="http://localhost:8888/v4" width="750" height="450"></iframe>
                     </div>
+                    <aside class="notes">
+                        <p>Im Browser ist nun endlich eine Veränderung zu sehen, da hier jetzt ein Text eingegeben werden kann.</p>
+                        <p>Beim Klick auf den Button <i>Submit</i> wird auf die Seite http://localhost:8888/v4/upload weitergeleitet und der eingegebene Text per POST-Methode an den Server übermittelt. Dieser kann den Text dann auf der nächsten Seite anzeigen.</p>
+                    </aside>
                 </section>
 
                 <section>
@@ -881,7 +919,7 @@ exports.upload = upload;
                             <li>Auch die zukünftige Entwicklung des Projekts ist nicht zuletzt durch den entstandenen Branch io.js (siehe auch Annotationen zu Folie 3) nicht zuverlässig vorhersagbar</li>
                             <li>Node.js verfügt über eine große Community; eine Vielzahl an Projekten und Modulen ermöglichen die Umsetzung verschiedenster Projekte </li>
                             <li>Problematisch ist die teilweise noch unvollständige und unausgereifte Implementierung von wichtigen Modulen wie z.B. Schnittstellen zu vielen SQL-Datenbanken.
-                            Dieser Missstand ist derzeit noch ein entscheidender Nachteil von Node.js</li>
+                                Dieser Missstand ist derzeit noch ein entscheidender Nachteil von Node.js</li>
                         </ul>
                     </aside>
                 </section>
@@ -1028,6 +1066,14 @@ exports.upload = upload;
                     {src: 'plugin/notes/notes.js', async: true}
                 ]
             });
+
+//            Reveal.addEventListener('slidechanged', function (event) {
+//                // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+//                var notes = event.currentSlide.querySelector(".notes");
+//                if (notes) {
+//                    console.info(notes.innerHTML.replace(/\n\s+/g, '\n'));
+//                }
+//            });
 
         </script>
 
