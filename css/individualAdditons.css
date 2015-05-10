@@ -109,3 +109,49 @@ pre.console {
 	color: white !important;
 	margin: 0px 40px 40px 0px;
 }
+
+.reveal .slides.notesVisible {
+	transform: scale(0.9);
+}
+
+.reveal .slides.notesVisible > section.present,
+.reveal .slides.notesVisible > section > section.present {
+	transform: scale(0.8) translateX(-50%);
+}
+
+.reveal .slides div#visibleNotes {
+	display: none;
+}
+
+.reveal .slides.notesVisible div#visibleNotes {
+	display: inherit;
+	transform: scale(0.8) translateX(50%);
+	height: calc(90% - 20px);
+	background: none repeat scroll 0% 0% #EEE8D5;
+	color: #000;
+	line-height: 1.4;
+	font-size: 1em;
+	padding: 10px;
+	width: calc(85% - 20px);
+	text-align: left;
+	margin: 5% 15%;
+}
+
+.reveal .slides.notesVisible div#visibleNotes p.caption {
+	margin: 0 0 10px 0;
+	padding: 0;
+	font-style: italic;
+	font-size: 0.7em;
+}
+
+.reveal .slides.notesVisible div#visibleNotes div.notes {
+	padding: 0 15px;
+}
+
+.reveal .slides.notesVisible div#visibleNotes div.notes {
+	font-size: 0.75em;
+}
+
+.reveal .slides.notesVisible div#visibleNotes.largeNotes div.notes {
+	font-size: 0.55em;
+}

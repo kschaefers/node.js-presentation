@@ -40,12 +40,16 @@
         <div class="reveal">
 
             <!-- Any section element inside of this container is displayed as a slide -->
-            <div class="slides">
+            <div id="slidesContainer" class="slides">
+                
+                <div id="visibleNotes"><p class="caption">Notizen:</p></div>
+                
                 <section>
                     <br><br>
                     <h1>NODE.JS</h1>
                     <h3>Serverseitiges JavaScript</h3>
                     <p>Seminar IM SS2015 - 12.05.2015<br>Katrin Schäfers und Jakob Kneißl</p>
+                    <aside class="notes"></aside>
                 </section>
 
                 <section>
@@ -136,7 +140,7 @@ Hello Node!
                     <h2>Node.js - Aufbau</h2>
                     <h4>Kernkomponenten</h4>
                     <img src="img/NodejsArchitektur.png" />
-                    <aside class="notes">
+                    <aside class="notes largeNotes">
                         Das Diagramm zeigt die Komponenten, aus denen Node.js aufgebaut ist:
                         <ul>
                             <li>
@@ -263,7 +267,7 @@ Hello Node!
                         <li>I/O läuft immer asynchron... </li>
                         <li>... durch eventgetriebene Programmierung</li>
                     </ul>
-                    <aside class="notes">
+                    <aside class="notes largeNotes">
                         <ul>
                             <li>I/O Operationen (Lesen und Schreiben von Daten) ist meistens sehr viel zeitaufwändiger als reine CPU Berechnungen</li>
                             <li>Durch die langsame Verarbeitung von Daten bei der Kommunikation mit z.B. der Festplatte oder dem Netzwerk entstehen lange Wartezeiten</li>
@@ -448,7 +452,7 @@ function(request, response) {
                         <tr><td>Ein Thread pro Request</td><td>Ein Thread für alle Requests</td></tr>
                         <tr><td>Nebenläufigkeit wird explizit implementiert</td><td>Nebenläufigkeit durch Framework gesteuert</td></tr>
                     </table>
-                    <aside class="notes">
+                    <aside class="notes largeNotes">
                         Die wichtigsten Unterschiede zwischen dem in vielen Webserver Lösungen wie PHP oder JavaEE implementierten seqenziellen Programmablauf
                         und dem eventgetriebenen Ansatz von Node.js werden hier zusammengefasst:
                         <ul>
@@ -779,7 +783,7 @@ Request handler 'start' was called.
                     <h2>Wer antwortet auf den<br>Request?</h2>
                     <img src="./img/komponentenSoNicht.png" alt="Komponenten" class="fragment fade-out" data-fragment-index="1">
                     <img src="./img/komponentenSoNichtMitKreuz.png" alt="Komponenten" class="fragment" style="margin-top: -526px;margin-left: -134px;" data-fragment-index="1">
-                    <aside class="notes">
+                    <aside class="notes largeNotes">
                         <p>Problem bei blockierenden Funktionen allgemein:<br>Die Abarbeitung einer blockierenden Funktion blockiert den gesamten Server und weitere ankommende Requests können nicht gleichzeiig abgearbeitet werden.</p>
                         <p>Probleme bei nicht blockierenden Funktionen:<br>Oft werden Daten im Hintergrund abgerufen und durch eine Callback-Funktion das Ergebnis übermittelt. Würde hier jedoch der WebServer die Response senden, würde im Request Handler der Return-Wert in den meisten Fällen vor dem Aufruf der Callback-Funktion einer asynchronen Abarbeitung gesendet werden. Der WebServer erhält dann einen leeren Return-Wert und kann dem User nicht die richtige Response senden.</p>
                         <p>Aufgrund dieser Probleme ist es an dieser Stelle das Beste, jeden Request Handler für sich selbst die Response senden zu lassen, sobald die Funktion soweit ist.</p>
@@ -1026,7 +1030,7 @@ exports.upload = upload;
                     <br>
                     <br>
                     <h2>Fragen? / Diskussion</h2>
-                    <aside class="notes">
+                    <aside class="notes largeNotes">
                         In der Diskussion soll Node.js bewertet und die Vor- und Nachteile des Event Loop basierten Konzepts abgewägt werden.<br>
                         Die folgenden Listen bieten einen Überblick und Ausgangspunkt für die Diskussion.<br>
                         Vorteile von Node.js:
@@ -1058,6 +1062,7 @@ exports.upload = upload;
                         <li><i>www.nodejs.org</i></li>
                         <li><i>www.nodecode.de</i></li>
                     </ul>
+                    <aside class="notes"></aside>
                 </section>
             </div>
 
@@ -1104,13 +1109,26 @@ exports.upload = upload;
                 ]
             });
 
-//            Reveal.addEventListener('slidechanged', function (event) {
-//                // event.previousSlide, event.currentSlide, event.indexh, event.indexv
-//                var notes = event.currentSlide.querySelector(".notes");
-//                if (notes) {
+            Reveal.addEventListener('slidechanged', function (event) {
+                // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+                
+                if (document.getElementById("slidesContainer").classList.contains('notesVisible')) {
+                var notes = event.currentSlide.querySelector(".notes");
+                
+                if (event.currentSlide.querySelector(".notes").classList.contains('largeNotes')) {
+                    document.getElementById("visibleNotes").classList.add('largeNotes');
+                } else {
+                    document.getElementById("visibleNotes").classList.remove('largeNotes');
+                }
+                
+                if (notes) {
+                    document.getElementById("visibleNotes").innerHTML = '<p class="caption">Notizen:</p><div class="notes">' + notes.innerHTML + '</div>';
 //                    console.info(notes.innerHTML.replace(/\n\s+/g, '\n'));
-//                }
-//            });
+                } else {
+                    document.getElementById("visibleNotes").innerHTML = '<p class="caption">Notizen:</p>';
+                }
+            }
+            });
 
         </script>
 
