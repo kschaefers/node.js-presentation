@@ -14,6 +14,8 @@ handle["/v3"] = "http://localhost:8884";
 handle["/v4"] = "http://localhost:8887";
 
 function onRequest(request, response) {
+	request.setEncoding("utf8");
+	
     //control the favicon
     if (request.url === '/favicon.ico') {
         response.writeHead(200, {'Content-Type': 'image/x-icon'});
