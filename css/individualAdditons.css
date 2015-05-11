@@ -12,25 +12,32 @@
 section.example::before {
     content: "Praxisbeispiel";
 	position: absolute;
-	color: #FFFF56;
+	color: transparent;
 	right: -70px;
 	top: 30px;
 	font-family: "Special Elite",cursive;
-	border: 3px solid #FFFF56;
 	transform: rotateZ(35deg) scale(0.75);
 	padding: 5px 10px 3px;
+	background: url('./img/praxisbeispiel_yellow.png') no-repeat;
+	background-size: auto 100%;
+}
+
+.reveal .slides.printVersion section.example::before {
+	background: url('./img/praxisbeispiel.png') no-repeat;
+	background-size: auto 100%;
 }
 
 section.theory::before {
     content: "Theorie";
 	position: absolute;
-	color: #6FBC42;
+	color: transparent;
 	left: -30px;
 	top: 15px;
 	font-family: "Special Elite",cursive;
-	border: 3px solid #6FBC42;
 	transform: rotateZ(-35deg) scale(0.75);
 	padding: 5px 10px 3px;
+	background: url('./img/theorie.png') no-repeat;
+	background-size: auto 100%;
 }
 
 div.browser {
@@ -106,8 +113,13 @@ pre.console {
 .reveal .slide-number {
 	font-weight: bold !important;
 	font-size: 20px !important;
-	color: white !important;
+	color: black !important;
 	margin: 0px 40px 40px 0px;
+}
+
+.reveal .slides.printVersion img {
+	background-color: #002B36 !important;
+	padding: 10px;
 }
 
 .reveal .slides.notesVisible {
@@ -116,16 +128,20 @@ pre.console {
 
 .reveal .slides.notesVisible > section.present,
 .reveal .slides.notesVisible > section > section.present {
-	transform: scale(0.8) translateX(-50%);
+	transform: scale(0.6) translateX(-50%);
 }
 
 .reveal .slides div#visibleNotes {
 	display: none;
 }
 
+.reveal .slides.printVersion.notesVisible div#visibleNotes {
+	background: none repeat scroll 0% 0% #F0F0F0;
+}
+
 .reveal .slides.notesVisible div#visibleNotes {
 	display: inherit;
-	transform: scale(0.8) translateX(50%);
+	transform: scale(0.6) translateX(50%);
 	height: calc(90% - 20px);
 	background: none repeat scroll 0% 0% #EEE8D5;
 	color: #000;

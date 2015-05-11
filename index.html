@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
         <link rel="stylesheet" href="css/reveal.css">
-        <link rel="stylesheet" href="css/theme/moon.css" id="theme">
+        <link rel="stylesheet" href="css/theme/moonPrint.css" id="theme">
         <link rel="stylesheet" href="css/individualAdditons.css">
 
         <!-- Code syntax highlighting -->
@@ -40,7 +40,7 @@
         <div class="reveal">
 
             <!-- Any section element inside of this container is displayed as a slide -->
-            <div id="slidesContainer" class="slides">
+            <div id="slidesContainer" class="slides notesVisible printVersion"> <!-- possible classes to be added: notesVisible printVersion-->
                 
                 <div id="visibleNotes"><p class="caption">Notizen:</p></div>
                 
@@ -96,7 +96,7 @@
                 </section>
 
                 <section class="theory">
-                    <img src="img/nodejs-light.png" style="width:60%;height:60%"/>
+                    <img src="img/nodejs-logo.png" style="width:60%;height:60%;background-color:transparent !important;"/>
                     <h4>Serverseitiges Javascript</h4>
                     <ul>
                         <li>JavaScript Framework für serverseitige Entwicklung</li>
@@ -139,7 +139,7 @@ Hello Node!
                 <section class="theory">
                     <h2>Node.js - Aufbau</h2>
                     <h4>Kernkomponenten</h4>
-                    <img src="img/NodejsArchitektur.png" />
+                    <img src="img/NodejsArchitektur.png" style="background-color:transparent !important;"/>
                     <aside class="notes largeNotes">
                         Das Diagramm zeigt die Komponenten, aus denen Node.js aufgebaut ist:
                         <ul>
@@ -430,7 +430,7 @@ function(request, response) {
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Technische Sicht - Reactor Pattern</h4>
-                    <img src="img/ReactorPattern.png" />
+                    <img src="img/ReactorPattern.png" style="background-color:transparent !important"/>
                     <p>In Node.js in der Bibliothek libuv implementiert</p>
                     <aside class="notes">
                         Das abgebildete UML Diagramm zeigt eine vereinfachte Modellierung des Reactor Patterns,
@@ -782,7 +782,7 @@ Request handler 'start' was called.
                 <section class="example">
                     <h2>Wer antwortet auf den<br>Request?</h2>
                     <img src="./img/komponentenSoNicht.png" alt="Komponenten" class="fragment fade-out" data-fragment-index="1">
-                    <img src="./img/komponentenSoNichtMitKreuz.png" alt="Komponenten" class="fragment" style="margin-top: -526px;margin-left: -134px;" data-fragment-index="1">
+                    <img src="./img/komponentenSoNichtMitKreuz.png" alt="Komponenten" class="fragment" style="top:226px;left:222px;position:absolute;" data-fragment-index="1">
                     <aside class="notes largeNotes">
                         <p>Problem bei blockierenden Funktionen allgemein:<br>Die Abarbeitung einer blockierenden Funktion blockiert den gesamten Server und weitere ankommende Requests können nicht gleichzeiig abgearbeitet werden.</p>
                         <p>Probleme bei nicht blockierenden Funktionen:<br>Oft werden Daten im Hintergrund abgerufen und durch eine Callback-Funktion das Ergebnis übermittelt. Würde hier jedoch der WebServer die Response senden, würde im Request Handler der Return-Wert in den meisten Fällen vor dem Aufruf der Callback-Funktion einer asynchronen Abarbeitung gesendet werden. Der WebServer erhält dann einen leeren Return-Wert und kann dem User nicht die richtige Response senden.</p>
@@ -853,7 +853,7 @@ exports.route = route;
                 <section class="example">
                     <h2>Request Handler-Modul (V4)</h2>
                     <h3>Teil 1</h3>
-                    <pre class="noCodeHighlight" style="overflow:hidden;width:109%;margin-left:-6%;">
+                    <pre class="noCodeHighlight" style="overflow:hidden;width:109%;margin-left:-6%;transform:scale(0.9);">
 function start(response, <kbd>postData</kbd>) {
     <kbd>var body = '&lt;html&gt; &lt;head&gt;' +
             '&lt;meta http-equiv="Content-Type" content="text/html; ' +
@@ -877,7 +877,7 @@ function start(response, <kbd>postData</kbd>) {
                 <section class="example">
                     <h2>Request Handler-Modul (V4)</h2>
                     <h3>Teil 2</h3>
-                    <pre class="noCodeHighlight" style="overflow:hidden;width:111%;margin-left:-7%;">
+                    <pre class="noCodeHighlight" style="overflow:hidden;width:111%;margin-left:-7%;transform:scale(0.9);">
 <kbd>var querystring = require("querystring");</kbd>
 
 function upload(response, <kbd>postData</kbd>) {
@@ -1072,11 +1072,11 @@ exports.upload = upload;
         <script src="js/reveal.js"></script>
 
         <script>
-
             // Full list of configuration options available at:
             // https://github.com/hakimel/reveal.js#configuration
             Reveal.initialize({
-                controls: true,
+                fragments: false,
+                controls: false,
                 progress: true,
                 history: true,
                 center: true,
