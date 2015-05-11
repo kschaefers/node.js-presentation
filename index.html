@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
         <link rel="stylesheet" href="css/reveal.css">
-        <link rel="stylesheet" href="css/theme/moonPrint.css" id="theme">
+        <link rel="stylesheet" href="css/theme/moon.css" id="theme">
         <link rel="stylesheet" href="css/individualAdditons.css">
 
         <!-- Code syntax highlighting -->
@@ -40,7 +40,7 @@
         <div class="reveal">
 
             <!-- Any section element inside of this container is displayed as a slide -->
-            <div id="slidesContainer" class="slides notesVisible printVersion"> <!-- possible classes to be added: notesVisible printVersion-->
+            <div id="slidesContainer" class="slides"> <!-- possible classes to be added: notesVisible printVersion-->
                 
                 <div id="visibleNotes"><p class="caption">Notizen:</p></div>
                 
@@ -96,7 +96,7 @@
                 </section>
 
                 <section class="theory">
-                    <img src="img/nodejs-logo.png" style="width:60%;height:60%;background-color:transparent !important;"/>
+                    <img src="img/nodejs-light.png" style="width:60%;height:60%;background-color:transparent !important;"/>
                     <h4>Serverseitiges Javascript</h4>
                     <ul>
                         <li>JavaScript Framework für serverseitige Entwicklung</li>
@@ -301,7 +301,7 @@ Hello Node!
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Ablauf</h4>
-                    <img src="img/eventloop.png" />
+                    <img src="img/eventloop.png" style="max-width:70%;"/>
                     <aside class="notes">
                         Die abgebildete Grafik zeigt einen Überblick über den eventgetriebenen Programmablauf in Node.js,
                         der auf den kommenden Folien im Detail erklärt wird.
@@ -347,7 +347,7 @@ http.createServer(function(request, response) {
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 3</h4>
-                    <img src="img/eventloop2.png" />
+                    <img src="img/eventloop2.png" style="max-width:70%;" />
                     <div>Request wird als Event in die Queue eingetragen</div>
                     <aside class="notes">
                         Der weiße Pfeil zeigt den Datenfluss von der Netzwerkschnittstelle im http Modul zur Event Queue, wo das erzeugte Event abgelegt wird.
@@ -357,7 +357,7 @@ http.createServer(function(request, response) {
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 4</h4>
-                    <img src="img/eventloop3.png" />
+                    <img src="img/eventloop3.png" style="max-width:70%;"/>
                     <div>Event Loop führt das Event aus</div>
                     <aside class="notes">
                         <ul>
@@ -376,14 +376,12 @@ http.createServer(function(request, response) {
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 4</h4>
                     <pre class="noCodeHighlight" style="margin:0;width:95%;">
-<code>
-function(request, response) {
+<code>function(request, response) {
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("Hello World");
     response.end();
-}
-</code>
-                    </pre>
+}</code></pre>
+                    <br>
                     <ul>
                         <li>Event Code: auf den Request registrierter Callback</li>
                         <li>Callback Parameter wurden durch den Event Auslöser gesetzt</li>
@@ -398,7 +396,7 @@ function(request, response) {
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 5</h4>
-                    <img src="img/eventloop4.png" />
+                    <img src="img/eventloop4.png" style="max-width:70%;" />
                     <p align="left">
                         Event wird fertig bearbeitet<br>
                         Optional: I/O Jobs werden deligiert, Callback wird gesetzt
@@ -419,7 +417,7 @@ function(request, response) {
                 <section class="theory">
                     <h2>Event Loop in Node.js</h2>
                     <h4>Beispiel - Schritt 6</h4>
-                    <img src="img/eventloop5.png" />
+                    <img src="img/eventloop5.png" style="max-width:70%;" />
                     <div>Ergebnis Event mit Callback wird in die Queue eingetragen</div>
                     <aside class="notes">
                         Nachdem der asynchrone Aufruf abgeschlossen wurde, wird auch dessen Ergebnis wieder in Form eines Events in der Queue gespeichert.
@@ -515,7 +513,7 @@ function(request, response) {
 
                 <section class="example">
                     <h2>Server-Modul (V1)</h2>
-                    <pre class="noCodeHighlight" style="width: 100%;overflow: hidden;">
+                    <pre class="noCodeHighlight" style="width: 100%;overflow: hidden;transform: scale(0.95);">
 var http = require("http");
 
 <kbd>function start() {
@@ -548,7 +546,7 @@ var server = require("./server");
 
 server.start();
 </kbd>
-                    </pre>
+</pre>
                     <aside class="notes">
                         <p>index.js bindet nun das Server-Modul ein, welches auf der selben Ebene liegt. Anschließend wird auf dem WebServer die Methode <i>start()</i> aufgerufen.</p>
                         <p>Gegenüber dem Hello World Beispiel hat in Version 1 des Praxisbeispiels keine funktionale Änderung stattgefunden. Die der WebServer wurde lediglich als Modul ausgegliedert.</p>
@@ -581,7 +579,7 @@ server.start();
 
                 <section class="example">
                     <h2>Router-Modul (V2)</h2>
-                    <pre class="noCodeHighlight" style="width:95%">
+                    <pre class="noCodeHighlight" style="width:95%;transform:scale(0.95);">
 <kbd>
 function route(pathname) {
     console.log("About to route a request for " + pathname);
@@ -589,7 +587,7 @@ function route(pathname) {
 
 exports.route = route;
 </kbd>
-                    </pre>
+</pre>
                     <aside class="notes">
                         <p>Router-Modul wird mit der Funktion <i>route()</i> hinzugefügt. Diese Funktion ist jedoch erst einmal ohne Funktionalität und macht nur eine Ausgabe auf der Konsole.</p>
                     </aside>
@@ -611,7 +609,7 @@ server.start(<kbd>router.route</kbd>);
 
                 <section class="example">
                     <h2>Server-Modul (V2)</h2>
-                    <pre class="noCodeHighlight" style="overflow:hidden;width:100%">
+                    <pre class="noCodeHighlight" style="overflow:hidden;width:100%;transform:scale(0.95);">
 var http = require("http");
 <kbd>var url = require("url");</kbd>
 
@@ -626,7 +624,7 @@ function start(<kbd>route</kbd>) {
     http.createServer(onRequest).listen(8888);
 }
 exports.start = start;                         
-                    </pre>
+</pre>
                     <aside class="notes">
                         <p>Im WebServer wird nun zusätzlich das Modul <i>url</i> eingebunden, damit die URL leichter geparst werden kann. Dadurch muss die URL an dieser Stelle nicht händisch geparst werden, sondern das Modul übernimmt diesen Teil.</p>
                         <p>Anschließend wird die <i>route()</i> Methode aufgerufen und der zuvor geparste Pfadname mit übergeben.</p>
@@ -651,7 +649,7 @@ exports.start = start;
 C:\Users\Katrin\nodeProject>node index.js
 About to route a request for /
 </samp>
-                    </pre>
+</pre>
                     <aside class="notes">
                         Die Konsole bestätigt jedoch, dass im Hintergrund der Pfadname zum Router durchgereicht wurde.
                     </aside>
@@ -736,7 +734,7 @@ exports.start = start;
 
                 <section class="example">
                     <h2>Router-Modul (V3)</h2>
-                    <pre class="noCodeHighlight" style="width:100%">
+                    <pre class="noCodeHighlight" style="width:100%;transform:scale(0.95);">
 function route(<kbd>handle</kbd>, pathname) {
 
     <kbd>if (handle[pathname] === 'function') {
@@ -773,7 +771,7 @@ exports.route = route;
 C:\Users\Katrin\nodeProject>node index.js
 Request handler 'start' was called.
 </samp>
-                    </pre>
+</pre>
                     <aside class="notes">
                         <p>Die Konsole bestätigt jedoch, dass im Hintergrund der Request an den richtigen Request Handler durchgereicht wurde.</p>
                     </aside>
@@ -782,7 +780,7 @@ Request handler 'start' was called.
                 <section class="example">
                     <h2>Wer antwortet auf den<br>Request?</h2>
                     <img src="./img/komponentenSoNicht.png" alt="Komponenten" class="fragment fade-out" data-fragment-index="1">
-                    <img src="./img/komponentenSoNichtMitKreuz.png" alt="Komponenten" class="fragment" style="top:226px;left:222px;position:absolute;" data-fragment-index="1">
+                    <img src="./img/komponentenSoNichtMitKreuz.png" alt="Komponenten" class="fragment" style="top:227px;left:232px;position:absolute;" data-fragment-index="1">
                     <aside class="notes largeNotes">
                         <p>Problem bei blockierenden Funktionen allgemein:<br>Die Abarbeitung einer blockierenden Funktion blockiert den gesamten Server und weitere ankommende Requests können nicht gleichzeiig abgearbeitet werden.</p>
                         <p>Probleme bei nicht blockierenden Funktionen:<br>Oft werden Daten im Hintergrund abgerufen und durch eine Callback-Funktion das Ergebnis übermittelt. Würde hier jedoch der WebServer die Response senden, würde im Request Handler der Return-Wert in den meisten Fällen vor dem Aufruf der Callback-Funktion einer asynchronen Abarbeitung gesendet werden. Der WebServer erhält dann einen leeren Return-Wert und kann dem User nicht die richtige Response senden.</p>
@@ -800,7 +798,7 @@ Request handler 'start' was called.
 
                 <section class="example">
                     <h2>Server-Modul (V4)</h2>
-                    <pre class="noCodeHighlight" style="overflow:hidden;width: 98%;max-height: 520px;">
+                    <pre class="noCodeHighlight" style="overflow:hidden;width:98%;max-height:520px;transform:scale(0.95);">
 var http = require("http");      var url = require("url");
 
 function start(route, handle) {
@@ -831,7 +829,7 @@ exports.start = start;
 
                 <section class="example">
                     <h2>Router-Modul (V4)</h2>
-                    <pre class="noCodeHighlight" style="width:100%">
+                    <pre class="noCodeHighlight" style="width:100%;transform:scale(0.95);">
 function route(handle, pathname, response, postData) {
 
     if (typeof handle[pathname] === 'function') {
@@ -1075,7 +1073,7 @@ exports.upload = upload;
             // Full list of configuration options available at:
             // https://github.com/hakimel/reveal.js#configuration
             Reveal.initialize({
-                fragments: false,
+                fragments: true,
                 controls: false,
                 progress: true,
                 history: true,
