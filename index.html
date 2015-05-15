@@ -41,9 +41,9 @@
 
             <!-- Any section element inside of this container is displayed as a slide -->
             <div id="slidesContainer" class="slides"> <!-- possible classes to be added: notesVisible printVersion-->
-                
+
                 <div id="visibleNotes"><p class="caption">Notizen:</p></div>
-                
+
                 <section>
                     <br><br>
                     <h1>NODE.JS</h1>
@@ -546,7 +546,7 @@ var server = require("./server");
 
 server.start();
 </kbd>
-</pre>
+                    </pre>
                     <aside class="notes">
                         <p>index.js bindet nun das Server-Modul ein, welches auf der selben Ebene liegt. Anschließend wird auf dem WebServer die Methode <i>start()</i> aufgerufen.</p>
                         <p>Gegenüber dem Hello World Beispiel hat in Version 1 des Praxisbeispiels keine funktionale Änderung stattgefunden. Die der WebServer wurde lediglich als Modul ausgegliedert.</p>
@@ -587,7 +587,7 @@ function route(pathname) {
 
 exports.route = route;
 </kbd>
-</pre>
+                    </pre>
                     <aside class="notes">
                         <p>Router-Modul wird mit der Funktion <i>route()</i> hinzugefügt. Diese Funktion ist jedoch erst einmal ohne Funktionalität und macht nur eine Ausgabe auf der Konsole.</p>
                     </aside>
@@ -624,7 +624,7 @@ function start(<kbd>route</kbd>) {
     http.createServer(onRequest).listen(8888);
 }
 exports.start = start;                         
-</pre>
+                    </pre>
                     <aside class="notes">
                         <p>Im WebServer wird nun zusätzlich das Modul <i>url</i> eingebunden, damit die URL leichter geparst werden kann. Dadurch muss die URL an dieser Stelle nicht händisch geparst werden, sondern das Modul übernimmt diesen Teil.</p>
                         <p>Anschließend wird die <i>route()</i> Methode aufgerufen und der zuvor geparste Pfadname mit übergeben.</p>
@@ -649,7 +649,7 @@ exports.start = start;
 C:\Users\Katrin\nodeProject>node index.js
 About to route a request for /
 </samp>
-</pre>
+                    </pre>
                     <aside class="notes">
                         Die Konsole bestätigt jedoch, dass im Hintergrund der Pfadname zum Router durchgereicht wurde.
                     </aside>
@@ -771,7 +771,7 @@ exports.route = route;
 C:\Users\Katrin\nodeProject>node index.js
 Request handler 'start' was called.
 </samp>
-</pre>
+                    </pre>
                     <aside class="notes">
                         <p>Die Konsole bestätigt jedoch, dass im Hintergrund der Request an den richtigen Request Handler durchgereicht wurde.</p>
                     </aside>
@@ -1109,23 +1109,23 @@ exports.upload = upload;
 
             Reveal.addEventListener('slidechanged', function (event) {
                 // event.previousSlide, event.currentSlide, event.indexh, event.indexv
-                
+
                 if (document.getElementById("slidesContainer").classList.contains('notesVisible')) {
-                var notes = event.currentSlide.querySelector(".notes");
-                
-                if (event.currentSlide.querySelector(".notes").classList.contains('largeNotes')) {
-                    document.getElementById("visibleNotes").classList.add('largeNotes');
-                } else {
-                    document.getElementById("visibleNotes").classList.remove('largeNotes');
-                }
-                
-                if (notes) {
-                    document.getElementById("visibleNotes").innerHTML = '<p class="caption">Notizen:</p><div class="notes">' + notes.innerHTML + '</div>';
+                    var notes = event.currentSlide.querySelector(".notes");
+
+                    if (event.currentSlide.querySelector(".notes").classList.contains('largeNotes')) {
+                        document.getElementById("visibleNotes").classList.add('largeNotes');
+                    } else {
+                        document.getElementById("visibleNotes").classList.remove('largeNotes');
+                    }
+
+                    if (notes) {
+                        document.getElementById("visibleNotes").innerHTML = '<p class="caption">Notizen:</p><div class="notes">' + notes.innerHTML + '</div>';
 //                    console.info(notes.innerHTML.replace(/\n\s+/g, '\n'));
-                } else {
-                    document.getElementById("visibleNotes").innerHTML = '<p class="caption">Notizen:</p>';
+                    } else {
+                        document.getElementById("visibleNotes").innerHTML = '<p class="caption">Notizen:</p>';
+                    }
                 }
-            }
             });
 
         </script>
